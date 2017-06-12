@@ -179,7 +179,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">剑未佩妥出门已是江湖，历尽千帆归来仍是少年</p>
+        <h1 class="site-subtitle" itemprop="description">剑未佩妥出门已是江湖，历尽千帆归来仍是少年</h1>
       
   </div>
 
@@ -304,9 +304,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/12/earned-value-management/" itemprop="url">挣值管理原理与思考</a></h1>
+                <a class="post-title-link" href="/2017/06/12/earned-value-management/" itemprop="url">挣值管理原理与思考</a></h2>
         
 
         <div class="post-meta">
@@ -353,6 +353,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/12/earned-value-management/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/12/earned-value-management/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -416,7 +427,7 @@
 <p>我们回过头来把SPI和CPI放在一起看，其实它们本质上分别就是”时间的效率”与”资金的效率”，只不过这两个效率值都是用资金为参数来计算的，所以没有那么直观而已。</p>
 <p>既然我们原计划中的1元钱能做1.2元的事情，那么原计划的600万其实也就用不完啦！</p>
 <p><code>EAC = BAC/CPI = 600万/1.2 = 500万</code></p>
-<p>此时我们就可以回答，项目完工500万就够了，但工期要延长到7.5个月。所以，我们在项目进行都中途的时候，可以计算到项目完工时的时间成本与资金成本，这就是挣值管理的作用。顺便，我们还得到了两个中间值，分别是进度绩效指数与成本绩效指数。也即做事的时间效率，与资金效率。</p>
+<p>此时我们就可以回答，项目完工500万就够了，但工期要延长到7.5个月。所以，我们在项目进行到中途的时候，可以计算到项目完工时的时间成本与资金成本，这就是挣值管理的作用。顺便，我们还得到了两个中间值，分别是进度绩效指数与成本绩效指数。也即做事的时间效率，与资金效率。</p>
 <p>挣值管理模型除了能够预测完工成本与计算效率之外，还可以计算偏差，偏差的计算就更加简单了：</p>
 <ol>
 <li><p>做到目前这个进度，我原本打算花多少钱，现在实际花了多少钱。这两者的差值叫成本偏差(CV)</p>
@@ -591,9 +602,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/11/apologize-to-the-good-old-days/" itemprop="url">向美好的旧日时光道歉</a></h1>
+                <a class="post-title-link" href="/2017/06/11/apologize-to-the-good-old-days/" itemprop="url">向美好的旧日时光道歉</a></h2>
         
 
         <div class="post-meta">
@@ -640,6 +651,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/11/apologize-to-the-good-old-days/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/11/apologize-to-the-good-old-days/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -748,8 +770,8 @@
                alt="joylibo" />
           <p class="site-author-name" itemprop="name">joylibo</p>
            
-              <p class="site-description motion-element" itemprop="description">李勃写字的地方</p>
-          
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
 
@@ -933,6 +955,14 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://joylibo.disqus.com/count.js" async></script>
+    
+
+    
+
+  
+
 
 
 
@@ -954,10 +984,6 @@
 
 
 
-  
-
-
-
 
 
 
@@ -974,6 +1000,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
