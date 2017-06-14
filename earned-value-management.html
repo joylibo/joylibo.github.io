@@ -1,0 +1,939 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="挣值,绩效管理," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="挣值管理原理挣值(Earned Value)管理是一种工作绩效分析方法。它通过比较计划工作量、挣值与实际花费成本来评价项目执行的成本和进度绩效。 挣值管理希望达到的目的是在项目管理过程中，通过量化手段来回答“项目已经完成了多少工作、进度和费用状况如何”的问题。">
+<meta name="keywords" content="挣值,绩效管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="挣值管理原理与思考">
+<meta property="og:url" content="http://www.joylibo.com/earned-value-management.html">
+<meta property="og:site_name" content="李勃的周末">
+<meta property="og:description" content="挣值管理原理挣值(Earned Value)管理是一种工作绩效分析方法。它通过比较计划工作量、挣值与实际花费成本来评价项目执行的成本和进度绩效。 挣值管理希望达到的目的是在项目管理过程中，通过量化手段来回答“项目已经完成了多少工作、进度和费用状况如何”的问题。">
+<meta property="og:updated_time" content="2017-06-13T16:17:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="挣值管理原理与思考">
+<meta name="twitter:description" content="挣值管理原理挣值(Earned Value)管理是一种工作绩效分析方法。它通过比较计划工作量、挣值与实际花费成本来评价项目执行的成本和进度绩效。 挣值管理希望达到的目的是在项目管理过程中，通过量化手段来回答“项目已经完成了多少工作、进度和费用状况如何”的问题。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.joylibo.com/earned-value-management.html"/>
+
+
+
+
+
+  <title>挣值管理原理与思考 | 李勃的周末</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=62561184";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李勃的周末</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">剑未佩妥出门已是江湖，历尽千帆归来仍是少年</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-management">
+          <a href="/categories/项目管理/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tasks"></i> <br />
+            
+            项目管理
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-product">
+          <a href="/categories/产品与交互/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cubes"></i> <br />
+            
+            产品与交互
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech&tool">
+          <a href="/categories/技术与工具/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-terminal"></i> <br />
+            
+            技术与工具
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-prose">
+          <a href="/categories/散文/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            散文
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.joylibo.com/earned-value-management.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="joylibo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/libo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李勃的周末">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">挣值管理原理与思考</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T00:40:34+08:00">
+                2017-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目管理/" itemprop="url" rel="index">
+                    <span itemprop="name">项目管理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="挣值管理原理"><a href="#挣值管理原理" class="headerlink" title="挣值管理原理"></a>挣值管理原理</h4><p>挣值(Earned Value)管理是一种<strong>工作绩效</strong>分析方法。它通过比较计划工作量、挣值与实际花费成本来评价项目执行的成本和进度绩效。</p>
+<p>挣值管理希望达到的目的是在项目管理过程中，通过量化手段来回答“项目已经完成了多少工作、进度和费用状况如何”的问题。<br><a id="more"></a><br>在运用挣值管理模型时，有五项必要的参数，用通俗的语言解释就是：</p>
+<ul>
+<li>我本来打算用多少钱<strong>全部做完</strong>这个事？即完工预算(Budget at Complete, BAC)</li>
+<li>我本来打算用多长时间<strong>全部做完</strong>这个事？即完工预计工期(Base Date At Completion, BDAC)</li>
+<li>截止目前，如果进度顺利，我<strong>应该</strong>花了多少钱？即计划价值(Planned Value, PV)</li>
+<li>截止目前，我<strong>实际已经</strong>花了多少钱？即实际费用(Actual Cost, AC)</li>
+<li>截止目前，我实际已经干的进度是我<strong>原本打算</strong>花多少钱干的？也就是所谓的挣值(Earned Value, EV)</li>
+</ul>
+<p>举个例子：</p>
+<p>比如我们计划投入600万元，用6个月时间铺设一段管道。在给出这个计划时，其实BAC和BDAC已经确定了，分别是</p>
+<p><code>BAC = 600万</code></p>
+<p><code>BDAC = 6个月</code></p>
+<p>所以一般地BAC和BDAC是不需要计算就可以从计划中直接获取到的参数。假如按照计划我们应该完成铺设管道50%的工作量时，我们实际只完成了40%的工作量，花费了200万元，这个时候就可以用挣值分析了。</p>
+<p>我们目前实际花的钱(Actual Cost)是200万元。</p>
+<p><code>AC = 200万</code></p>
+<p>但如果工作进度顺利，我们本来应该是完成50%的工作，应该花费的钱(Planned Value)就是600万*50%，即300万元。所以也能很直接地计算出</p>
+<p><code>PV = 300万</code></p>
+<p>最后就是计算我们目前实际已经完成的工作，是我们计划用多少钱来完成的，也就是计算挣值(Earned Value)。例子中我们完成了40%的工作量，按照计划应该是用600万*40% = 240万元来完成。</p>
+<p><code>EV = 240万</code></p>
+<p>此时，挣值管理模型的5个参数值已经全部有了。</p>
+<p>从字面上理解，英文单词earned的意思是“挣得的，赚得的”，我们实际花费(actual cost)了200万的成本，赚(earn)到了240万的价值，这笔买卖是不是赚了？</p>
+<p>但是挣值分析并不只是为估算成本服务的，同时我们要意识到现在的进度其实是落后的。现在我们用上面的五个值来回答两个问题：</p>
+<ol>
+<li>铺设管道的工作什么时候能完工? (估计完工工期, EDAC)</li>
+<li>完工总共要花多少钱? (估计完工成本, EAC)</li>
+</ol>
+<p>从导致进度偏差的原因具备一般性的前提下来看，我们原来打算干50%，现在只干了40%，那么我们做事情的效率(进度绩效指数, SPI)其实是比计划要打折的:</p>
+<p><code>SPI = EV/PV = 240/300 = 0.8</code></p>
+<p>其实也可以从另一个方面来计算SPI：我们原计划干50%的，现在只干了40%，效率岂不就是打了8折吗？</p>
+<p>这样来看的话，那么我们原计划6个月来完成的，既然现在的做事效率是原计划的80%，那么这个完工工期就要延长了：</p>
+<p><code>EDAC = BDAC/SPI = 6个月/0.8 = 7.5个月</code></p>
+<p>工期算出来了，那么如何算钱呢？</p>
+<p>同样我们默认地假设成本的偏差也具备一般性。我们本来打算花240万干完40%的工作，现在我们只花了200万就干完了40%的工作，那么我们的资金效率(成本绩效指数, CPI)是要比计划中的要高的:</p>
+<p><code>CPI = EV/AC = 240/200 = 1.2</code></p>
+<p>我们回过头来把SPI和CPI放在一起看，其实它们本质上分别就是”时间的效率”与”资金的效率”，只不过这两个效率值都是用资金为参数来计算的，所以没有那么直观而已。</p>
+<p>既然我们原计划中的1元钱能做1.2元的事情，那么原计划的600万其实也就用不完啦！</p>
+<p><code>EAC = BAC/CPI = 600万/1.2 = 500万</code></p>
+<p>此时我们就可以回答，项目完工500万就够了，但工期要延长到7.5个月。所以，我们在项目进行到中途的时候，可以计算到项目完工时的时间成本与资金成本，这就是挣值管理的作用。顺便，我们还得到了两个中间值，分别是进度绩效指数与成本绩效指数。也即做事的时间效率，与资金效率。</p>
+<p>挣值管理模型除了能够预测完工成本与计算效率之外，还可以计算偏差，偏差的计算就更加简单了：</p>
+<ol>
+<li><p>做到目前这个进度，我原本打算花多少钱，现在实际花了多少钱。这两者的差值叫成本偏差(CV)</p>
+<p><code>CV = PV - AC</code></p>
+</li>
+<li><p>做完这项工作，我原本打算花多少钱，现在来看我将会花多少钱。这两者的差值叫完工成本偏差(VAC)</p>
+<p><code>VAC = BAC - EAC</code></p>
+</li>
+<li><p>在目前这个时间点，我实际完成了多少工作，我原本打算完成多少工作。这两者的差值叫做进度偏差(SV). <em>这里需要注意的是“进度”这个概念在挣值管理中是以“资金”这个指标来衡量的，所以SV的计算方式是用EV减去PV</em></p>
+<p><code>SV = EV - PV</code></p>
+</li>
+</ol>
+<p>在挣值管理中，最不直观的概念其实就是“挣值”，它表示“现在完成的这些工作我原本是打算用多少钱来完成的”,这样表示的作用是为了让进度与资金之间建立桥梁。理解了挣值的概念，整个挣值管理模型就很容易理解了。</p>
+<p>需要注意的是，我们在计算EDAC与EAC的时候，是假设了导致当前偏差的原因是具备一般性的。也就是说我们用实际的工作来重新计算了我们的时间效率与时间效率，来修正计划中就存在的偏差。如果导致当前偏差的原因不具备一般性，比如说在上面铺设管道的例子中，进度迟缓的原因是因为台风导致的，而刮台风这件事明显不具备一般性，就不能用修正CPI和SPI的方式来估算完工工期及完工成本了。</p>
+<h4 id="挣值管理在应用中的困难"><a href="#挣值管理在应用中的困难" class="headerlink" title="挣值管理在应用中的困难"></a>挣值管理在应用中的困难</h4><p>挣值管理模型在实际应用中可能遇到一些困难，首先就是如何准确地给出当前完工的工作占总工作的百分比。类似铺设管道的工作，可以用管道长度来计算工作进度，但是对于含有研究与探索性质的工作，则很难统计已完成工作的占比。</p>
+<p>另一个困难就是完成工作量与成本费用之间如何建立关系。比如IT项目建设，实现同样数量的接口，所需要投入的时间成本之间的差异可能是巨大的。即使是铺设管道这样的工作可以用长度来量化的工作，在市区施工与郊区施工的人工成本差异也可能是很大的。</p>
+<p>最后我们再对挣值管理中的几个术语进行一个整理：</p>
+<h4 id="五个输入值"><a href="#五个输入值" class="headerlink" title="五个输入值"></a>五个输入值</h4><table>
+<thead>
+<tr>
+<th>中文名称</th>
+<th>英文缩写</th>
+<th>英文名称</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>完工预算</td>
+<td>BAC</td>
+<td>Budget at Complete</td>
+<td>项目总的成本预算</td>
+</tr>
+<tr>
+<td>完工预计时间</td>
+<td>BDAC</td>
+<td>Base Date At Completion</td>
+<td>项目全部工作的预计时间</td>
+</tr>
+<tr>
+<td>计划价值</td>
+<td>PV</td>
+<td>Planned Value</td>
+<td>现在应该做多少工作(用费用来衡量)</td>
+</tr>
+<tr>
+<td>实际费用</td>
+<td>AC</td>
+<td>Actual Cost</td>
+<td>现在实际用了多少费用</td>
+</tr>
+<tr>
+<td>挣值</td>
+<td>EV</td>
+<td>Earned Value</td>
+<td>现在实际做了多少工作(用费用来衡量)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="七个输出值"><a href="#七个输出值" class="headerlink" title="七个输出值"></a>七个输出值</h4><table>
+<thead>
+<tr>
+<th>中文名称</th>
+<th>英文缩写</th>
+<th>英文名称</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进度绩效指数</td>
+<td>SPI</td>
+<td>Schedule Performance Index</td>
+<td>做事的效率(用费用来衡量)</td>
+</tr>
+<tr>
+<td>成本绩效指数</td>
+<td>CPI</td>
+<td>Cost Performance Index</td>
+<td>资金的效率</td>
+</tr>
+<tr>
+<td>完工估算</td>
+<td>EAC</td>
+<td>Estimate At Completion</td>
+<td>(按照现在的表现估算)完工需要的总费用</td>
+</tr>
+<tr>
+<td>完工工期估算</td>
+<td>EDAC</td>
+<td>Estimate Date At Completion</td>
+<td>(按照现在的表现估算)完工需要的总时间</td>
+</tr>
+<tr>
+<td>成本偏差</td>
+<td>CV</td>
+<td>Cost Variance</td>
+<td>实际的工作与实际费用的差值</td>
+</tr>
+<tr>
+<td>进度偏差</td>
+<td>SV</td>
+<td>Schedule Variance</td>
+<td>实际的工作与预期完成的工作的差值</td>
+</tr>
+<tr>
+<td>完工费用偏差</td>
+<td>VAC</td>
+<td>Variance At Completion</td>
+<td>完工预算与完工估算之间的差值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="学习建议"><a href="#学习建议" class="headerlink" title="学习建议"></a>学习建议</h4><p>这部分公式比较多，直接记忆这些公式是非常低效的一件事，不如弄懂每一个术语的含义，然后公式自己就可以推导出来了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/挣值/" rel="tag"># 挣值</a>
+          
+            <a href="/tags/绩效管理/" rel="tag"># 绩效管理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/apologize-to-the-good-old-days.html" rel="next" title="向美好的旧日时光道歉">
+                <i class="fa fa-chevron-left"></i> 向美好的旧日时光道歉
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/PERT.html" rel="prev" title="活动历时估计之三点估算法(PERT)">
+                活动历时估计之三点估算法(PERT) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/libo.jpg"
+               alt="joylibo" />
+          <p class="site-author-name" itemprop="name">joylibo</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="mailto:libo@joylibo.com" target="_blank" title="libo@joylibo.com">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  libo@joylibo.com
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#挣值管理原理"><span class="nav-number">1.</span> <span class="nav-text">挣值管理原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挣值管理在应用中的困难"><span class="nav-number">2.</span> <span class="nav-text">挣值管理在应用中的困难</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五个输入值"><span class="nav-number">3.</span> <span class="nav-text">五个输入值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七个输出值"><span class="nav-number">4.</span> <span class="nav-text">七个输出值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习建议"><span class="nav-number">5.</span> <span class="nav-text">学习建议</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">joylibo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
