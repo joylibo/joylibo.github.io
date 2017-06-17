@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="gitbook,API文档," />
 
 
 
@@ -93,15 +93,25 @@
 
 
 
-<meta name="description" content="libo@joylibo.com">
-<meta property="og:type" content="website">
-<meta property="og:title" content="李勃的周末">
-<meta property="og:url" content="http://www.joylibo.com/index.html">
+<meta name="description" content="前言 作者注：本文适合新手学习，不太适合进阶阅读  0.为什么要使用Gitbook你在写文档的时候有没有过这样的烦恼：  word文档无法被Git逐行追踪，不方便做版本控制，每次更新版本都要更换整个文档而且回头再看时很难快速找到更新了哪些地方。 免费的在线文档编辑工具(如“石墨文档”等)很难做到样式的个性化，而且当文档篇幅比较大的时候不便于组织。甚至可能你的公司根本不允许你把文档放在在线文档平台上">
+<meta name="keywords" content="gitbook,API文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用gitbook编写交互友好的API文档">
+<meta property="og:url" content="http://www.joylibo.com/2017/how-to-use-gitbook.html">
 <meta property="og:site_name" content="李勃的周末">
-<meta property="og:description" content="libo@joylibo.com">
+<meta property="og:description" content="前言 作者注：本文适合新手学习，不太适合进阶阅读  0.为什么要使用Gitbook你在写文档的时候有没有过这样的烦恼：  word文档无法被Git逐行追踪，不方便做版本控制，每次更新版本都要更换整个文档而且回头再看时很难快速找到更新了哪些地方。 免费的在线文档编辑工具(如“石墨文档”等)很难做到样式的个性化，而且当文档篇幅比较大的时候不便于组织。甚至可能你的公司根本不允许你把文档放在在线文档平台上">
+<meta property="og:image" content="http://www.joylibo.com/images/pic2.png">
+<meta property="og:image" content="http://www.joylibo.com/images/pic3.png">
+<meta property="og:image" content="http://www.joylibo.com/images/pic4.png">
+<meta property="og:image" content="http://www.joylibo.com/images/pic5.png">
+<meta property="og:image" content="http://www.joylibo.com/images/pic1.png">
+<meta property="og:image" content="http://www.joylibo.com/images/pic6.png">
+<meta property="og:image" content="http://www.joylibo.com/images/pic7.png">
+<meta property="og:updated_time" content="2017-06-17T15:42:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="李勃的周末">
-<meta name="twitter:description" content="libo@joylibo.com">
+<meta name="twitter:title" content="如何使用gitbook编写交互友好的API文档">
+<meta name="twitter:description" content="前言 作者注：本文适合新手学习，不太适合进阶阅读  0.为什么要使用Gitbook你在写文档的时候有没有过这样的烦恼：  word文档无法被Git逐行追踪，不方便做版本控制，每次更新版本都要更换整个文档而且回头再看时很难快速找到更新了哪些地方。 免费的在线文档编辑工具(如“石墨文档”等)很难做到样式的个性化，而且当文档篇幅比较大的时候不便于组织。甚至可能你的公司根本不允许你把文档放在在线文档平台上">
+<meta name="twitter:image" content="http://www.joylibo.com/images/pic2.png">
 
 
 
@@ -129,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://www.joylibo.com/"/>
+  <link rel="canonical" href="http://www.joylibo.com/2017/how-to-use-gitbook.html"/>
 
 
 
 
 
-  <title>李勃的周末 - 剑未佩妥出门已是江湖，历尽千帆归来仍是少年</title>
+  <title>如何使用gitbook编写交互友好的API文档 | 李勃的周末</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,9 +180,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -285,9 +293,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -313,9 +321,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/how-to-use-gitbook.html" itemprop="url">如何使用gitbook编写交互友好的API文档</a></h2>
+          <h2 class="post-title" itemprop="name headline">如何使用gitbook编写交互友好的API文档</h2>
         
 
         <div class="post-meta">
@@ -384,9 +390,7 @@
       
 
       
-        
-          
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
 <p>作者注：本文适合新手学习，不太适合进阶阅读</p>
 </blockquote>
 <h3 id="0-为什么要使用Gitbook"><a href="#0-为什么要使用Gitbook" class="headerlink" title="0.为什么要使用Gitbook"></a>0.为什么要使用Gitbook</h3><p>你在写文档的时候有没有过这样的烦恼：</p>
@@ -453,597 +457,74 @@
 <p>比如说，想要在一级目录的<code>README.md</code>文件中引用图片<code>pic1.png</code>,只需要添加如下的markdown代码：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![<span class="string">引用图片</span>](<span class="link">./imgs/pic1.png</span>)</div></pre></td></tr></table></figure></p>
 <p>如果想要在<code>chapter1/section1.1.md</code>中引用同一张图片<code>pic1.png</code>的话，也是同样的方式，但是需要注意路径的写法有一些不同，这是由于引用图片的文档与图片的相对路径不同所导致的，如果你不懂相对路径的概念，请务必去学习一下<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![<span class="string">引用图片</span>](<span class="link">../imgs/pic1.png</span>)</div></pre></td></tr></table></figure></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.joylibo.com/2017/Fitts-law.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="joylibo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/libo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="李勃的周末">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/Fitts-law.html" itemprop="url">菲茨定律(Fitts' law)及其应用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-16T14:37:07+08:00">
-                2017-06-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/产品与交互/" itemprop="url" rel="index">
-                    <span itemprop="name">产品与交互</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/gitbook/" rel="tag"># gitbook</a>
           
-
+            <a href="/tags/API文档/" rel="tag"># API文档</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h4 id="菲茨定律简介"><a href="#菲茨定律简介" class="headerlink" title="菲茨定律简介"></a>菲茨定律简介</h4><p>菲茨定律(Fitts’ Law)的应用非常广泛，尤其是在人机交互领域更是入门必学知识点之一。在谈论人机交互的语境下，菲茨定律一般用来研究的是“cursor”从交互界面上的一个位置移动到界面上另一个元素上的便捷程度。</p>
-<p>其数学模型如下：<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/Fitts-law.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/Fitts-law.html" rel="next" title="菲茨定律(Fitts' law)及其应用">
+                <i class="fa fa-chevron-left"></i> 菲茨定律(Fitts' law)及其应用
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.joylibo.com/2017/PERT.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="joylibo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/libo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="李勃的周末">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/PERT.html" itemprop="url">活动历时估计之三点估算法(PERT)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-13T11:46:04+08:00">
-                2017-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/项目管理/" itemprop="url" rel="index">
-                    <span itemprop="name">项目管理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h4 id="历时估计与三点估算法概述"><a href="#历时估计与三点估算法概述" class="headerlink" title="历时估计与三点估算法概述"></a>历时估计与三点估算法概述</h4><p>在编制进度计划的过程中，我们需要估计每种活动从开始到结束所需的时间，这就是所谓的历时估计。既然是“估计”，那么干系人总会有一种考虑：<strong>这个估计的结果是否可靠？</strong></p>
-<p>在实际工作中，不同性质的活动对于估算结果的可靠性的要求显然不同。例如为了适应审美潮流的变化，某软件需要做一次全面的UI升级的活动。这种类型的活动对于历时估计结果的可靠性的依赖度就较低一些。换句话说，为了追求更好的美术效果，活动的结束时间推迟三天五天都是可以接受的。但是，如果某公司为了召开新产品的发布会，需要为自己的新产品做一个MG动画，这种类型的活动，对估算结果的可靠性就敏感多了，可能迟到三五个小时就会酿成难以挽回的损失。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/PERT.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.joylibo.com/2017/earned-value-management.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="joylibo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/libo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="李勃的周末">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/earned-value-management.html" itemprop="url">挣值管理原理与思考</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T00:40:34+08:00">
-                2017-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/项目管理/" itemprop="url" rel="index">
-                    <span itemprop="name">项目管理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="挣值管理原理"><a href="#挣值管理原理" class="headerlink" title="挣值管理原理"></a>挣值管理原理</h4><p>挣值(Earned Value)管理是一种<strong>工作绩效</strong>分析方法。它通过比较计划工作量、挣值与实际花费成本来评价项目执行的成本和进度绩效。</p>
-<p>挣值管理希望达到的目的是在项目管理过程中，通过量化手段来回答“项目已经完成了多少工作、进度和费用状况如何”的问题。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/earned-value-management.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.joylibo.com/2017/apologize-to-the-good-old-days.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="joylibo">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/libo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="李勃的周末">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/apologize-to-the-good-old-days.html" itemprop="url">向美好的旧日时光道歉</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-11T18:15:10+08:00">
-                2017-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/散文/" itemprop="url" rel="index">
-                    <span itemprop="name">散文</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>美好的旧日时光，渐行渐远。在我的稿纸上，它们是代表怅惘的省略的句点；在我的书架上，它们是那本装帧精美，却蒙了尘灰的诗集；在我的抽屉里，它们是那张每个人都在微笑的合影；在我的口袋里，它们是一句句最贴心的劝语忠言……<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/apologize-to-the-good-old-days.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -1051,6 +532,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -1070,8 +555,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/libo.jpg"
@@ -1144,6 +638,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-为什么要使用Gitbook"><span class="nav-number">1.0.1.</span> <span class="nav-text">0.为什么要使用Gitbook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Gitbook是什么"><span class="nav-number">1.0.2.</span> <span class="nav-text">1.Gitbook是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Gitbook是怎么写文档的"><span class="nav-number">1.0.3.</span> <span class="nav-text">2.Gitbook是怎么写文档的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Gitbook是怎么阅读文档的"><span class="nav-number">1.0.4.</span> <span class="nav-text">3.Gitbook是怎么阅读文档的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境搭建与安装"><span class="nav-number">2.</span> <span class="nav-text">环境搭建与安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gitbook与NodeJS"><span class="nav-number">2.0.1.</span> <span class="nav-text">Gitbook与NodeJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gitbook与MarkDown"><span class="nav-number">2.0.2.</span> <span class="nav-text">Gitbook与MarkDown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gitbook与Git"><span class="nav-number">2.0.3.</span> <span class="nav-text">Gitbook与Git</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装NodeJS"><span class="nav-number">3.</span> <span class="nav-text">安装NodeJS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在Mac上安装NodeJS"><span class="nav-number">3.0.1.</span> <span class="nav-text">在Mac上安装NodeJS</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Git"><span class="nav-number">4.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装Gitbook"><span class="nav-number">5.</span> <span class="nav-text">安装Gitbook</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始使用Gitbook"><span class="nav-number">6.</span> <span class="nav-text">开始使用Gitbook</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写目录文件"><span class="nav-number">7.</span> <span class="nav-text">编写目录文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写具体的文档文件"><span class="nav-number">8.</span> <span class="nav-text">编写具体的文档文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在文档中插入图片"><span class="nav-number">8.0.1.</span> <span class="nav-text">在文档中插入图片</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1257,10 +767,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
