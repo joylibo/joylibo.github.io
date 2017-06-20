@@ -4,26 +4,8 @@
 
     
   <url>
-    <loc>http://www.joylibo.com/2017/burn.html</loc>
-    <lastmod>2017-06-19T13:38:05.000Z</lastmod>
-    <data>
-        <display>
-        <title>埋</title>
-        <pubTime>2017-06-19T09:19:50.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="散文" url="http://www.joylibo.com/categories/%E6%95%A3%E6%96%87/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.joylibo.com/2017/how-to-use-gitbook.html</loc>
-    <lastmod>2017-06-19T13:38:01.000Z</lastmod>
+    <lastmod>2017-06-20T08:24:12.000Z</lastmod>
     <data>
         <display>
         <title>如何使用gitbook编写交互友好的API文档</title>
@@ -37,6 +19,24 @@
            
              
               <breadCrumb title="技术与工具" url="http://www.joylibo.com/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.joylibo.com/2017/burn.html</loc>
+    <lastmod>2017-06-20T08:24:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>埋</title>
+        <pubTime>2017-06-19T09:19:50.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="散文" url="http://www.joylibo.com/categories/%E6%95%A3%E6%96%87/"/>
           
         </display>
     </data>
