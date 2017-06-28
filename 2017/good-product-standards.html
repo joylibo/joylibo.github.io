@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="历时估计,PERT," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -93,20 +93,16 @@
 
 
 
-<meta name="description" content="历时估计与三点估算法概述在编制进度计划的过程中，我们需要估计每种活动从开始到结束所需的时间，这就是所谓的历时估计。既然是“估计”，那么干系人总会有一种考虑：这个估计的结果是否可靠？ 在实际工作中，不同性质的活动对于估算结果的可靠性的要求显然不同。例如为了适应审美潮流的变化，某软件需要做一次全面的UI升级的活动。这种类型的活动对于历时估计结果的可靠性的依赖度就较低一些。换句话说，为了追求更好的美术效">
-<meta name="keywords" content="历时估计,PERT">
+<meta name="description" content="这个话题来自于前不久我与几个朋友之间的一次闲聊，我们有一个微信群，名叫“汪汪”，代表一群产品汪的聚集地。我们经常在群里讨论与互联网产品有关的话题，而所谓产品也仅仅指互联网产品经理口中的狭义的“产品”，而非电商sku、农产品等其他语境中的“产品”概念。 闲聊过后，我时常会回想这个问题，就像没有一款产品能得到所有人的喜爱一样，这个问题几乎也没有标准的答案，但我们作为产品人又可以从多个角度去给出自己的理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="活动历时估计之三点估算法(PERT)">
-<meta property="og:url" content="http://www.joylibo.com/2017/PERT.html">
+<meta property="og:title" content="什么样的产品才是好产品">
+<meta property="og:url" content="http://www.joylibo.com/2017/good-product-standards.html">
 <meta property="og:site_name" content="李勃的周末">
-<meta property="og:description" content="历时估计与三点估算法概述在编制进度计划的过程中，我们需要估计每种活动从开始到结束所需的时间，这就是所谓的历时估计。既然是“估计”，那么干系人总会有一种考虑：这个估计的结果是否可靠？ 在实际工作中，不同性质的活动对于估算结果的可靠性的要求显然不同。例如为了适应审美潮流的变化，某软件需要做一次全面的UI升级的活动。这种类型的活动对于历时估计结果的可靠性的依赖度就较低一些。换句话说，为了追求更好的美术效">
-<meta property="og:image" content="http://www.joylibo.com/images/normal_curve01.jpg">
-<meta property="og:image" content="http://www.joylibo.com/images/normal_curve.png">
-<meta property="og:updated_time" content="2017-06-14T05:50:14.000Z">
+<meta property="og:description" content="这个话题来自于前不久我与几个朋友之间的一次闲聊，我们有一个微信群，名叫“汪汪”，代表一群产品汪的聚集地。我们经常在群里讨论与互联网产品有关的话题，而所谓产品也仅仅指互联网产品经理口中的狭义的“产品”，而非电商sku、农产品等其他语境中的“产品”概念。 闲聊过后，我时常会回想这个问题，就像没有一款产品能得到所有人的喜爱一样，这个问题几乎也没有标准的答案，但我们作为产品人又可以从多个角度去给出自己的理">
+<meta property="og:updated_time" content="2017-06-28T12:23:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="活动历时估计之三点估算法(PERT)">
-<meta name="twitter:description" content="历时估计与三点估算法概述在编制进度计划的过程中，我们需要估计每种活动从开始到结束所需的时间，这就是所谓的历时估计。既然是“估计”，那么干系人总会有一种考虑：这个估计的结果是否可靠？ 在实际工作中，不同性质的活动对于估算结果的可靠性的要求显然不同。例如为了适应审美潮流的变化，某软件需要做一次全面的UI升级的活动。这种类型的活动对于历时估计结果的可靠性的依赖度就较低一些。换句话说，为了追求更好的美术效">
-<meta name="twitter:image" content="http://www.joylibo.com/images/normal_curve01.jpg">
+<meta name="twitter:title" content="什么样的产品才是好产品">
+<meta name="twitter:description" content="这个话题来自于前不久我与几个朋友之间的一次闲聊，我们有一个微信群，名叫“汪汪”，代表一群产品汪的聚集地。我们经常在群里讨论与互联网产品有关的话题，而所谓产品也仅仅指互联网产品经理口中的狭义的“产品”，而非电商sku、农产品等其他语境中的“产品”概念。 闲聊过后，我时常会回想这个问题，就像没有一款产品能得到所有人的喜爱一样，这个问题几乎也没有标准的答案，但我们作为产品人又可以从多个角度去给出自己的理">
 
 
 
@@ -134,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://www.joylibo.com/2017/PERT.html"/>
+  <link rel="canonical" href="http://www.joylibo.com/2017/good-product-standards.html"/>
 
 
 
 
 
-  <title>活动历时估计之三点估算法(PERT) | 李勃的周末</title>
+  <title>什么样的产品才是好产品 | 李勃的周末</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -299,7 +295,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.joylibo.com/2017/PERT.html">
+    <link itemprop="mainEntityOfPage" href="http://www.joylibo.com/2017/good-product-standards.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="joylibo">
@@ -316,7 +312,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">活动历时估计之三点估算法(PERT)</h2>
+          <h2 class="post-title" itemprop="name headline">什么样的产品才是好产品</h2>
         
 
         <div class="post-meta">
@@ -328,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-13T11:46:04+08:00">
-                2017-06-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-28T20:15:58+08:00">
+                2017-06-28
               </time>
             
 
@@ -338,28 +334,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/项目管理/" itemprop="url" rel="index">
-                    <span itemprop="name">项目管理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -385,43 +359,21 @@
       
 
       
-        <h4 id="历时估计与三点估算法概述"><a href="#历时估计与三点估算法概述" class="headerlink" title="历时估计与三点估算法概述"></a>历时估计与三点估算法概述</h4><p>在编制进度计划的过程中，我们需要估计每种活动从开始到结束所需的时间，这就是所谓的历时估计。既然是“估计”，那么干系人总会有一种考虑：<strong>这个估计的结果是否可靠？</strong></p>
-<p>在实际工作中，不同性质的活动对于估算结果的可靠性的要求显然不同。例如为了适应审美潮流的变化，某软件需要做一次全面的UI升级的活动。这种类型的活动对于历时估计结果的可靠性的依赖度就较低一些。换句话说，为了追求更好的美术效果，活动的结束时间推迟三天五天都是可以接受的。但是，如果某公司为了召开新产品的发布会，需要为自己的新产品做一个MG动画，这种类型的活动，对估算结果的可靠性就敏感多了，可能迟到三五个小时就会酿成难以挽回的损失。<br><a id="more"></a><br>三点估算法(计划评审技术, program/project evaluation and review technique, PERT)作为一种活动历时估算技术，其优势是可以在估算出活动所需时间的同时，还可以按照干系人对结果可靠性的敏感程度来调整估算结果。</p>
-<p>比如说通过三点估算法，可以给出类似这种形式的结果：</p>
-<p><em>这项工作有84%的概率在9月1日完成，有97%的概率在9月9日之前完成。</em></p>
-<p>所以三点估算技术的一种表现就是可以给出多个估算结果，并为每一个估算结果定义一个发生的概率。然而它是基于什么数学原理来做出这种估算结果的呢？</p>
-<p>就是正态分布！</p>
-<h4 id="三点估算技术的理论基础"><a href="#三点估算技术的理论基础" class="headerlink" title="三点估算技术的理论基础"></a>三点估算技术的理论基础</h4><p>之所以叫做“三点估计”，是因为这种估计技术要通过对于“最乐观”、“最悲观”、“最可能”三个值进行数据处理，来估计历时与概率。</p>
-<p>三点估计理论认为，活动的实际历时，在<strong>概率上服从正态分布</strong>。</p>
-<p>既然服从正态分布，那么事情就好办了！</p>
-<p>就像高中老师说的一样：遇到正态分布的问题，我们高中阶段只需要关注两个值：期望值与标准差。我们在用三点估算技术的时候，同样也是只需要关注平均值与标准差。</p>
-<p>其中，“期望值”又叫做“平均值”，是一种数学意义上理论最大可能值；标准差解释起来有点麻烦，可以理解为数据“扎堆儿”的程度，标准差越小，数据越“扎堆儿”，标准差越大，数据越“分散”。</p>
-<p>下面我们简单谈一谈正态分布。</p>
-<h4 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h4><p>有人说，在数理统计领域如果有一个公式<strong>最能让人感受到上帝的存在</strong>，那么这个公式就是正态分布。正态分布数学表达式以及推导方式这里不谈论，我们只谈<strong>正态分布的概率分布表现</strong>。</p>
-<p>如果说一个事情迟早都会发生，那么我们说它发生的概率是1，或者100%. 然而，虽然它迟早会发生，但是在不同的时刻发生的概率仍然不同。一个事情发生的时间如果满足正态分布，那么它肯定具有一个数学意义上的期望值，并且实际发生的时间将会以随机误差的形式分布于期望值的左右。</p>
-<p>正态分布曲线是一个如下图所示的曲线，它的形态是对称的，对称轴是过期望值点的垂线。其期望值点是最高的，然后逐渐向两侧下降(一开始的时候下降速度是越来越快的，后来下降越来越慢，拐点位于正负第一个标准差处，所以标准差越小正态曲线形态越瘦高，反之越矮胖)，曲线两端向靠近x轴处无限延伸，但终不能与x轴相交。正态曲线与x轴所围成的区域面积是1.也就是事件有100%的可能落在x轴某一点上，但是更有可能落在期望值周围。</p>
-<p><img src="/images/normal_curve01.jpg" alt=""></p>
-<p>由于时间是一个连续量，我们不能用离散的视角来考察某个时间点事件发生的概率，但是我们可以考察在一段连续的时间内事件发生的概率。这个概率就是既定区间内从正态曲线下方到x轴之间的面积。</p>
-<p>对于熟悉高等数学的朋友，说到曲线与横轴之间的面积，你是不是想到了定积分？然而正态分布方便之处在于，在固定标准差之间的概率分布是固定的常量值，直接把下图中的几个常量值记住就行了，不用求定积分。而且事件在正负三个标准差内发生的概率超过99%，正负三个标准差之外的概率基本可以忽略了。</p>
-<p><img src="/images/normal_curve.png" alt=""></p>
-<p>这就是正态分布！</p>
-<h4 id="三点估算法的算法与应用"><a href="#三点估算法的算法与应用" class="headerlink" title="三点估算法的算法与应用"></a>三点估算法的算法与应用</h4><p>讲完了理论，应用起来就简单多了。</p>
-<p>如果一项活动的历时满足正态分布，那么对于这项活动我们只需要关心两件事：</p>
-<ul>
-<li>期望值是多少？</li>
-<li>标准差是多少？</li>
-</ul>
-<p>要得到正态分布中的期望值与标准差，我们首先要合理估计出活动完成的最乐观值、最可能值与最悲观值。然后在PERT模型中，用这三个值来求得正态分布的期望与标准差：</p>
-<p>期望值：<code>𝜇 = (最乐观 + 最可能 * 4 + 最悲观) / 6</code></p>
-<p>标准差：<code>𝜎 = (最悲观 - 最乐观) / 6</code></p>
-<p>现在我们找一个题目来练练手：</p>
-<blockquote>
-<p>活动A的乐观估计值为3天，最可能估计值是4天，悲观估计值为7天，请问活动A的期望值是多少？标准差是多少？如果最低保证率要达到97.5%，需要工期为多少天？</p>
-</blockquote>
-<p>先代入公式计算期望与标准差：</p>
-<p>期望值：<code>𝜇 = (3 + 4 * 4 + 7) / 6 = 4.33(天)</code></p>
-<p>标准差：<code>𝜎 = (7 - 3) / 6 = 0.67(天)</code></p>
-<p>根据常数我们可以知道(建议此处结合上文中第二幅图以便于理解)，小于等于期望值的保证率是50%，加一个标准差之后的概率是(50+34.2)%=84.2%, 再加一个标准差之后的概率是(84.2+13.5)% = 97.7%. 正好能达到题目要求。所以如果最低保证率要达到97.5%，那么需要工期就是5.67天。</p>
+        <p>这个话题来自于前不久我与几个朋友之间的一次闲聊，我们有一个微信群，名叫“汪汪”，代表一群产品汪的聚集地。我们经常在群里讨论与互联网产品有关的话题，而所谓产品也仅仅指互联网产品经理口中的狭义的“产品”，而非电商sku、农产品等其他语境中的“产品”概念。</p>
+<p>闲聊过后，我时常会回想这个问题，就像没有一款产品能得到所有人的喜爱一样，这个问题几乎也没有标准的答案，但我们作为产品人又可以从多个角度去给出自己的理解。在我看来，评价一个产品是不是好产品，可以从以下三个角度来看。</p>
+<h3 id="为社会带来的价值与财富"><a href="#为社会带来的价值与财富" class="headerlink" title="为社会带来的价值与财富"></a>为社会带来的价值与财富</h3><p>就好像爸爸折的纸风筝可以给孩子带来欢乐，瓷器匠人做的杯子可以让我用来喝水一样，任何人造物的存在与合理利用，都可以为社会带来价值与财富。我们作为产品经理，对“互联网产品”这种人造物的诉求也是希望其带来价值与财富，并经常以其带来的价值与财富作为判断一个产品是否足够“好”的依据。</p>
+<p>这里，我们基于亚当斯密的理论，认为金钱并不等于财富，而只是财富的其中一种表达方式，所以我们并不用金钱来衡量财富。我们衡量一个产品所带来的社会财富的标尺是<strong>它为人的各个层次的需求所带来的满足感以及对于环境因素的建设程度</strong>。例如一个产品并没有给创造者带来丰厚的利润回报，却让全人类都因它而享受到了幸福感的提升，那么它就已经为这个社会带来了巨大的财富。<em>（实际上，已经在全世界大规模应用却对其创造者只有较少回报的案例在现实社会中几乎不存在，像Linux、MySQL 、Android、Bootstrap这些知名的开源产品，稳定运营之后其开发者或开发团队都获利丰厚）</em></p>
+<p>另外，衡量产品所带来财富时需要考虑其对环境因素的影响，而不能只考虑其满足当前人类的各个层次的需求。例如提供软件破解、盗版音视频的各种网站，和前几年流行的各种约炮神器，对于这些产品我们不否认其可以满足多数人的需求，也不否认创造者可以通过它们获得丰厚的利润回报，但我们并不认为它们可以对社会环境起到正面的建设作用（曾有观点认为盗版软件促进了中国互联网行业发展，但我不这么认为）。</p>
+<h3 id="对于干系人之间冲突的解决"><a href="#对于干系人之间冲突的解决" class="headerlink" title="对于干系人之间冲突的解决"></a>对于干系人之间冲突的解决</h3><p>对于同样一件事物，十个人甚至可能会有十个不同的观点或利益诉求点。不同的人必定有不同的经历与过往，所以观点分歧永远不可避免。又因为资源是有限的，所以不同人的利益诉求也永远不可能一致。互联网产品与手工艺品最大的不同在于，一件手工艺品很可能只有一个手工匠人制作，也只有一个用户在用，而互联网产品本身就是由团队紧密协作所创造的，其价值也往往是通过连接不同的人与信息来体现。在为社会带来价值的时候，如何平衡不同干系人的诉求几乎是每个互联网产品所面临的一个大课题。所以，产品经理在设计产品时，对于干系人之间所产生的冲突的解决方式是否高明，是衡量一个产品是不是“好”的另一个方式。</p>
+<p>一个产品的干系人可能会有这样几类人：投资人、创造者、全部用户角色、监管部门等。其中创造者又包含项目管理、产品经理、交互、UI、前后端程序员、测试、运维等等角色。这么多干系人在面对同一件产品的时候，冲突的发生是不可避免的。</p>
+<p>即使如微信这样广受好评且被产品经理们作为教科书去学习的互联网产品，也始终无法避免干系人诉求的冲突。比如许多人期待一部手机上可以同时登录多个微信号，又比如许多人希望能建超过500人的大群等，却因为与创造者或其他用户价值诉求不同而不得不被迫压制需求。</p>
+<p>对于干系人之间冲突的解决，不仅需要技巧更需要智慧。当认识到可能会有冲突，或冲突必然产生的时候，必须要有明确的价值观来为决策引领方向。解决的方案可以是共赢、妥协、强迫。其中最好的解决方案当然是共赢，这是一件很需要技巧的事情，而更考验产品经理的则是对于妥协和强迫二者之间选择的智慧。妥协即寻求能让产生冲突的干系人都在一定程度上满意的方案，各自作出部分让步；强迫即只考虑某一方的观点，只提供赢-输的方案。</p>
+<p>大家可能也意识到，有相当多的冲突是无法用共赢或妥协的方式去解决的，只能强迫部分干系人压制需求，这时就需要给这部分干系人传递一种信息作为解释，这就是为什么必须要有明确的价值观来为决策引领方向——对不起，亲爱的干系人，我们不是针对你，我们只是按照原则来做选择。</p>
+<p>产品干系人之间必然存在冲突，其中一些冲突也必然需要通过强制压迫来解决，解决这些冲突的最好方法只能是在明确的价值观引领下的独裁决策，而不能是参考数据指标来决策，更不能是通过会议室讨论决策。</p>
+<h3 id="分阶段衡量过程周期"><a href="#分阶段衡量过程周期" class="headerlink" title="分阶段衡量过程周期"></a>分阶段衡量过程周期</h3><p>郭德纲在一个相声节目中说过，佛像在匠人手中叫做“活儿”，在商贩手中叫做“货”，请回家里才叫“佛”。同样一件东西，在不同阶段的衡量标准必然也不同。互联网产品也是一样，一个产品从无到有，会经历不同的过程，在每一个过程中，产品所扮演的角色不同，我们对其期望也有不同。所以分阶段对产品进行评价也可以综合得出其是否满足“好”的标准。</p>
+<p>Brooks的《人月神话》一书中，借用Dorothy Sayers的观点，将创造性活动分为构思、实现、交流三个阶段。他解释说创造性活动的成果首先作为一个构思或者模型出现在创作者的脑海中，它与时间和空间无关。接着，借助各种工具和技术，在现实的时间和空间中实现它们。最后，当它们触达用户的时候，用户与创造者的思想相互沟通，创造活动从而得以结束。</p>
+<p>产品是不是可以称得上“好”，也可以按照这样的三个阶段来分别衡量。在<strong>构思阶段</strong>，需要对产品进行论证和定位，这个阶段最为重要。完备的商业论证可以保证投资收益，恰当的产品定位可以为运营提供方向，准确的需求剪枝可以确保产品不会出现范围蔓延，并确保前期不会在低价值的功能上耗费太多资源。在<strong>实现阶段</strong>，实现阶段属于软件项目管理的范畴，在项目管理理论体系中，一般按照时间、成本、质量的相关标准来评价此过程，其中质量标准又分为可扩展性、健壮性、安全性等。准确的技术实现是构思阶段的方案能完全有效地交付的必要条件。在<strong>交流阶段</strong>，产品的表现与三方面有关，分别是构思的水平、实现的水平和运营的水平。可以从这三个方面来评价交流阶段中一个产品是不是“好”的产品。</p>
+<p><em>本文由<a href="http://www.joylibo.com">李勃的周末</a>原创，转载请注明出处</em></p>
 
       
     </div>
@@ -449,14 +401,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/历时估计/" rel="tag"># 历时估计</a>
-          
-            <a href="/tags/PERT/" rel="tag"># PERT</a>
-          
-        </div>
-      
 
       
       
@@ -466,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/earned-value-management.html" rel="next" title="挣值管理原理与思考">
-                <i class="fa fa-chevron-left"></i> 挣值管理原理与思考
+              <a href="/2017/burn.html" rel="next" title="埋">
+                <i class="fa fa-chevron-left"></i> 埋
               </a>
             
           </div>
@@ -475,10 +419,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/Fitts-law.html" rel="prev" title="菲茨定律(Fitts' law)及其应用">
-                菲茨定律(Fitts' law)及其应用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -618,7 +558,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#历时估计与三点估算法概述"><span class="nav-number">1.</span> <span class="nav-text">历时估计与三点估算法概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三点估算技术的理论基础"><span class="nav-number">2.</span> <span class="nav-text">三点估算技术的理论基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正态分布"><span class="nav-number">3.</span> <span class="nav-text">正态分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三点估算法的算法与应用"><span class="nav-number">4.</span> <span class="nav-text">三点估算法的算法与应用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为社会带来的价值与财富"><span class="nav-number">1.</span> <span class="nav-text">为社会带来的价值与财富</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于干系人之间冲突的解决"><span class="nav-number">2.</span> <span class="nav-text">对于干系人之间冲突的解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分阶段衡量过程周期"><span class="nav-number">3.</span> <span class="nav-text">分阶段衡量过程周期</span></a></li></ol></div>
             
 
           </div>
