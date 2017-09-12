@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.joylibo.com/2017/load-balancing-4-web.html</loc>
+    <lastmod>2017-09-12T05:56:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>Web负载均衡的常见策略</title>
+        <pubTime>2017-09-12T05:40:27.000Z</pubTime>
+        
+        <tag>负载均衡</tag>
+         
+        <tag>NginX</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术与工具" url="http://www.joylibo.com/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.joylibo.com/2017/tech-with-pm.html</loc>
     <lastmod>2017-08-09T03:53:42.000Z</lastmod>
     <data>

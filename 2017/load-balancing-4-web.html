@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="产品," />
+  <meta name="keywords" content="负载均衡,NginX," />
 
 
 
@@ -93,17 +93,20 @@
 
 
 
-<meta name="description" content="在回答这个问题之前，我们首先区分知识与技能这两个概念。 知识是懂得，是学出来的；技能是会做，是练出来的。 王语嫣会不会武功？不会！但是她熟知各路门派的武功，甚至知道在实战中应该如何出招，这叫知识。段誉学过六脉神剑与凌波微步的招式，虽无法灵活运用，但实战中也会帮助自己巧妙地防守与进攻，这叫技能。乔峰精益内功，自小受得少林高僧指点，并勤习丐帮打狗棒法与降龙十八掌，用得出神入化，这叫知识+技能。">
-<meta name="keywords" content="产品">
+<meta name="description" content="当迎来客流高峰的时候，高铁站通过多个检票口同时提供服务，就可以在客流量比较大的时候减少旅客的检票等候时间。而当一个互联网服务所面对的用户并发量较大的时候，也可以通过类似增加“检票口”的方式来增加服务器进行响应，这叫做负载均衡技术。  负载均衡，是指多台服务器组成一个服务器集合来对外提供服务的方式。用户的请求通过负载分担技术来均匀(或按需不均匀)地分配给每一台服务器，而每一台服务器都可以独立地回应用">
+<meta name="keywords" content="负载均衡,NginX">
 <meta property="og:type" content="article">
-<meta property="og:title" content="产品经理要不要懂软件开发？">
-<meta property="og:url" content="http://www.joylibo.com/2017/tech-with-pm.html">
+<meta property="og:title" content="Web负载均衡的常见策略">
+<meta property="og:url" content="http://www.joylibo.com/2017/load-balancing-4-web.html">
 <meta property="og:site_name" content="李勃的周末">
-<meta property="og:description" content="在回答这个问题之前，我们首先区分知识与技能这两个概念。 知识是懂得，是学出来的；技能是会做，是练出来的。 王语嫣会不会武功？不会！但是她熟知各路门派的武功，甚至知道在实战中应该如何出招，这叫知识。段誉学过六脉神剑与凌波微步的招式，虽无法灵活运用，但实战中也会帮助自己巧妙地防守与进攻，这叫技能。乔峰精益内功，自小受得少林高僧指点，并勤习丐帮打狗棒法与降龙十八掌，用得出神入化，这叫知识+技能。">
-<meta property="og:updated_time" content="2017-08-09T03:53:42.000Z">
+<meta property="og:description" content="当迎来客流高峰的时候，高铁站通过多个检票口同时提供服务，就可以在客流量比较大的时候减少旅客的检票等候时间。而当一个互联网服务所面对的用户并发量较大的时候，也可以通过类似增加“检票口”的方式来增加服务器进行响应，这叫做负载均衡技术。  负载均衡，是指多台服务器组成一个服务器集合来对外提供服务的方式。用户的请求通过负载分担技术来均匀(或按需不均匀)地分配给每一台服务器，而每一台服务器都可以独立地回应用">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_png/zKHvDWhfJSsicP30cmKmicy4utZL8Iml6tFnEz3M2Yr3warRqu1CAfRrltk5maxhWznY4K9xX8oG3fT0cf9pNmeg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_png/zKHvDWhfJSsicP30cmKmicy4utZL8Iml6tPyCRtWFdHBSEyRFo6D8xyZN8zgxHmZkG40tKk7bicMHSXBCZoT0Qavg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2017-09-12T05:56:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="产品经理要不要懂软件开发？">
-<meta name="twitter:description" content="在回答这个问题之前，我们首先区分知识与技能这两个概念。 知识是懂得，是学出来的；技能是会做，是练出来的。 王语嫣会不会武功？不会！但是她熟知各路门派的武功，甚至知道在实战中应该如何出招，这叫知识。段誉学过六脉神剑与凌波微步的招式，虽无法灵活运用，但实战中也会帮助自己巧妙地防守与进攻，这叫技能。乔峰精益内功，自小受得少林高僧指点，并勤习丐帮打狗棒法与降龙十八掌，用得出神入化，这叫知识+技能。">
+<meta name="twitter:title" content="Web负载均衡的常见策略">
+<meta name="twitter:description" content="当迎来客流高峰的时候，高铁站通过多个检票口同时提供服务，就可以在客流量比较大的时候减少旅客的检票等候时间。而当一个互联网服务所面对的用户并发量较大的时候，也可以通过类似增加“检票口”的方式来增加服务器进行响应，这叫做负载均衡技术。  负载均衡，是指多台服务器组成一个服务器集合来对外提供服务的方式。用户的请求通过负载分担技术来均匀(或按需不均匀)地分配给每一台服务器，而每一台服务器都可以独立地回应用">
+<meta name="twitter:image" content="http://mmbiz.qpic.cn/mmbiz_png/zKHvDWhfJSsicP30cmKmicy4utZL8Iml6tFnEz3M2Yr3warRqu1CAfRrltk5maxhWznY4K9xX8oG3fT0cf9pNmeg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
 
 
 
@@ -131,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://www.joylibo.com/2017/tech-with-pm.html"/>
+  <link rel="canonical" href="http://www.joylibo.com/2017/load-balancing-4-web.html"/>
 
 
 
 
 
-  <title>产品经理要不要懂软件开发？ | 李勃的周末</title>
+  <title>Web负载均衡的常见策略 | 李勃的周末</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -296,7 +299,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.joylibo.com/2017/tech-with-pm.html">
+    <link itemprop="mainEntityOfPage" href="http://www.joylibo.com/2017/load-balancing-4-web.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="joylibo">
@@ -313,7 +316,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">产品经理要不要懂软件开发？</h2>
+          <h2 class="post-title" itemprop="name headline">Web负载均衡的常见策略</h2>
         
 
         <div class="post-meta">
@@ -325,8 +328,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-09T11:50:47+08:00">
-                2017-08-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-12T13:40:27+08:00">
+                2017-09-12
               </time>
             
 
@@ -348,8 +351,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/产品与交互/" itemprop="url" rel="index">
-                    <span itemprop="name">产品与交互</span>
+                  <a href="/categories/技术与工具/" itemprop="url" rel="index">
+                    <span itemprop="name">技术与工具</span>
                   </a>
                 </span>
 
@@ -382,37 +385,22 @@
       
 
       
-        <p>在回答这个问题之前，我们首先区分知识与技能这两个概念。</p>
-<p><strong>知识是懂得，是学出来的；技能是会做，是练出来的。</strong></p>
-<p>王语嫣会不会武功？不会！但是她熟知各路门派的武功，甚至知道在实战中应该如何出招，<strong>这叫知识</strong>。段誉学过六脉神剑与凌波微步的招式，虽无法灵活运用，但实战中也会帮助自己巧妙地防守与进攻，<strong>这叫技能</strong>。乔峰精益内功，自小受得少林高僧指点，并勤习丐帮打狗棒法与降龙十八掌，用得出神入化，<strong>这叫知识+技能</strong>。<br><a id="more"></a></p>
+        <p>当迎来客流高峰的时候，高铁站通过多个检票口同时提供服务，就可以在客流量比较大的时候减少旅客的检票等候时间。而当一个互联网服务所面对的用户并发量较大的时候，也可以通过类似增加“检票口”的方式来增加服务器进行响应，这叫做负载均衡技术。</p>
 <blockquote>
-<p>知识能学到，而技能只能习得。知识学习是瞬间的，知道与不知道之间几乎瞬间完成。但技能则需要漫长的笨拙期——如果你不接受自己笨拙的开始，你永远也不会学好任何技能。<br>——《你的生命有什么可能》, 古典</p>
+<p>负载均衡，是指多台服务器组成一个服务器集合来对外提供服务的方式。用户的请求通过负载分担技术来均匀(或按需不均匀)地分配给每一台服务器，而每一台服务器都可以独立地回应用户请求，而不需要其他服务器的辅助。负载均衡技术能够将客户请求分配到服务器阵列，以较低的成本解决大量并发访问服务问题。</p>
 </blockquote>
-<p>我们再回过头来看标题中的问题：<strong>产品经理需要会软件开发吗？不一定。但产品经理需要懂软件开发吗？需要！</strong></p>
-<p>例如在Web形态的软件中，产品经理可能不需要知道python与php语言分别用哪个对象去set cookie，当然显然需要懂得cookie和session的知识，并在此知识基础上设计会话保持与失效机制。所以产品经理不需要具备软件开发的技能，但需要掌握软件开发的知识。</p>
-<p>目前的行业环境中，产品经理对软件开发知识的掌握程度参差不齐，而且有相当大一部分产品经理不懂技术。按照存在即合理的原则来判断，可以得出产品经理不懂技术也能够胜任工作的结论，但我认为如果想要成为一名出色的产品经理，在软件开发知识方面的短板至少会带来如下这些掣肘：</p>
-<h3 id="1-难以迅速察觉行业变化"><a href="#1-难以迅速察觉行业变化" class="headerlink" title="1.难以迅速察觉行业变化"></a>1.难以迅速察觉行业变化</h3><p>坊间流传一段比尔盖茨与通用汽车总裁杰克·威治特的一段对话</p>
-<blockquote>
-<p><strong>比尔盖茨</strong>：如果汽车工业能像计算机领域一样发展，那么今天买一辆汽车仅需25美元，一升汽油能跑400公里。</p>
-<p><strong>杰克·威治特</strong>：我20年前买的车还能跑在路上，你20年前配置的486去向如何？</p>
-</blockquote>
-<p>虽然这段对话真实性有待考证，但它本质上是在阐述一个道理：硬件不断在发展，软件也不断在发展，每一次硬件升级都会带来软件的变化，这叫做<strong>安迪-比尔定律</strong>。</p>
-<p>互联网产品的发展同样高度依赖环境的变化，这些变化包括但不限于硬件、OS、框架、带宽、通信协议等。纵观互联网发展史上成功的产品，我们不难发现产品与环境之间的依赖关系：</p>
-<p>NFC与手机支付，4G网络与直播软件，ajax与交互表单，HTML5与页游，陀螺仪与赛车手游等等</p>
-<p>苹果、微软、谷歌等公司每年都在召开开发者大会，不断推出更多的接口、框架，而如果产品经理缺乏软件开发知识，也有可能走入马云所说的“看不到、看不起、看不懂、跟不上”怪圈。</p>
-<h3 id="2-制约想象空间"><a href="#2-制约想象空间" class="headerlink" title="2.制约想象空间"></a>2.制约想象空间</h3><p>互联网产品的设计是面向需求的设计，但是开发的时候却是面向API开发。例如Web软件设计需要考虑浏览器的沙盒机制，也需要考虑BOM、DOM所提供对象的能力与兼容性；iOS与Android平台下的app设计同样要受到操作系统的制约，比如说传感器与其他硬件接口的能力与兼容性等。</p>
-<p>在缺乏软件开发知识的情况下，产品经理在这些细节的处理上就很难展开自己的想象空间，这对于产品经理最大的影响并不是设计的东西不能做，而是产品经理压根就不知道“居然还能这样玩”。</p>
-<p>可能你也见过一些PM拿着别人家的产品，去向开发人员解释：做成这个效果。这便是想象空间被制约的一种体现——创新能力被削减了。</p>
-<h3 id="3-制约技术成本评估的能力"><a href="#3-制约技术成本评估的能力" class="headerlink" title="3.制约技术成本评估的能力"></a>3.制约技术成本评估的能力</h3><p>软件开发技术是有成本的，“这个细节容不容易实现”与“这个细节能不能实现”同样重要。无论是敏捷方法中提倡的故事点排序，还是迭代式开发中说的需求版本控制，在对开发周期做规划时都很少提及技术成本这一因素。但在实际工作中，尤其在新建团队或小团队中，它却会对产品开发产生很大影响。</p>
-<p>在开发人员与产品经理的沟通中我们也常常听到这样的反馈：这个功能技术上确实可以实现，但我们团队现在没有这个领域的专家……</p>
-<p>如果产品经理具备软件开发知识，最起码能在产品设计环节便考虑到技术实现成本，并考虑替代方案或作为风险提交给项目管理人员。</p>
-<h3 id="4-不利于团队的沟通效率的提升"><a href="#4-不利于团队的沟通效率的提升" class="headerlink" title="4.不利于团队的沟通效率的提升"></a>4.不利于团队的沟通效率的提升</h3><p>虽然产品经理与软件开发团队之间的沟通是建立在PRD文档之上的，但有太多的细节需要软件技术知识来说明。下面以两种不同的产品经理的口吻来表述一个概念，大家感受一下：</p>
-<blockquote>
-<p><strong>产品经理A</strong>:这个输入项是身份证号，如果用户填写错了要能够在填写完毕之后填写下一项之前识别出来并提醒，并且整个表单都不允许填写错，如果有写错的情况下不能让用户提交。</p>
-<p><strong>产品经理B</strong>:这个输入项是身份证号，前端需要通过正则表达式来判断合法性，不合法则在onBlur事件发生时提醒，并在整个表单合法之前把提交按钮disable掉。</p>
-</blockquote>
-<p>是不是第二种表述方式更准确也更有效率？而且在实际的工作中，用专业术语来与开发人员进行沟通也更能够得到对方的认同。</p>
-<p>软件开发的实际工作就是编码，如果缺乏足够的软件开发知识，在与开发人员进行沟通的时候有些事情将会陷入描述、确认、修改、确认的循环中来，很不利于沟通。但是产品经理根据自己所具备的软件开发的知识和技能来与开发人员进行沟通时，也需要注意沟通方式，更要避免越俎代庖，每当想要这么做的时候需要想一想《天龙八部》中慕容复面对王语嫣的指指点点时的反感情绪——你行你上？</p>
+<p>web负载均衡的方法有很多，常见的几种负载均衡方式如下：<br><a id="more"></a></p>
+<h3 id="1-用户手动选择方式"><a href="#1-用户手动选择方式" class="headerlink" title="1.用户手动选择方式"></a>1.用户手动选择方式</h3><p>通过在首页入口提供不同线路，不同服务器链接的方式，来实现负载均衡。这是一种较为古老的方式，在一些提供下载业务的网站中比较常见。一般是下面这个样子<br><img src="http://mmbiz.qpic.cn/mmbiz_png/zKHvDWhfJSsicP30cmKmicy4utZL8Iml6tFnEz3M2Yr3warRqu1CAfRrltk5maxhWznY4K9xX8oG3fT0cf9pNmeg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="手动选择服务器"></p>
+<h3 id="2-DNS轮询方式"><a href="#2-DNS轮询方式" class="headerlink" title="2.DNS轮询方式"></a>2.DNS轮询方式</h3><p>大多域名注册商都支持对同一主机名添加多条A记录，这就是DNS轮询，DNS服务器将解析请求按照A记录的顺序，随即分配到不同的IP，这样就完成了简单的负载均衡。<br><img src="http://mmbiz.qpic.cn/mmbiz_png/zKHvDWhfJSsicP30cmKmicy4utZL8Iml6tPyCRtWFdHBSEyRFo6D8xyZN8zgxHmZkG40tKk7bicMHSXBCZoT0Qavg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="DNS配置"></p>
+<p>DNS轮询的成本非常低，在一些不重要的服务上，被经常使用。但这种方式有两个明显的缺点。其一，可靠性低。假如被轮询的多台服务器中有一台发生故障，那么所有的访问该服务器的请求将不会有所回应。这个时候即使从DNS配置中去掉该服务器IP，但由于在Internet上各地区宽带接入商将DNS存放在缓存中(以节省访问时间)的做法普遍存在，修改之后的DNS配置全部生效也需要几个小时甚至更久。在配置完全生效的这段时间里，将会不可避免地有部分用户无法访问服务。其二，负载分配不均衡。DNS负载均衡的方式是简单的轮询，因此想要通过服务器性能来有差异地分配负载将会很难实现。另外，本地DNS服务器或用户本地计算机会缓存已经解析的域名到IP地址的映射，这会导致部分用户在一段时间内访问的是同一台web服务器，导致服务器间的负载不均衡。可能导致的后果有：某几台服务器负荷很低，而另几台服务器的负荷很高、处理缓慢；配置高的服务器分配到的请求少，而配置低的服务器分配到的请求多。</p>
+<h3 id="3-智能DNS解析方式"><a href="#3-智能DNS解析方式" class="headerlink" title="3.智能DNS解析方式"></a>3.智能DNS解析方式</h3><p>根据用户本地设置的DNS服务器线路和地区，将对同一个域名请求解析到不同的IP上。例如当北京电信用户访问某域名，会被解析到该网站部署在北京电信机房的IP上，而当深圳网通的用户访问该域名，又会被解析到部署在深圳网通机房的IP上。</p>
+<p>当前，云服务器厂商一般都提供了对于不同网络运营商的快速接入，因此选择云服务器厂商的话可以不优先考虑网通、电信、铁通之间的用户访问差异，但是在服务器的位置分布方面，仍然有必要对不同地区的用户进行智能解析。</p>
+<h3 id="4-网络硬件实现方式"><a href="#4-网络硬件实现方式" class="headerlink" title="4.网络硬件实现方式"></a>4.网络硬件实现方式</h3><p>硬件负载均衡技术通常操作于OSI网络模型的传输层和应用层，通过负载均衡交换机来实现。在传输层将一个IP地址映射为多个内部服务器IP地址，对每次TCP连接请求，动态使用其中一个内部IP地址来达到负载均衡目的；应用层则是通过检查流经的http包头，根据报头内的信息来执行负载均衡任务。</p>
+<p>由于传输层和应用层在OSI网络模型(该模型把网络通信的工作分为7层，从底层到高层分别是物理层、链路层、网络层、传输层、会话层、表示层、应用层)中分别位于第四层和第七层，因此此类负载均衡交换机也被成为四/七层负载均衡交换机。此类产品价格不菲，可高达几十万元人民币，初创公司应量力而行。</p>
+<h3 id="5-软件四层负载均衡方式"><a href="#5-软件四层负载均衡方式" class="headerlink" title="5.软件四层负载均衡方式"></a>5.软件四层负载均衡方式</h3><p>使用软件方式来对某IP负载进行均衡分发的一种技术。一般是通过服务器集成，将一组服务器构成一个高性能的、高可用性的虚拟服务器，该虚拟服务器对用户而言IP是固定的，集群结构对用户而言完全透明，因此无需修改客户端和服务器端的程序。代表作为LVS(Linux Virtual Server)，是一个开源软件。</p>
+<h3 id="6-软件七层负载均衡方式"><a href="#6-软件七层负载均衡方式" class="headerlink" title="6.软件七层负载均衡方式"></a>6.软件七层负载均衡方式</h3><p>一般基于HTTP反向代理来实现，既然是反向代理，代表作肯定是NginX了。通过“一拖多”的服务器部署方式来实现负载均衡，其中一台服务器作为反向代理服务器，将请求分发给多台服务器进行处理，同时对用户完全透明。NginX的可配置型很强，可以按照轮询、IP哈希、URL哈希、权重等多种方式对后端服务器做负载均衡，同时还支持对后端服务器的健康检查，某台后端服务器一旦挂了，反向代理服务器就不再对其分发请求。是目前最常用的一种负载均衡技术。</p>
+<hr>
+<p>我们在实际应用中，可以根据不同的需要，选择某种或几种技术组合的形式来进行负载均衡操作。对于图片、音视频等静态资源，也可以采用CDN来实现资源负载均衡，减少后端服务器的网络请求。</p>
 
       
     </div>
@@ -442,7 +430,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/产品/" rel="tag"># 产品</a>
+            <a href="/tags/负载均衡/" rel="tag"># 负载均衡</a>
+          
+            <a href="/tags/NginX/" rel="tag"># NginX</a>
           
         </div>
       
@@ -455,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/how-to-desc-pm.html" rel="next" title="互联网产品经理是个什么样的职位">
-                <i class="fa fa-chevron-left"></i> 互联网产品经理是个什么样的职位
+              <a href="/2017/tech-with-pm.html" rel="next" title="产品经理要不要懂软件开发？">
+                <i class="fa fa-chevron-left"></i> 产品经理要不要懂软件开发？
               </a>
             
           </div>
@@ -464,10 +454,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/load-balancing-4-web.html" rel="prev" title="Web负载均衡的常见策略">
-                Web负载均衡的常见策略 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -607,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-难以迅速察觉行业变化"><span class="nav-number">1.</span> <span class="nav-text">1.难以迅速察觉行业变化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-制约想象空间"><span class="nav-number">2.</span> <span class="nav-text">2.制约想象空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-制约技术成本评估的能力"><span class="nav-number">3.</span> <span class="nav-text">3.制约技术成本评估的能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-不利于团队的沟通效率的提升"><span class="nav-number">4.</span> <span class="nav-text">4.不利于团队的沟通效率的提升</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-用户手动选择方式"><span class="nav-number">1.</span> <span class="nav-text">1.用户手动选择方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-DNS轮询方式"><span class="nav-number">2.</span> <span class="nav-text">2.DNS轮询方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-智能DNS解析方式"><span class="nav-number">3.</span> <span class="nav-text">3.智能DNS解析方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-网络硬件实现方式"><span class="nav-number">4.</span> <span class="nav-text">4.网络硬件实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-软件四层负载均衡方式"><span class="nav-number">5.</span> <span class="nav-text">5.软件四层负载均衡方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-软件七层负载均衡方式"><span class="nav-number">6.</span> <span class="nav-text">6.软件七层负载均衡方式</span></a></li></ol></div>
             
 
           </div>
