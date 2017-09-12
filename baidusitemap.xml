@@ -2,215 +2,65 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 
-    
+
   <url>
     <loc>http://www.joylibo.com/2017/load-balancing-4-web.html</loc>
     <lastmod>2017-09-12T05:56:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>Web负载均衡的常见策略</title>
-        <pubTime>2017-09-12T05:40:27.000Z</pubTime>
-        
-        <tag>负载均衡</tag>
-         
-        <tag>NginX</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术与工具" url="http://www.joylibo.com/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%B7%A5%E5%85%B7/"/>
-          
-        </display>
-    </data>
     </url>
 
-    
+
   <url>
     <loc>http://www.joylibo.com/2017/tech-with-pm.html</loc>
     <lastmod>2017-08-09T03:53:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>产品经理要不要懂软件开发？</title>
-        <pubTime>2017-08-09T03:50:47.000Z</pubTime>
-        
-        <tag>产品</tag>
-         
-         
-           
-             
-              <breadCrumb title="产品与交互" url="http://www.joylibo.com/categories/%E4%BA%A7%E5%93%81%E4%B8%8E%E4%BA%A4%E4%BA%92/"/>
-          
-        </display>
-    </data>
     </url>
 
-    
+
   <url>
     <loc>http://www.joylibo.com/2017/how-to-desc-pm.html</loc>
     <lastmod>2017-07-23T12:35:46.000Z</lastmod>
-    <data>
-        <display>
-        <title>互联网产品经理是个什么样的职位</title>
-        <pubTime>2017-07-23T12:27:31.000Z</pubTime>
-        
-        <tag>产品</tag>
-         
-         
-           
-             
-              <breadCrumb title="产品与交互" url="http://www.joylibo.com/categories/%E4%BA%A7%E5%93%81%E4%B8%8E%E4%BA%A4%E4%BA%92/"/>
-          
-        </display>
-    </data>
     </url>
 
-    
+
   <url>
     <loc>http://www.joylibo.com/2017/burn.html</loc>
     <lastmod>2017-07-23T12:24:13.000Z</lastmod>
-    <data>
-        <display>
-        <title>埋</title>
-        <pubTime>2017-06-19T09:19:50.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="随笔" url="http://www.joylibo.com/categories/%E9%9A%8F%E7%AC%94/"/>
-          
-        </display>
-    </data>
     </url>
 
-    
+
   <url>
     <loc>http://www.joylibo.com/2017/apologize-to-the-good-old-days.html</loc>
     <lastmod>2017-07-23T12:24:08.000Z</lastmod>
-    <data>
-        <display>
-        <title>向美好的旧日时光道歉</title>
-        <pubTime>2017-06-11T10:15:10.000Z</pubTime>
-        
-        <tag>随笔</tag>
-         
-        <tag>非原创</tag>
-         
-         
-           
-             
-              <breadCrumb title="随笔" url="http://www.joylibo.com/categories/%E9%9A%8F%E7%AC%94/"/>
-          
-        </display>
-    </data>
     </url>
 
-    
+
   <url>
     <loc>http://www.joylibo.com/2017/good-product-standards.html</loc>
     <lastmod>2017-06-28T12:27:16.000Z</lastmod>
-    <data>
-        <display>
-        <title>什么样的产品才是好产品</title>
-        <pubTime>2017-06-28T12:15:58.000Z</pubTime>
-        
-        <tag>产品</tag>
-         
-         
-           
-             
-              <breadCrumb title="产品与交互" url="http://www.joylibo.com/categories/%E4%BA%A7%E5%93%81%E4%B8%8E%E4%BA%A4%E4%BA%92/"/>
-          
-        </display>
-    </data>
     </url>
 
-    
+
   <url>
     <loc>http://www.joylibo.com/2017/how-to-use-gitbook.html</loc>
     <lastmod>2017-06-20T08:24:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>如何使用gitbook编写交互友好的API文档</title>
-        <pubTime>2017-06-17T15:21:53.000Z</pubTime>
-        
-        <tag>gitbook</tag>
-         
-        <tag>API文档</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术与工具" url="http://www.joylibo.com/categories/%E6%8A%80%E6%9C%AF%E4%B8%8E%E5%B7%A5%E5%85%B7/"/>
-          
-        </display>
-    </data>
     </url>
 
-    
+
   <url>
     <loc>http://www.joylibo.com/2017/Fitts-law.html</loc>
     <lastmod>2017-06-17T15:46:43.000Z</lastmod>
-    <data>
-        <display>
-        <title>菲茨定律(Fitts' law)及其应用</title>
-        <pubTime>2017-06-16T06:37:07.000Z</pubTime>
-        
-        <tag>Fitts low</tag>
-         
-        <tag>软件交互</tag>
-         
-         
-           
-             
-              <breadCrumb title="产品与交互" url="http://www.joylibo.com/categories/%E4%BA%A7%E5%93%81%E4%B8%8E%E4%BA%A4%E4%BA%92/"/>
-          
-        </display>
-    </data>
     </url>
 
-    
+
   <url>
     <loc>http://www.joylibo.com/2017/PERT.html</loc>
     <lastmod>2017-06-14T05:50:14.000Z</lastmod>
-    <data>
-        <display>
-        <title>活动历时估计之三点估算法(PERT)</title>
-        <pubTime>2017-06-13T03:46:04.000Z</pubTime>
-        
-        <tag>历时估计</tag>
-         
-        <tag>PERT</tag>
-         
-         
-           
-             
-              <breadCrumb title="项目管理" url="http://www.joylibo.com/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
-          
-        </display>
-    </data>
     </url>
 
-    
+
   <url>
     <loc>http://www.joylibo.com/2017/earned-value-management.html</loc>
     <lastmod>2017-06-13T16:17:40.000Z</lastmod>
-    <data>
-        <display>
-        <title>挣值管理原理与思考</title>
-        <pubTime>2017-06-11T16:40:34.000Z</pubTime>
-        
-        <tag>挣值</tag>
-         
-        <tag>绩效管理</tag>
-         
-         
-           
-             
-              <breadCrumb title="项目管理" url="http://www.joylibo.com/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
-          
-        </display>
-    </data>
     </url>
 
-    
+
 </urlset>
