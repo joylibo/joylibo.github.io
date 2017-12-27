@@ -1,0 +1,773 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="gitbook,API文档," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="我最近在参考书籍面向机器智能TensorFlow实践做TensorFlow练习的时候，发现了一个内存泄漏问题。 练习中需要对20000多幅狗狗照片做数据初始化工作，书中提供了参考代码，然而在代码跑起来之后，我却发现python程序所占用内存不断增长，初始化工作也随着for循环的深入逐渐变慢，最后甚至因为内存溢出而停止。我尝试解决了这个问题，并把寻找这个bug的心路历程记录了下来：">
+<meta name="keywords" content="gitbook,API文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于TensorFlow内存泄漏的一个解决方案">
+<meta property="og:url" content="http://www.joylibo.com/2017/tensorflow-memory-leak.html">
+<meta property="og:site_name" content="李勃的周末">
+<meta property="og:description" content="我最近在参考书籍面向机器智能TensorFlow实践做TensorFlow练习的时候，发现了一个内存泄漏问题。 练习中需要对20000多幅狗狗照片做数据初始化工作，书中提供了参考代码，然而在代码跑起来之后，我却发现python程序所占用内存不断增长，初始化工作也随着for循环的深入逐渐变慢，最后甚至因为内存溢出而停止。我尝试解决了这个问题，并把寻找这个bug的心路历程记录了下来：">
+<meta property="og:updated_time" content="2017-12-27T16:19:01.347Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于TensorFlow内存泄漏的一个解决方案">
+<meta name="twitter:description" content="我最近在参考书籍面向机器智能TensorFlow实践做TensorFlow练习的时候，发现了一个内存泄漏问题。 练习中需要对20000多幅狗狗照片做数据初始化工作，书中提供了参考代码，然而在代码跑起来之后，我却发现python程序所占用内存不断增长，初始化工作也随着for循环的深入逐渐变慢，最后甚至因为内存溢出而停止。我尝试解决了这个问题，并把寻找这个bug的心路历程记录了下来：">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.joylibo.com/2017/tensorflow-memory-leak.html"/>
+
+
+
+
+
+  <title>关于TensorFlow内存泄漏的一个解决方案 | 李勃的周末</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=62561184";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李勃的周末</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">IT技能与知识分享</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-management">
+          <a href="/categories/项目管理/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tasks"></i> <br />
+            
+            项目管理
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-product">
+          <a href="/categories/产品与交互/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-cubes"></i> <br />
+            
+            产品与交互
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech&tool">
+          <a href="/categories/技术与工具/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-terminal"></i> <br />
+            
+            技术与工具
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-prose">
+          <a href="/categories/随笔/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.joylibo.com/2017/tensorflow-memory-leak.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="joylibo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/libo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李勃的周末">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">关于TensorFlow内存泄漏的一个解决方案</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-27T23:21:34+08:00">
+                2017-12-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术与工具/" itemprop="url" rel="index">
+                    <span itemprop="name">技术与工具</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我最近在参考书籍<a href="https://book.douban.com/subject/27031750/" target="_blank" rel="external">面向机器智能TensorFlow实践</a>做TensorFlow练习的时候，发现了一个内存泄漏问题。</p>
+<p>练习中需要对<a href="http://vision.stanford.edu/aditya86/ImageNetDogs/" target="_blank" rel="external">20000多幅狗狗照片</a>做数据初始化工作，书中提供了<a href="https://github.com/backstopmedia/tensorflowbook/blob/master/chapters/05_object_recognition_and_classification/Chapter%205%20-%2005%20CNN%20Implementation.ipynb" target="_blank" rel="external">参考代码</a>，然而在代码跑起来之后，我却发现python程序所占用内存不断增长，初始化工作也随着for循环的深入逐渐变慢，最后甚至因为内存溢出而停止。我尝试解决了这个问题，并把寻找这个bug的心路历程记录了下来：<br><a id="more"></a><br>书中参考代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"><span class="keyword">import</span> glob</div><div class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> groupby</div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"></div><div class="line">sess = tf.InteractiveSession()</div><div class="line">image_filenames = glob.glob(<span class="string">"./imagenet-dogs/n02*/*.jpg"</span>)</div><div class="line">training_dataset = defaultdict(list)</div><div class="line">testing_dataset = defaultdict(list)</div><div class="line"></div><div class="line"><span class="comment"># Split up the filename into its breed and corresponding filename. The breed is found by taking the directory name</span></div><div class="line">image_filename_with_breed = map(<span class="keyword">lambda</span> filename: (filename.split(<span class="string">"/"</span>)[<span class="number">2</span>], filename), image_filenames)</div><div class="line"></div><div class="line"><span class="comment"># Group each image by the breed which is the 0th element in the tuple returned above</span></div><div class="line"><span class="keyword">for</span> dog_breed, breed_images <span class="keyword">in</span> groupby(image_filename_with_breed, <span class="keyword">lambda</span> x: x[<span class="number">0</span>]):</div><div class="line">    <span class="comment"># Enumerate each breed's image and send ~20% of the images to a testing set</span></div><div class="line">    <span class="keyword">for</span> i, breed_image <span class="keyword">in</span> enumerate(breed_images):</div><div class="line">        <span class="keyword">if</span> i % <span class="number">5</span> == <span class="number">0</span>:</div><div class="line">            testing_dataset[dog_breed].append(breed_image[<span class="number">1</span>])</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            training_dataset[dog_breed].append(breed_image[<span class="number">1</span>])</div><div class="line"></div><div class="line">    <span class="comment"># Check that each breed includes at least 18% of the images for testing</span></div><div class="line">    breed_training_count = len(training_dataset[dog_breed])</div><div class="line">    breed_testing_count = len(testing_dataset[dog_breed])</div><div class="line"></div><div class="line">    <span class="keyword">assert</span> round(breed_testing_count / (breed_training_count + breed_testing_count), <span class="number">2</span>) &gt; <span class="number">0.18</span>, <span class="string">"Not enough testing images."</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_records_file</span><span class="params">(dataset, record_location)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    Fill a TFRecords file with the images found in `dataset` and include their category.</div><div class="line"></div><div class="line">    Parameters</div><div class="line">    ----------</div><div class="line">    dataset : dict(list)</div><div class="line">      Dictionary with each key being a label for the list of image filenames of its value.</div><div class="line">    record_location : str</div><div class="line">      Location to store the TFRecord output.</div><div class="line">    """</div><div class="line">    writer = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="comment"># Enumerating the dataset because the current index is used to breakup the files if they get over 100</span></div><div class="line">    <span class="comment"># images to avoid a slowdown in writing.</span></div><div class="line">    current_index = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> breed, images_filenames <span class="keyword">in</span> dataset.items():</div><div class="line">        <span class="keyword">for</span> image_filename <span class="keyword">in</span> images_filenames:</div><div class="line">            <span class="keyword">if</span> current_index % <span class="number">100</span> == <span class="number">0</span>:</div><div class="line">                <span class="keyword">if</span> writer:</div><div class="line">                    writer.close()</div><div class="line"></div><div class="line">                record_filename = <span class="string">"&#123;record_location&#125;-&#123;current_index&#125;.tfrecords"</span>.format(</div><div class="line">                    record_location=record_location,</div><div class="line">                    current_index=current_index)</div><div class="line"></div><div class="line">                writer = tf.python_io.TFRecordWriter(record_filename)</div><div class="line">            current_index += <span class="number">1</span></div><div class="line"></div><div class="line">            image_file = tf.read_file(image_filename)</div><div class="line"></div><div class="line">            <span class="comment"># In ImageNet dogs, there are a few images which TensorFlow doesn't recognize as JPEGs. This</span></div><div class="line">            <span class="comment"># try/catch will ignore those images.</span></div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                image = tf.image.decode_jpeg(image_file)</div><div class="line">            <span class="keyword">except</span>:</div><div class="line">                print(image_filename)</div><div class="line">                <span class="keyword">continue</span></div><div class="line"></div><div class="line">            <span class="comment"># Converting to grayscale saves processing and memory but isn't required.</span></div><div class="line">            grayscale_image = tf.image.rgb_to_grayscale(image)</div><div class="line">            resized_image = tf.image.resize_images(grayscale_image, <span class="number">250</span>, <span class="number">151</span>)</div><div class="line"></div><div class="line">            <span class="comment"># tf.cast is used here because the resized images are floats but haven't been converted into</span></div><div class="line">            <span class="comment"># image floats where an RGB value is between [0,1).</span></div><div class="line">            image_bytes = sess.run(tf.cast(resized_image, tf.uint8)).tobytes()</div><div class="line"></div><div class="line">            <span class="comment"># Instead of using the label as a string, it'd be more efficient to turn it into either an</span></div><div class="line">            <span class="comment"># integer index or a one-hot encoded rank one tensor.</span></div><div class="line">            <span class="comment"># https://en.wikipedia.org/wiki/One-hot</span></div><div class="line">            image_label = breed.encode(<span class="string">"utf-8"</span>)</div><div class="line"></div><div class="line">            example = tf.train.Example(features=tf.train.Features(feature=&#123;</div><div class="line">                <span class="string">'label'</span>: tf.train.Feature(bytes_list=tf.train.BytesList(value=[image_label])),</div><div class="line">                <span class="string">'image'</span>: tf.train.Feature(bytes_list=tf.train.BytesList(value=[image_bytes]))</div><div class="line">            &#125;))</div><div class="line"></div><div class="line">            writer.write(example.SerializeToString())</div><div class="line">    writer.close()</div><div class="line"></div><div class="line">write_records_file(testing_dataset, <span class="string">"./output/testing-images/testing-image"</span>)</div><div class="line">write_records_file(training_dataset, <span class="string">"./output/training-images/training-image"</span>)</div></pre></td></tr></table></figure></p>
+<p><strong>尝试1</strong>：图片所占用内存较大，所以内存泄漏一定是图片数据的内存没有释放，而代码中保存了图片数据的对象都是tf的op对象，首先考虑的肯定是手动释放内存。于是，我在<code>write_records_file</code>这个function中对于保存图片数据的对象名做了del操作，并手动执行了<code>gc.collect()</code>,然并卵，这并没有阻止内存泄漏。而且由于垃圾收集极为耗时，导致代码运行更慢了。</p>
+<p><strong>尝试2</strong>：在上一步尝试的基础上，我在找寻op对象内存无法释放的原因，发现了如下的现象<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import tensorflow as tf</div><div class="line">&gt;&gt;&gt; import sys</div><div class="line">&gt;&gt;&gt; a = <span class="string">'你好'</span></div><div class="line">&gt;&gt;&gt; b = <span class="string">'世界'</span></div><div class="line">&gt;&gt;&gt; op = tf.add(a, b)</div><div class="line">&gt;&gt;&gt; sys.getrefcount(a)</div><div class="line">2</div><div class="line">&gt;&gt;&gt; sys.getrefcount(b)</div><div class="line">2</div><div class="line">&gt;&gt;&gt; sys.getrefcount(op)</div><div class="line">3</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure></p>
+<p>这也就意味着，tf的op对象是比其他对象对了一个引用的，因此在对对象名做了del操作之后，内存不会被回收(因为还有一个指针指向它).这个时候似乎陷入了一个困境。因为对TensorFlow的细节把我的不好，并不知道该如何才能释放对象。</p>
+<p><strong>尝试3</strong>：前两步尝试是有价值的，因为我在这其中学到了一些东西。然而我并不想过多介绍其他尝试，因为它们都是瞎子摸象、南辕北辙的。不过我想把他们简单记录一下，这些无效的尝试包括：</p>
+<ul>
+<li>对Session增加close()操作</li>
+<li>改变打开Session的位置</li>
+<li>变更python版本</li>
+<li>重载tf模块的引入</li>
+<li>…</li>
+</ul>
+<p><strong>尝试4(最终解决方案)</strong>：思考TensorFlow的本质，是一个数据流图，那么这个关键点就是“图”，op是图上的一个节点。这样看来，是“图”引用了op的数据。代码遍历了两万张图片，也就是在图上增加了两万个节点，这显然是内存泄漏的原因所在。而我们在代码中并没有看见“图”的定义。原因是这样的<strong>当TensorFlow库被加载时，会自动创建一个数据流图对象(Graph)，并将其作为默认的数据流图</strong>.我们在这个练习里面，只是利用了tf的图片处理方法，将图片序列化保存到硬盘之后，op便没有价值了，所以可以将其舍弃。</p>
+<p>最终的方案是把处理一个品种的狗狗的图片的for循环，放在一个数据流图中，处理完毕之后关闭这个数据流图<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">g = tf.Graph()</div><div class="line"><span class="keyword">with</span> g.as_default():</div><div class="line">  <span class="comment">## 此处编写op代码</span></div><div class="line">  ...</div></pre></td></tr></table></figure></p>
+<p>所以我对书中的代码做了修改，最终是这样的，亲测可用：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> glob</div><div class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> groupby</div><div class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div><div class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> gc</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_the_test_and_train_filenames</span><span class="params">()</span>:</span></div><div class="line">    image_filenames = glob.glob(<span class="string">'./images/n02*/*.jpg'</span>)</div><div class="line">    training_dataset = defaultdict(list)</div><div class="line">    testing_dataset = defaultdict(list)</div><div class="line"></div><div class="line">    <span class="comment">## 将文件名分解为品种和相应的文件名（元组，品种和文件名两个分量），品种对应于文件夹名称</span></div><div class="line">    image_filename_with_breed = map(<span class="keyword">lambda</span> filename: (filename.split(<span class="string">'/'</span>)[<span class="number">2</span>], filename), image_filenames)</div><div class="line"></div><div class="line">    <span class="comment">## 根据品种(上述返回的元组的第0个分量,即类别)对图像分组</span></div><div class="line">    <span class="keyword">for</span> dog_breed, breed_images <span class="keyword">in</span> groupby(image_filename_with_breed, <span class="keyword">lambda</span> x: x[<span class="number">0</span>]):</div><div class="line">        <span class="comment">## 枚举每个品种的图像，并将大致20%的图像划入测试集</span></div><div class="line">        <span class="keyword">for</span> i, breed_image <span class="keyword">in</span> enumerate(breed_images):</div><div class="line">            <span class="comment"># print(i,'----',breed_image)</span></div><div class="line">            <span class="keyword">if</span> i % <span class="number">5</span> == <span class="number">0</span>:</div><div class="line">                testing_dataset[dog_breed].append(breed_image[<span class="number">1</span>])</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                training_dataset[dog_breed].append(breed_image[<span class="number">1</span>])</div><div class="line"></div><div class="line">        <span class="comment">## 检查每个品种的测试图像是否至少有全部图像的18%</span></div><div class="line">        breed_training_count = len(training_dataset[dog_breed])</div><div class="line">        breed_testing_count = len(testing_dataset[dog_breed])</div><div class="line"></div><div class="line">        <span class="keyword">assert</span> round(breed_testing_count / (breed_training_count + breed_testing_count), <span class="number">2</span>) &gt; <span class="number">0.18</span>, <span class="string">'Not enought testing images.'</span></div><div class="line">    <span class="keyword">return</span> testing_dataset, training_dataset</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_records_file</span><span class="params">(dataset, record_location)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    用dataset中的图像填充一个TFRecord文件，并将其类别包含进来</div><div class="line"></div><div class="line">    :param dataset: dict(list) 这个字段的键对应于其值中文件名列表对应的标签</div><div class="line">    :param record_location: str 存储TFRecord输出的路径</div><div class="line">    :return:</div><div class="line">    """</div><div class="line">    writer = <span class="keyword">None</span></div><div class="line"></div><div class="line">    <span class="comment"># 枚举dataset，因为当前索引用于对文件进行划分，每隔100幅图像，</span></div><div class="line">    <span class="comment"># 训练样本的信息就被写入到一个新的TFRecord文件中，以加快写操作的进程</span></div><div class="line">    current_index = <span class="number">0</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> breed, image_filenames <span class="keyword">in</span> dataset.items():</div><div class="line">        g = tf.Graph()</div><div class="line">        <span class="keyword">with</span> g.as_default():</div><div class="line">            sess = tf.InteractiveSession()</div><div class="line">            <span class="keyword">for</span> image_filename <span class="keyword">in</span> image_filenames:</div><div class="line">                <span class="keyword">if</span> current_index % <span class="number">100</span> == <span class="number">0</span>:</div><div class="line">                    <span class="keyword">if</span> writer:</div><div class="line">                        writer.close()</div><div class="line">                    print(current_index, <span class="string">'--'</span>, time.time())</div><div class="line">                    record_filename = <span class="string">"&#123;record_location&#125;-&#123;current_index&#125;.tfrecords"</span>\</div><div class="line">                        .format(record_location=record_location, current_index=current_index)</div><div class="line"></div><div class="line">                    writer = tf.python_io.TFRecordWriter(record_filename)</div><div class="line">                current_index += <span class="number">1</span></div><div class="line">                image_file = tf.read_file(image_filename)</div><div class="line">                <span class="comment">## 在ImageNet的狗的图像中，有少量无法被TensorFlow识别为JPEG的图像，利用try/catch可将它们忽略</span></div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    image = tf.image.decode_jpeg(image_file)</div><div class="line">                <span class="keyword">except</span>:</div><div class="line">                    print(image_filename)</div><div class="line">                    <span class="keyword">continue</span></div><div class="line"></div><div class="line">                <span class="comment">## 转换为灰度图可减少处理的计算量和内存占用，但这并不是必须的</span></div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    grayscala_image = tf.image.rgb_to_grayscale(image)</div><div class="line">                    resized_image = tf.image.resize_images(grayscala_image, [<span class="number">250</span>, <span class="number">151</span>])</div><div class="line">                <span class="keyword">except</span>:</div><div class="line">                    print(image_filename)</div><div class="line">                    <span class="keyword">continue</span></div><div class="line"></div><div class="line">                <span class="comment">## 这里之所以用tf.cast，是因为虽然尺寸更改后的图像的数据类型是浮点型，但RGB值尚未转换到[0,1)区间内</span></div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    image_bytes = sess.run(tf.cast(resized_image, tf.uint8)).tobytes()</div><div class="line">                <span class="keyword">except</span>:</div><div class="line">                    print(image_filename)</div><div class="line">                    <span class="keyword">continue</span></div><div class="line"></div><div class="line">                <span class="comment">## 将标签按字符串存储较高效，推荐的做法是将其转换为整数索引或读热编码的秩1张量</span></div><div class="line">                <span class="comment">## https://en.wikipedia.org/wiki/One-hot</span></div><div class="line">                image_label = breed.encode(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">                example = tf.train.Example(features=tf.train.Features(feature=&#123;</div><div class="line">                    <span class="string">'label'</span>: tf.train.Feature(bytes_list=tf.train.BytesList(value=[image_label])),</div><div class="line">                    <span class="string">'image'</span>: tf.train.Feature(bytes_list=tf.train.BytesList(value=[image_bytes]))</div><div class="line">                &#125;))</div><div class="line"></div><div class="line">                writer.write(example.SerializeToString())</div><div class="line">            sess.close()</div><div class="line">            <span class="keyword">del</span> sess</div><div class="line">            gc.collect()</div><div class="line">    writer.close()</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    testing_dataset, training_dataset = get_the_test_and_train_filenames()</div><div class="line">    write_records_file(testing_dataset, <span class="string">'./tf_file/testing-images/testing-image'</span>)</div><div class="line">    write_records_file(training_dataset, <span class="string">'./tf_file/training-images/training-image'</span>)</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gitbook/" rel="tag"># gitbook</a>
+          
+            <a href="/tags/API文档/" rel="tag"># API文档</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/load-balancing-4-web.html" rel="next" title="Web负载均衡的常见策略">
+                <i class="fa fa-chevron-left"></i> Web负载均衡的常见策略
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/libo.jpg"
+               alt="joylibo" />
+          <p class="site-author-name" itemprop="name">joylibo</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="mailto:libo@joylibo.com" target="_blank" title="libo@joylibo.com">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  libo@joylibo.com
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">joylibo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

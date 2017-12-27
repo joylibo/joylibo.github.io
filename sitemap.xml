@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.joylibo.com/2017/tensorflow-memory-leak.html</loc>
+    
+    <lastmod>2017-12-27T16:19:01.347Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.joylibo.com/2017/load-balancing-4-web.html</loc>
     
     <lastmod>2017-09-12T05:56:51.000Z</lastmod>
