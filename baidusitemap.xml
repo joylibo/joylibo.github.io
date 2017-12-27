@@ -5,15 +5,15 @@
     
   <url>
     <loc>http://www.joylibo.com/2017/tensorflow-memory-leak.html</loc>
-    <lastmod>2017-12-27T16:19:01.347Z</lastmod>
+    <lastmod>2017-12-27T16:28:16.203Z</lastmod>
     <data>
         <display>
         <title>关于TensorFlow内存泄漏的一个解决方案</title>
         <pubTime>2017-12-27T15:21:34.000Z</pubTime>
         
-        <tag>gitbook</tag>
+        <tag>TensorFlow</tag>
          
-        <tag>API文档</tag>
+        <tag>python</tag>
          
          
            
