@@ -1,0 +1,320 @@
+/* =============================================================
+   李勃老师 · 品牌设计系统
+   与 design-preview.html 保持一致
+   前缀 lb- 避免与 Hugoplate 内置样式冲突
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   0. 本地字体（LXGW WenKai v1.522）
+   ------------------------------------------------------------- */
+@font-face {
+  font-family: 'LXGW WenKai';
+  src: url('/fonts/LXGWWenKai-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai';
+  src: url('/fonts/LXGWWenKai-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LXGW WenKai';
+  src: url('/fonts/LXGWWenKai-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Logo 亮色/深色切换：CSS 控制，支持 header + footer 多实例 */
+.dark .site-logo-light { display: none !important; }
+.dark .site-logo-dark  { display: block !important; }
+
+/* Hugoplate 默认对标题使用 font-bold(700)，LXGW WenKai 最重只有 Medium(500)
+   覆盖为 400，符合我们的设计规范：标题不加粗，靠字号建立层级 */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 400;
+}
+
+/* -------------------------------------------------------------
+   1. CSS 变量（亮色模式）
+   ------------------------------------------------------------- */
+:root {
+  --lb-bg:              #F2F1EA;  /* 暖宣纸 */
+  --lb-surface:         #F8F7F2;  /* 象牙白 */
+
+  --lb-text-primary:    #151613;  /* 墨近黑 */
+  --lb-text-secondary:  #57615A;  /* 橄榄灰 */
+  --lb-text-tertiary:   #868F88;  /* 石板灰 */
+
+  --lb-border-subtle:   #E2E0D6;  /* 奶油边 */
+  --lb-border-strong:   #D4D2C6;  /* 暖边   */
+
+  --lb-accent:          #2E7A6E;  /* 墨青 ★ */
+  --lb-accent-light:    #3D9688;
+  --lb-accent-muted:    #D4EDEA;  /* 淡青背景 */
+
+  --lb-shadow-ring:         0 0 0 1px var(--lb-border-strong);
+  --lb-shadow-ring-accent:  0 0 0 1px var(--lb-accent);
+  --lb-shadow-whisper:      rgba(0,0,0,0.05) 0px 4px 24px;
+  --lb-shadow-hover:        rgba(0,0,0,0.13) 0px 12px 36px;
+
+  --lb-radius-sm:   6px;
+  --lb-radius-md:   8px;
+  --lb-radius-lg:   12px;
+  --lb-radius-xl:   16px;
+  --lb-radius-2xl:  24px;
+}
+
+/* -------------------------------------------------------------
+   2. CSS 变量（暗色模式）—— Hugoplate 用 .dark 类
+   ------------------------------------------------------------- */
+.dark {
+  --lb-bg:              #131614;
+  --lb-surface:         #1E2320;
+
+  --lb-text-primary:    #EDECEA;
+  --lb-text-secondary:  #9DA89F;
+  --lb-text-tertiary:   #6B756D;
+
+  --lb-border-subtle:   #232826;
+  --lb-border-strong:   #2A302C;
+
+  --lb-accent:          #4DB8A8;  /* 浅墨青（暗色模式）★ */
+  --lb-accent-light:    #68CABB;
+  --lb-accent-muted:    #1A2E2C;
+
+  --lb-shadow-ring:         0 0 0 1px var(--lb-border-strong);
+  --lb-shadow-ring-accent:  0 0 0 1px var(--lb-accent);
+  --lb-shadow-whisper:      rgba(0,0,0,0.25) 0px 4px 24px;
+  --lb-shadow-hover:        rgba(0,0,0,0.45) 0px 12px 36px;
+}
+
+/* -------------------------------------------------------------
+   3. 课程卡片区块（方案 B）
+   ------------------------------------------------------------- */
+
+/* 区块 header */
+.lb-courses-eyebrow {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--lb-accent);
+  margin-bottom: 12px;
+}
+
+/* 三列网格 */
+.lb-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+@media (max-width: 900px) {
+  .lb-courses-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 900px) {
+  .lb-courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 单张卡片 */
+.lb-course-card {
+  background: var(--lb-surface);
+  border: 1px solid var(--lb-border-subtle);
+  border-radius: var(--lb-radius-xl);
+  padding: 32px;
+  box-shadow: var(--lb-shadow-whisper);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.25s ease-in-out 100ms, border-color 0.25s ease-in-out 100ms, transform 0.25s ease-in-out 100ms;
+}
+
+.lb-course-card:hover {
+  box-shadow: var(--lb-shadow-hover);
+  border-color: var(--lb-border-strong);
+  transform: translateY(-2px);
+}
+
+/* 状态 badge */
+.lb-course-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: var(--lb-radius-2xl);
+  margin-bottom: 20px;
+  width: fit-content;
+}
+
+.lb-course-badge--active {
+  color: var(--lb-accent);
+  background: var(--lb-accent-muted);
+}
+
+.lb-course-badge--soon {
+  color: var(--lb-text-tertiary);
+  background: transparent;
+  border: 1px solid var(--lb-border-strong);
+}
+
+.lb-course-badge--active::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lb-accent);
+}
+
+/* 卡片标题 */
+.lb-course-card__title {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--lb-text-primary);
+  margin-bottom: 12px;
+}
+
+/* 卡片描述 */
+.lb-course-card__desc {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--lb-text-secondary);
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+/* 技术标签列表 */
+.lb-course-card__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.lb-tech-tag {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--lb-text-tertiary);
+  background: var(--lb-bg);
+  border: 1px solid var(--lb-border-subtle);
+  border-radius: var(--lb-radius-md);
+  padding: 3px 9px;
+}
+
+/* -------------------------------------------------------------
+   4. Why 区块（features）
+   ------------------------------------------------------------- */
+
+/* feature 卡片容器背景：直接用品牌变量，绕过 Tailwind bg-gradient 的 background-image 覆盖问题 */
+.lb-feature-bg {
+  background: var(--lb-surface);
+}
+
+.lb-feature-card {
+  padding: 32px 0;
+  border-top: 1px solid var(--lb-border-subtle);
+}
+
+.lb-feature-card__title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--lb-text-primary);
+  margin-bottom: 14px;
+}
+
+.lb-feature-card__content {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--lb-text-secondary);
+  margin-bottom: 20px;
+}
+
+.lb-feature-card__bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lb-feature-card__bullets li {
+  position: relative;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--lb-text-secondary);
+  padding: 4px 0 4px 16px;
+}
+
+.lb-feature-card__bullets li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--lb-accent);
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+/* 卡片按钮 */
+.lb-course-card__footer {
+  margin-top: auto;
+}
+
+.lb-btn {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: var(--lb-radius-lg);
+  text-decoration: none;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.lb-btn--primary {
+  background: var(--lb-accent);
+  color: #ffffff;
+  box-shadow: var(--lb-shadow-ring-accent);
+}
+
+.lb-btn--primary:hover {
+  opacity: 0.88;
+  color: #ffffff;
+}
+
+.dark .lb-btn--primary,
+.dark .lb-btn--primary:hover {
+  color: #151613;
+}
+
+.lb-btn--outline {
+  background: transparent;
+  color: var(--lb-text-tertiary);
+  border: 1px solid var(--lb-border-strong);
+  box-shadow: var(--lb-shadow-ring);
+}
+
+.lb-btn--outline:hover {
+  color: var(--lb-accent);
+  border-color: var(--lb-accent);
+  box-shadow: var(--lb-shadow-ring-accent);
+}

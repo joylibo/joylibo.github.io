@@ -1,0 +1,39 @@
+############# 导航菜单（中文）##############
+
+# 顶部主导航
+[[main]]
+name = "首页"
+url = "/"
+weight = 1
+
+[[main]]
+name = "零到全栈"
+url = "/zero-to-fullstack"
+weight = 2
+
+[[main]]
+name = "博客"
+url = "/blog"
+weight = 3
+
+[[main]]
+name = "关于"
+url = "/about"
+weight = 4
+
+
+# Footer 导航
+[[footer]]
+name = "零到全栈"
+url = "/zero-to-fullstack"
+weight = 1
+
+[[footer]]
+name = "博客"
+url = "/blog"
+weight = 2
+
+[[footer]]
+name = "关于"
+url = "/about"
+weight = 3

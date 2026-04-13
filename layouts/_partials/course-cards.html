@@ -1,0 +1,62 @@
+{{ with .Params.courses }}
+<section class="section">
+  <div class="container">
+
+    {{/* 区块 header */}}
+    <div class="row justify-center text-center" style="margin-bottom: 0;">
+      <div class="lg:col-6 md:col-8">
+        {{ with .section_title }}
+          <p class="lb-courses-eyebrow">{{ . }}</p>
+        {{ end }}
+        {{ with .section_subtitle }}
+          <h2>{{ . | markdownify }}</h2>
+        {{ end }}
+      </div>
+    </div>
+
+    {{/* 课程卡片网格 */}}
+    <div class="lb-courses-grid">
+      {{ range .items }}
+        {{ $active := .status_active }}
+        <div class="lb-course-card">
+
+          {{/* 状态 badge */}}
+          {{ if $active }}
+            <span class="lb-course-badge lb-course-badge--active">{{ .status }}</span>
+          {{ else }}
+            <span class="lb-course-badge lb-course-badge--soon">{{ .status }}</span>
+          {{ end }}
+
+          {{/* 标题 */}}
+          <h3 class="lb-course-card__title">{{ .title }}</h3>
+
+          {{/* 描述 */}}
+          <p class="lb-course-card__desc">{{ .description }}</p>
+
+          {{/* 技术标签 */}}
+          {{ with .tech }}
+            <div class="lb-course-card__tech">
+              {{ range . }}
+                <span class="lb-tech-tag">{{ . }}</span>
+              {{ end }}
+            </div>
+          {{ end }}
+
+          {{/* 按钮 */}}
+          {{ with .button }}
+            <div class="lb-course-card__footer">
+              {{ if $active }}
+                <a href="{{ .link | absURL }}" class="lb-btn lb-btn--primary">{{ .label }}</a>
+              {{ else }}
+                <a href="{{ .link | absURL }}" class="lb-btn lb-btn--outline">{{ .label }}</a>
+              {{ end }}
+            </div>
+          {{ end }}
+
+        </div>
+      {{ end }}
+    </div>
+
+  </div>
+</section>
+{{ end }}
