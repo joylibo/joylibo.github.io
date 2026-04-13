@@ -5,7 +5,7 @@
 banner:
   title: "从零开始，建立技术直觉"
   content: "在 AI 时代，你不需要写每一行代码——你需要理解原理、读懂结构、让 Hello World 成为真正的起点。"
-  image: "/images/banner.png"
+  image: "/images/banner.webp"
   button:
     enable: true
     label: "开始学习"
