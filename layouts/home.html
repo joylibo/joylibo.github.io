@@ -2,7 +2,7 @@
 
   {{/* ── Banner ───────────────────────────────────────────────────── */}}
   {{ with .Params.banner }}
-    <section class="section pt-14">
+    <section class="section pt-14 pb-12 xl:pb-14">
       <div class="container">
         <div class="row justify-center">
           <div class="lg:col-7 md:col-9 mb-8 text-center">
@@ -34,7 +34,7 @@
 
   {{/* ── Why 区块（Hugoplate 图文交替布局）────────────────────────── */}}
   {{ with .Params.features_intro }}
-    <section class="section pb-0">
+    <section class="section pt-12 pb-0 xl:pt-14">
       <div class="container">
         <div class="row justify-center text-center">
           <div class="lg:col-7 md:col-9">
@@ -47,7 +47,7 @@
   {{ end }}
 
   {{ if .Params.features }}
-    <section class="section">
+    <section class="section pt-12 xl:pt-14">
       <div class="container">
         {{ range $i, $e := .Params.features }}
           <div class="{{ if not (eq $i 0) }}mt-8{{ end }}">
