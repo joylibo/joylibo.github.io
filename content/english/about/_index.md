@@ -1,20 +1,58 @@
 ---
-title: "Hey, I am John Doe!"
-meta_title: "About"
-description: "this is meta description"
-image: "/images/image-placeholder.png"
+title: "关于这个站点"
+meta_title: "关于"
+description: "李勃老师的课程理念与学习路径说明"
+image: "/images/feature1.webp"
 layout: "about"
 draft: false
 ---
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed. Fugit voluptatibus perspiciatis assumenda nulla ad nihil, omnis vel, doloremque sit quam autem optio maiores, illum eius facilis et quo consectetur provident dolor similique! Enim voluptatem dicta expedita veritatis repellat dolorum impedit, provident quasi at.
+这个站点服务于一类很明确的学习者:
 
-### This is a title
+- 0 基础但想认真理解技术的人
+- 希望在 AI 时代建立工程直觉的人
+- 不想只停留在“会用工具”，而是想做出可运行产品的人
 
-* Lorem ipsum, dolor sit amet
-* Enim voluptatem dicta expedita veritatis
-* Fugit voluptatibus perspiciatis assumenda
-* Enim voluptatem dicta expedita
-* Corporis illum nesciunt commodi vel
+我们的核心判断是:
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed. Fugit voluptatibus perspiciatis assumenda nulla ad nihil, omnis vel, doloremque sit quam autem optio maiores, illum eius facilis et quo consectetur provident dolor similique! Enim voluptatem dicta expedita veritatis repellat dolorum impedit, provident quasi at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed. Fugit voluptatibus perspiciatis assumenda nulla ad nihil, omnis vel, doloremque sit quam autem optio maiores, illum eius facilis et quo consectetur provident dolor similique! Enim voluptatem dicta expedita veritatis repellat dolorum impedit, provident quasi at.
+> 学习成本降低，但理解深度不减。
+
+AI 可以生成代码，但产品仍然需要被理解、组织、运行和维护。  
+所以课程关注的不是“和 AI 比谁写得快”，而是帮助学习者建立从想法到产品的完整路径感。
+
+### 课程理念
+
+我们的教学思路围绕三条主线推进:
+
+- 在“做”中理解，触摸知识
+- 克制而完整的路线和脉络
+- 不写代码，管理它
+
+我们关心的不是“写了多少代码”，而是你是否建立了对系统的理解，是否能把一个想法稳定地做成产品。
+
+### 你在这里会得到什么
+
+- 对前端、后端、部署和运行环境的整体认识
+- 把 AI 产出接入真实项目的能力
+- 面对问题时的分层排查思路
+- 可以持续迭代的工程习惯
+
+### 我们如何组织内容
+
+我们把内容分成两个模块:
+
+1. 课程模块
+2. 博客模块
+
+课程模块是按章节稳步推进的学习路径。  
+每一个课程系列都会有自己的独立板块。当前我们先从「零到全栈」这个系列开始。
+
+博客模块会更自由和灵活。  
+它用于补充课程之外的思考、案例、实践复盘和阶段性说明，方便学习者从不同角度建立理解。
+
+课程的主要发布渠道是 Bilibili。  
+这个网站是课程体系的一部分，重点承载文字说明、结构化笔记、代码与资源索引，帮助你把视频内容真正转化为可复用的学习资产。
+
+如果你愿意，也欢迎从博客首页开始，先看第一篇文章：
+
+[为什么在 AI 时代还要学全栈开发](/blog/why-learn-fullstack-in-ai-era/)

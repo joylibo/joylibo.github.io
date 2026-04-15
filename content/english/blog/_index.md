@@ -1,5 +1,5 @@
 ---
-title: "Blog Posts"
+title: "Blog"
 meta_title: ""
-description: "this is meta description"
+description: "课程思考与学习笔记"
 ---

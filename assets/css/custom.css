@@ -318,3 +318,81 @@ h1, h2, h3, h4, h5, h6,
   border-color: var(--lb-accent);
   box-shadow: var(--lb-shadow-ring-accent);
 }
+
+/* -------------------------------------------------------------
+   5. 文章正文排版微调
+   标题降一档，正文升一档，缩小两者体量差
+   ------------------------------------------------------------- */
+.content h2 {
+  font-size: var(--text-h3-sm);
+  line-height: 1.35;
+}
+
+@media (min-width: 768px) {
+  .content h2 {
+    font-size: var(--text-h3);
+  }
+}
+
+.content p,
+.content li {
+  font-size: 1.125rem;
+  line-height: 1.9;
+}
+
+/* -------------------------------------------------------------
+   6. Share 按钮（独立体系，不继承模板 share 样式）
+   ------------------------------------------------------------- */
+.lb-share-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.lb-share-link {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: var(--color-primary);
+  color: var(--color-light);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.lb-share-link:hover {
+  background: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.lb-share-icon {
+  width: 1em;
+  height: 1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lb-share-icon svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+}
+
+.lb-share-icon svg path {
+  fill: currentColor;
+}
+
+.dark .lb-share-link {
+  background: var(--color-darkmode-primary);
+  color: var(--color-darkmode-light);
+}
+
+.dark .lb-share-link:hover {
+  background: var(--color-darkmode-primary);
+}
