@@ -66,7 +66,10 @@
               <h5>{{ T "share" | default "Share" }} :</h5>
               {{ $xShare := printf "https://x.com/intent/tweet/?text=%s&url=%s" (.Title | urlquery) (.Permalink | urlquery) }}
               {{ $emailShare := printf "mailto:?subject=%s&body=%s" (.Title | urlquery) (.Permalink | urlquery) }}
-              {{ $obsidianURI := printf "obsidian://new?name=%s&content=%s" (.Title | urlquery) (.Permalink | urlquery) }}
+              {{ $plainText := .Plain | replaceRE "\\s+" " " | strings.TrimSpace }}
+              {{ $excerpt := truncate 500 $plainText }}
+              {{ $obsidianNote := printf "# %s\n\n原文链接：%s\n\n摘要：\n%s\n\n（完整内容请查看原文链接）" .Title .Permalink $excerpt }}
+              {{ $obsidianURI := printf "obsidian://new?name=%s&content=%s" (.Title | urlquery) ($obsidianNote | urlquery) }}
               <div class="lb-share-links ml-2">
                 <a
                   class="lb-share-link"

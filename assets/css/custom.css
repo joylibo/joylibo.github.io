@@ -9,7 +9,8 @@
    ------------------------------------------------------------- */
 @font-face {
   font-family: 'LXGW WenKai';
-  src: url('/fonts/LXGWWenKai-Light.ttf') format('truetype');
+  src: url('/fonts/LXGWWenKai-Light.woff2') format('woff2'),
+       url('/fonts/LXGWWenKai-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -17,7 +18,8 @@
 
 @font-face {
   font-family: 'LXGW WenKai';
-  src: url('/fonts/LXGWWenKai-Regular.ttf') format('truetype');
+  src: url('/fonts/LXGWWenKai-Regular.woff2') format('woff2'),
+       url('/fonts/LXGWWenKai-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -25,10 +27,15 @@
 
 @font-face {
   font-family: 'LXGW WenKai';
-  src: url('/fonts/LXGWWenKai-Medium.ttf') format('truetype');
+  src: url('/fonts/LXGWWenKai-Medium.woff2') format('woff2'),
+       url('/fonts/LXGWWenKai-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+}
+
+body {
+  font-family: 'LXGW WenKai', 'Noto Serif SC', 'Source Han Serif SC', serif;
 }
 
 /* Logo 亮色/深色切换：CSS 控制，支持 header + footer 多实例 */
