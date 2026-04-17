@@ -4,7 +4,7 @@
 # ─────────────────────────────────────────────
 banner:
   title: "从零开始，建立技术直觉"
-  content: "在 AI 时代，你不需要写每一行代码——你需要理解原理、读懂结构、让 Hello World 成为真正的起点。"
+  content: "这里不培养程序员，这里只传授 <span class=\"lb-banner-keyword\">在AI时代</span> 把想法做成产品的能力。"
   image: "/images/banner.webp"
   button:
     enable: true

@@ -341,6 +341,26 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
+.content h3 {
+  font-size: var(--text-h5);
+  line-height: 1.4;
+}
+
+.content h4 {
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+
+.content h5 {
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.content h6 {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
 .content p,
 .content li {
   font-size: 1.125rem;
@@ -402,4 +422,45 @@ h1, h2, h3, h4, h5, h6,
 
 .dark .lb-share-link:hover {
   background: var(--color-darkmode-primary);
+}
+
+/* Banner keyword emphasis */
+.lb-banner-keyword {
+  color: var(--lb-accent);
+  font-weight: 500;
+  background: var(--lb-accent-muted);
+  padding: 0.08em 0.4em;
+  border-radius: 0.35em;
+}
+
+/* Remove auto quotation marks injected by typography styles for blockquotes */
+.content blockquote::before,
+.content blockquote::after,
+.content blockquote p::before,
+.content blockquote p::after,
+.content blockquote p:first-of-type::before,
+.content blockquote p:last-of-type::after {
+  content: none !important;
+}
+
+.content :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  quotes: none !important;
+}
+
+.content :where(blockquote p:first-of-type):not(:where([class~="not-prose"], [class~="not-prose"] *))::before,
+.content :where(blockquote p:last-of-type):not(:where([class~="not-prose"], [class~="not-prose"] *))::after {
+  content: none !important;
+}
+
+/* Exact override for Tailwind Typography quote marks */
+:where(blockquote p:first-of-type):not(:where([class~="not-prose"], [class~="not-prose"] *))::before,
+:where(blockquote p:last-of-type):not(:where([class~="not-prose"], [class~="not-prose"] *))::after {
+  content: "" !important;
+  display: none !important;
+}
+
+:where(blockquote p:first-of-type):not(:where([class~="not-prose"],[class~="not-prose"] *))::before,
+:where(blockquote p:last-of-type):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
+  content: none !important;
+  display: none !important;
 }
