@@ -4,7 +4,7 @@
 # ─────────────────────────────────────────────
 banner:
   title: "从零开始，建立技术直觉"
-  content: "认真传授 <span class=\"lb-banner-keyword\">在AI时代</span> 把想法做成产品的能力"
+  content: "传授 <span class=\"lb-banner-keyword\">在AI时代</span> 把想法做成产品的能力"
   image: "/images/banner.webp"
   button:
     enable: true
