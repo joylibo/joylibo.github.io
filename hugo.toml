@@ -139,6 +139,9 @@ lazy = true
 link = "js/search.js" # https://github.com/gethugothemes/hugo-modules/tree/master/search
 lazy = false
 [[params.plugins.js]]
+link = "js/code-copy.js"
+lazy = false
+[[params.plugins.js]]
 link = "plugins/swiper/swiper-bundle.js" 
 # https://github.com/gethugothemes/hugo-modules/tree/master/gallery-slider
 lazy = false
