@@ -1,5 +1,5 @@
 ---
-title: "模块 2.2：认识终端：命令行、生存级 Vim 与 Linux 直觉"
+title: "模块 2.2：终端与Linux直觉"
 meta_title: ""
 description: "终端本质上只是另一种和电脑交互的方式。"
 date: 2026-04-11T00:00:00+08:00
