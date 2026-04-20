@@ -50,6 +50,42 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* -------------------------------------------------------------
+   首页标题层级：Banner 主标题始终最大
+   ------------------------------------------------------------- */
+.lb-home-banner-title {
+  font-size: 2.2rem;
+  line-height: 1.2;
+}
+
+.lb-home-courses-subtitle,
+.lb-home-features-intro-title,
+.lb-home-cta-title {
+  font-size: 1.75rem;
+  line-height: 1.3;
+}
+
+.lb-home-feature-title {
+  font-size: 1.5rem;
+  line-height: 1.35;
+}
+
+@media (min-width: 1024px) {
+  .lb-home-banner-title {
+    font-size: 3rem;
+  }
+
+  .lb-home-courses-subtitle,
+  .lb-home-features-intro-title,
+  .lb-home-cta-title {
+    font-size: 2.1rem;
+  }
+
+  .lb-home-feature-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* -------------------------------------------------------------
    1. CSS 变量（亮色模式）
    ------------------------------------------------------------- */
 :root {

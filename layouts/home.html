@@ -6,7 +6,7 @@
       <div class="container">
         <div class="row justify-center">
           <div class="lg:col-7 md:col-9 mb-8 text-center">
-            <h1 class="mb-4 text-h3 lg:text-h1">
+            <h1 class="lb-home-banner-title mb-4">
               {{ .title | markdownify }}
             </h1>
             <p class="mb-8">
@@ -39,7 +39,7 @@
         <div class="row justify-center text-center">
           <div class="lg:col-7 md:col-9">
             {{ with .section_title }}<p class="lb-courses-eyebrow">{{ . }}</p>{{ end }}
-            {{ with .section_subtitle }}<h2>{{ . | markdownify }}</h2>{{ end }}
+            {{ with .section_subtitle }}<h2 class="lb-home-features-intro-title">{{ . | markdownify }}</h2>{{ end }}
           </div>
         </div>
       </div>
@@ -59,7 +59,7 @@
                   </div>
                 {{ end }}
                 <div class="{{ if .image }}{{ if not (modBool $i 2) }}md:order-1 {{ end }}md:col-7 lg:col-6{{ else }}col-12{{ end }}">
-                  <h2 class="mb-4">{{ .title | markdownify }}</h2>
+                  <h2 class="lb-home-feature-title mb-4">{{ .title | markdownify }}</h2>
                   <p class="mb-8 text-lg">{{ .content | markdownify }}</p>
                   <ul>
                     {{ range .bulletpoints }}
