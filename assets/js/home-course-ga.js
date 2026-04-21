@@ -42,6 +42,7 @@
   };
 
   const handleNavigate = (link, event) => {
+    const eventName = link.dataset.lbGaEvent;
     const isModifiedClick =
       event.metaKey ||
       event.ctrlKey ||
