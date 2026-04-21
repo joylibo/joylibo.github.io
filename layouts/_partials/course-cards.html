@@ -16,8 +16,9 @@
 
     {{/* 课程卡片网格 */}}
     <div class="lb-courses-grid">
-      {{ range .items }}
+      {{ range $idx, $item := .items }}
         {{ $active := .status_active }}
+        {{ $eventName := cond (eq $idx 0) "home_course_click_zero_to_fullstack" (cond (eq $idx 1) "home_course_click_play_agent" "home_course_click_deep_learning") }}
         <div class="lb-course-card">
 
           {{/* 状态 badge */}}
@@ -46,9 +47,9 @@
           {{ with .button }}
             <div class="lb-course-card__footer">
               {{ if $active }}
-                <a href="{{ .link | absURL }}" class="lb-btn lb-btn--primary">{{ .label }}</a>
+                <a href="{{ .link | absURL }}" class="lb-btn lb-btn--primary" data-lb-action="navigate" data-lb-ga-event="{{ $eventName }}" data-lb-ga-category="home_course_card" data-lb-ga-label="{{ $item.title }}">{{ .label }}</a>
               {{ else }}
-                <a href="{{ .link | absURL }}" class="lb-btn lb-btn--outline">{{ .label }}</a>
+                <a href="{{ .link | absURL }}" class="lb-btn lb-btn--outline" data-lb-action="feedback" data-lb-feedback-text="已收到" data-lb-ga-event="{{ $eventName }}" data-lb-ga-category="home_course_card" data-lb-ga-label="{{ $item.title }}">{{ .label }}</a>
               {{ end }}
             </div>
           {{ end }}

@@ -142,6 +142,9 @@ lazy = false
 link = "js/code-copy.js"
 lazy = false
 [[params.plugins.js]]
+link = "js/home-course-ga.js"
+lazy = false
+[[params.plugins.js]]
 link = "plugins/swiper/swiper-bundle.js" 
 # https://github.com/gethugothemes/hugo-modules/tree/master/gallery-slider
 lazy = false
