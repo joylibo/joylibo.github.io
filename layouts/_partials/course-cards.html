@@ -47,9 +47,9 @@
           {{ with .button }}
             <div class="lb-course-card__footer">
               {{ if $active }}
-                <a href="{{ .link | absURL }}" class="lb-btn lb-btn--primary" data-lb-action="navigate" data-lb-ga-event="{{ $eventName }}" data-lb-ga-category="home_course_card" data-lb-ga-label="{{ $item.title }}">{{ .label }}</a>
+                <a href="{{ if strings.HasPrefix .link `http` }}{{ .link }}{{ else }}{{ .link | relURL }}{{ end }}" class="lb-btn lb-btn--primary" data-lb-action="navigate" data-lb-ga-event="{{ $eventName }}" data-lb-ga-category="home_course_card" data-lb-ga-label="{{ $item.title }}">{{ .label }}</a>
               {{ else }}
-                <a href="{{ .link | absURL }}" class="lb-btn lb-btn--outline" data-lb-action="feedback" data-lb-feedback-text="已收到" data-lb-ga-event="{{ $eventName }}" data-lb-ga-category="home_course_card" data-lb-ga-label="{{ $item.title }}">{{ .label }}</a>
+                <a href="{{ if strings.HasPrefix .link `http` }}{{ .link }}{{ else }}{{ .link | relURL }}{{ end }}" class="lb-btn lb-btn--outline" data-lb-action="feedback" data-lb-feedback-text="已收到" data-lb-ga-event="{{ $eventName }}" data-lb-ga-category="home_course_card" data-lb-ga-label="{{ $item.title }}">{{ .label }}</a>
               {{ end }}
             </div>
           {{ end }}
