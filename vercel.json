@@ -1,11 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "hugo",
-  "env": {
-    "HUGO_VERSION": "0.160.0",
-    "GO_VERSION": "1.24.0"
-  },
   "installCommand": "npm ci",
-  "buildCommand": "node scripts/themeGenerator.js && hugo --gc --minify",
+  "buildCommand": "node scripts/themeGenerator.js && curl -L https://github.com/gohugoio/hugo/releases/download/v0.160.0/hugo_extended_0.160.0_Linux-64bit.tar.gz | tar -xz && ./hugo --gc --minify",
   "outputDirectory": "public"
 }

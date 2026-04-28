@@ -1,0 +1,176 @@
+.share-link {
+  border-radius: 0.25rem;
+  transition: 25ms ease-out;
+  height: 2.5em;
+  width: 2.5em;
+  line-height: 2.5em;
+  text-align: center;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  color: #fff;
+  margin: 0.5em;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.share-icon {
+  fill: #fff;
+  stroke: none;
+  display: block;
+  height: 100%;
+}
+
+.share-icon svg {
+  width: 1em;
+  height: 100%;
+  margin: auto;
+}
+
+.share-pinterest {
+  background-color: #bd081c;
+}
+
+.share-pinterest:hover {
+  background-color: #8c0615;
+}
+
+.share-facebook {
+  background-color: #3b5998;
+}
+
+.share-facebook:hover {
+  background-color: #2d4373;
+}
+
+.share-tumblr {
+  background-color: #35465c;
+}
+
+.share-tumblr:hover {
+  background-color: #222d3c;
+}
+
+.share-reddit {
+  background-color: #5f99cf;
+}
+
+.share-reddit:hover {
+  background-color: #3a80c1;
+}
+
+.share-linkedin {
+  background-color: #0077b5;
+}
+
+.share-linkedin:hover {
+  background-color: #046293;
+}
+
+.share-vk {
+  background-color: #507299;
+}
+
+.share-vk:hover {
+  background-color: #43648c;
+}
+
+.share-x {
+  background-color: #000;
+}
+
+.share-x:hover {
+  background-color: #000;
+}
+
+.share-email {
+  background-color: #777777;
+}
+
+.share-email:hover {
+  background-color: #5e5e5e;
+}
+
+.share-whatsapp {
+  background-color: #25d366;
+}
+
+.share-whatsapp:hover {
+  background-color: #1da851;
+}
+
+.share-telegram {
+  background-color: #54a9eb;
+}
+
+.share-telegram:hover {
+  background-color: #4b97d1;
+}
+
+.share-copy {
+  background-color: #28a745;
+}
+
+.share-copy:hover {
+  background-color: #218838;
+}
+
+.share-fediverse {
+  background-color: #6364ff;
+}
+
+.share-fediverse:hover {
+  background-color: #4b4ccf;
+}
+
+.fediverse-share {
+  position: relative;
+  display: inline-block;
+}
+
+.fediverse-input-wrapper {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  display: none;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.dark .fediverse-input-wrapper {
+  background: #2d2d2d;
+  border-color: #444;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.fediverse-input {
+  width: 200px;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.fediverse-input:focus {
+  outline: none;
+  border-color: #4b4ccf;
+}
+
+.fediverse-check-button {
+  padding: 7px 12px;
+  background-color: #4b4ccf;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.fediverse-check-button:hover {
+  background-color: #4b4ccf;
+}

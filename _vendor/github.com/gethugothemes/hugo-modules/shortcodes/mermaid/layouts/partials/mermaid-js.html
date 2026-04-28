@@ -1,0 +1,120 @@
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/+esm";
+
+  // Cache compiled regex patterns
+  const FRONTMATTER_REGEX = /---\s*\n(?:.*\n)*?---/;
+  const CONFIG_REGEX = /(---\s*\n(?:.*\n)*?config:\s*\n)((?:.*\n)*?)(---)/m;
+  const THEME_REGEX = /^\s*theme:/;
+  const THEME_VARS_REGEX = /^\s*themeVariables:/;
+
+  // Build mermaid config
+  const getMermaidConfig = (startOnLoad = true) => ({
+    startOnLoad,
+    theme: "default",
+    securityLevel: "loose",
+    flowchart: { curve: "basis" },
+  });
+
+  // Process content for dark mode
+  function processContent(content, isDarkMode) {
+    if (!isDarkMode) return content;
+
+    const hasFrontmatter = FRONTMATTER_REGEX.test(content);
+
+    if (hasFrontmatter) {
+      return content.replace(CONFIG_REGEX, (match, before, configContent, after) => {
+        const lines = configContent.split("\n");
+        const filtered = [];
+        let skipUntilDedent = false;
+        let themeVarIndent = 0;
+
+        for (const line of lines) {
+          const indent = line.search(/\S/);
+
+          if (THEME_REGEX.test(line)) continue;
+
+          if (THEME_VARS_REGEX.test(line)) {
+            skipUntilDedent = true;
+            themeVarIndent = indent;
+            continue;
+          }
+
+          if (skipUntilDedent) {
+            if (line.trim() && indent > themeVarIndent) continue;
+            skipUntilDedent = false;
+          }
+
+          filtered.push(line);
+        }
+
+        filtered.unshift("  theme: dark");
+        return before + filtered.join("\n") + after;
+      });
+    }
+    
+    return `---\nconfig:\n  theme: dark\n---\n${content}`;
+  }
+
+  // Rerender all diagrams
+  async function rerenderDiagrams() {
+    const isDark = document.documentElement.classList.contains("dark");
+    const elements = document.querySelectorAll(".mermaid");
+    
+    if (elements.length === 0) return;
+
+    const validElements = [];
+
+    for (const element of elements) {
+      if (!element.isConnected) continue;
+      
+      const originalContent = element.getAttribute("data-original");
+      if (originalContent) {
+        const content = processContent(originalContent, isDark);
+        element.textContent = content;
+        element.removeAttribute("data-processed");
+        validElements.push(element);
+      }
+    }
+
+    if (validElements.length === 0) return;
+
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    try {
+      await mermaid.run({ nodes: validElements });
+    } catch (error) {
+      console.error("Mermaid rendering error:", error);
+    }
+  }
+
+  // Initial setup
+  document.addEventListener("DOMContentLoaded", () => {
+    const isDark = document.documentElement.classList.contains("dark");
+
+    document.querySelectorAll(".mermaid").forEach((element) => {
+      if (!element.hasAttribute("data-original")) {
+        const originalContent = element.textContent.trim();
+        element.setAttribute("data-original", originalContent);
+        element.textContent = processContent(originalContent, isDark);
+      }
+    });
+  });
+
+  mermaid.initialize(getMermaidConfig());
+
+  // Watch for dark mode changes only
+  let previousDarkMode = document.documentElement.classList.contains("dark");
+
+  new MutationObserver(() => {
+    const currentDarkMode = document.documentElement.classList.contains("dark");
+
+    if (currentDarkMode !== previousDarkMode) {
+      previousDarkMode = currentDarkMode;
+      mermaid.initialize(getMermaidConfig(false));
+      rerenderDiagrams();
+    }
+  }).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+</script>
