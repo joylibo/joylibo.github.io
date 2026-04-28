@@ -1,6 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "hugo",
+  "env": {
+    "HUGO_VERSION": "0.160.0",
+    "GO_VERSION": "1.24.0"
+  },
   "installCommand": "npm ci",
   "buildCommand": "node scripts/themeGenerator.js && hugo --gc --minify",
   "outputDirectory": "public"
