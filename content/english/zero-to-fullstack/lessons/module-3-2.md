@@ -3,7 +3,7 @@ title: "模块 3.2：把HTML拆分成三个文件"
 meta_title: ""
 description: "所有东西堆在一起的时候，麻烦还不够明显。拆开了，才能看清各自是什么。"
 date: 2026-04-29T00:00:00+08:00
-image: "/images/module-3-2.png"
+image: "/images/module-3-2.webp"
 categories: ["零到全栈"]
 tags: ["前端", "HTML", "CSS", "JavaScript", "项目结构"]
 weight: 9
