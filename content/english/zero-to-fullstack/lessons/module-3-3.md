@@ -3,6 +3,7 @@ title: "模块 3.3：Git 与 GitHub"
 meta_title: ""
 description: "代码需要被管理。不是因为你会出错，而是因为你会改动。"
 date: 2026-04-29T00:00:00+08:00
+image: "/images/module-3-3.png"
 categories: ["零到全栈"]
 tags: ["Git", "GitHub", "版本管理", "仓库", "SSH"]
 weight: 10

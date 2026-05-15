@@ -3,6 +3,7 @@ title: "模块 3.1：前端基础——HTML"
 meta_title: ""
 description: "代码能跑起来的那一刻，比任何解释都有说服力。"
 date: 2026-04-29T00:00:00+08:00
+image: "/images/module-3-1.jpg"
 categories: ["零到全栈"]
 tags: ["前端", "HTML", "CSS", "JavaScript"]
 weight: 8
