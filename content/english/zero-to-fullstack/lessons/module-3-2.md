@@ -222,4 +222,4 @@ zero-to-tech/
 
 ---
 
-[← 上一节：模块 3.1 前端基础——HTML](/zero-to-fullstack/lessons/module-3-1/) | [下一节：模块 3.3 Git 与 GitHub →](/zero-to-fullstack/lessons/module-3-3/)
+[← 上一节：模块 3.1 前端基础——HTML](/zero-to-fullstack/lessons/module-3-1/) | [下一节：模块 3.3 Git 入门：给代码设置存档点 →](/zero-to-fullstack/lessons/module-3-3/)
