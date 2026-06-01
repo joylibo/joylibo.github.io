@@ -3,7 +3,7 @@ title: "模块 3.4：GitHub 与远程同步"
 meta_title: ""
 description: "把本地仓库连接到 GitHub：SSH、remote、push、后续日常同步。"
 date: 2026-05-31T00:00:00+08:00
-image: "/images/module-3-3.webp"
+image: "/images/module-3-4.webp"
 categories: ["零到全栈"]
 tags: ["GitHub", "远程仓库", "SSH", "push", "pull"]
 weight: 11
