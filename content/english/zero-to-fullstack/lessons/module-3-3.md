@@ -3,7 +3,7 @@ title: "模块 3.3：Git 入门：给代码设置存档点"
 meta_title: ""
 description: "先把本地版本管理跑通：仓库、暂存区、提交记录与 .gitignore。"
 date: 2026-05-31T00:00:00+08:00
-image: "/images/module-3-3.webp"
+image: "/images/module-3-3-git.webp"
 categories: ["零到全栈"]
 tags: ["Git", "版本管理", "commit", "gitignore", "仓库"]
 weight: 10
