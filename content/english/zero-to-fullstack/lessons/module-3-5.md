@@ -206,7 +206,9 @@ Nginx 是跨平台软件，在不同 Linux 发行版（比如 CentOS、Alpine）
 
 Nginx 启动的时候，**只直接读 `nginx.conf` 这一个文件**。其他你看到的所有目录（`conf.d/`、`sites-enabled/` 等等），都是 `nginx.conf` 用 `include` 指令"包含"进来的。
 
-你可以把 `nginx.conf` 想成一本书的目录页：它本身写着"再去把 `sites-enabled` 里的每个文件都读一遍"——这一句 `include`，才把那些目录串起来。
+这个模式，其实你在[模块 3.2](/zero-to-fullstack/lessons/module-3-2/)里已经见过一次了——还记得吗？我们把 `index.html` / `style.css` / `script.js` 拆成三个文件之后，浏览器并不是直接加载这三个文件，而是只加载 `index.html` 一个；CSS 和 JS 是通过 `<link rel="stylesheet" href="style.css">` 和 `<script src="script.js"></script>` 标签，从 `index.html` 里"引"进来的。
+
+`nginx.conf` 在 Nginx 这边扮演的就是 `index.html` 那个角色——它是唯一的入口，其他所有配置文件都是通过 `include` 被它"引"进来的。**同一个组织模式，换了一个场景。**
 
 我们打开它实际看一下：
 
