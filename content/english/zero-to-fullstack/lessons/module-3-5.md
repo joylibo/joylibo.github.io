@@ -91,6 +91,15 @@ sudo apt install -y git
 
 接下来要把 GitHub 上的代码拉到服务器。我们继续沿用模块 3.4 里建立的习惯——**通过 SSH 和 GitHub 对话**。
 
+> **关于 HTTPS 和 SSH，多说一句**：
+>
+> GitHub 实际上支持两种 clone 地址。
+>
+> - **HTTPS**（`https://github.com/...`）：如果你的仓库是 **Public**，clone 和 pull 不需要任何凭证，也就是说，你**可以直接跳过下面这一整步 SSH 配置**。但如果是 **Private**，HTTPS 每次 push / pull 都要你输用户名加一个 token，长期看比较烦。
+> - **SSH**（`git@github.com:...`）：不分公私，都需要先在这台机器上配一对 key、把公钥交给 GitHub，配过一次以后就一劳永逸。
+>
+> 我们这门课统一走 SSH，原因是：SSH 不分公私，配过一次就一劳永逸；而且和 3.4 里 Mac 上的流程一致。等以后你真的有 Private 项目，这套流程也是同一套，不用再换。
+
 但这里有一个关键点：
 
 > 每一台机器都需要有自己的一对 SSH key。你 Mac 上那对不能搬到服务器上来用。
