@@ -180,7 +180,25 @@ ls ~/zero-to-tech
 
 ### 配置文件在哪
 
-在 Ubuntu 上，Nginx 的配置按"一个网站一个文件"的思路组织，**而且这些文件分两个目录存放**：
+先到 Nginx 的配置目录看一眼。在终端里：
+
+```bash
+cd /etc/nginx/
+ls
+```
+
+会看到这样一片东西：
+
+```text
+conf.d          koi-win            nginx.conf       sites-enabled
+fastcgi.conf    mime.types         proxy_params     snippets
+fastcgi_params  modules-available  scgi_params      uwsgi_params
+koi-utf         modules-enabled    sites-available  win-utf
+```
+
+不用被这里面的文件数量吓到。Nginx 是一个非常成熟、功能很多的软件，这里塞了一堆各种用途的配置文件——绝大部分你现在都不用管。
+
+Ubuntu 上的 Nginx 按"一个网站一个文件"的思路组织网站配置，**而且这些文件分两个目录存放**。这一节我们就只关心这两个：
 
 ```text
 /etc/nginx/sites-available/   ← 所有"写出来"的网站配置
