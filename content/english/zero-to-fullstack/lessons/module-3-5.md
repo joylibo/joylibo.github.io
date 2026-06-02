@@ -19,12 +19,12 @@ draft: false
 到这一节为止，你手里已经有这些东西了：
 
 - **本地**：`~/zero-to-tech/` 文件夹里有 `index.html`、`style.css`、`script.js`，三个文件分工清楚
-- **GitHub**：上面三个文件已经推送到了你的 `zero-to-tech` 仓库里
+- **GitHub**：上面三个文件已经推送到了你的GitHub的 `zero-to-tech` 仓库里
 - **服务器**：一台 Ubuntu 云服务器，Nginx 已经跑起来，公网 IP 用浏览器能访问
 
 但你现在打开公网 IP，看到的还是 Nginx 默认的"Welcome to nginx!"那个欢迎页，**不是你写的页面**。
 
-这一节就只做一件事：
+在这一节里，我们实现下面这个目标：
 
 > 把这条链路接通——让任何人打开公网 IP，就能看到你写的那个卡片页面、点击按钮文字会变。
 
@@ -58,6 +58,8 @@ script.js                                   Nginx 把这个目录
 ssh ubuntu@你的公网IP
 ```
 
+关于远程登录服务器的操作，如果你已经不记得了，可以再看一下2.4那一节。
+
 登录成功之后，终端提示符会变成 `ubuntu@your-server:~$`，而不再是你 Mac 上那个了。
 
 从现在开始，**只要这一节里出现的命令前面没有特别说明，都是在服务器上执行的**。需要回到本地执行的命令，我会特别标注。
@@ -83,7 +85,7 @@ sudo apt install -y git
 
 第一行刷新软件源索引，第二行装 Git，`-y` 表示安装过程中遇到提示直接确认。
 
-装完再跑一次 `git --version` 确认。
+装完再跑一次 `git --version` 确认，你应该就可以看到git的版本号了，出现版本号就表示git已经安装好了。
 
 ---
 
@@ -93,10 +95,10 @@ sudo apt install -y git
 
 > **关于 HTTPS 和 SSH，多说一句**：
 >
-> GitHub 实际上支持两种 clone 地址。
+> GitHub 支持两种 clone 地址。
 >
 > - **HTTPS**（`https://github.com/...`）：如果你的仓库是 **Public**，clone 和 pull 不需要任何凭证，也就是说，你**可以直接跳过下面这一整步 SSH 配置**。但如果是 **Private**，HTTPS 每次 push / pull 都要你输用户名加一个 token，长期看比较烦。
-> - **SSH**（`git@github.com:...`）：不分公私，都需要先在这台机器上配一对 key、把公钥交给 GitHub，配过一次以后就一劳永逸。
+> - **SSH**（`git@github.com:...`）：无论是Public还是Private，用ssh的话都需要先在这台机器上配一对 key、把公钥交给 GitHub，配过一次以后就一劳永逸。
 >
 > 我们这门课统一走 SSH，原因是：SSH 不分公私，配过一次就一劳永逸；而且和 3.4 里 Mac 上的流程一致。等以后你真的有 Private 项目，这套流程也是同一套，不用再换。
 
@@ -131,6 +133,8 @@ cat ~/.ssh/id_ed25519.pub
 - **Key** 粘贴刚才复制的公钥，保存
 
 ### 验证连通
+
+回到你的远程服务器上，执行下面这个命令：
 
 ```bash
 ssh -T git@github.com
@@ -200,15 +204,15 @@ koi-utf         modules-enabled    sites-available  win-utf
 
 **第一，这种目录结构是 Ubuntu / Debian 的惯例，不是 Nginx 本身的规定**。
 
-Nginx 是跨平台软件，在不同 Linux 发行版（比如 CentOS、Alpine）里，配置目录的组织方式不一样。你现在看到的这种"配置拆成一堆小文件 + 用 `sites-available` / `sites-enabled` 管理网站"的写法，是 Ubuntu 的 Nginx 安装包替你做主的整理方案，Debian 系也是同一套。以后碰到非 Ubuntu / Debian 的服务器，配置目录可能完全长得不一样，需要看那台机器的具体情况。
+Nginx 是跨平台软件，在不同 Linux 发行版（比如 CentOS、Alpine）里，配置目录的组织方式不一样。你现在看到的这种配置文件的组织形式，是 Ubuntu 的 Nginx 安装包替你做主的整理方案，Debian 系也是同一套。以后碰到非 Ubuntu / Debian 的服务器，配置目录可能完全长得不一样，需要看那台机器的具体情况。
 
 **第二，真正的配置入口是 `nginx.conf`**。
 
 Nginx 启动的时候，**只直接读 `nginx.conf` 这一个文件**。其他你看到的所有目录（`conf.d/`、`sites-enabled/` 等等），都是 `nginx.conf` 用 `include` 指令"包含"进来的。
 
-这个模式，其实你在[模块 3.2](/zero-to-fullstack/lessons/module-3-2/)里已经见过一次了——还记得吗？我们把 `index.html` / `style.css` / `script.js` 拆成三个文件之后，浏览器并不是直接加载这三个文件，而是只加载 `index.html` 一个；CSS 和 JS 是通过 `<link rel="stylesheet" href="style.css">` 和 `<script src="script.js"></script>` 标签，从 `index.html` 里"引"进来的。
+这种一个主文件+包含其他文件的模式，其实你在[模块 3.2](/zero-to-fullstack/lessons/module-3-2/)里已经见过一次了——还记得吗？我们把 `index.html` / `style.css` / `script.js` 拆成三个文件之后，浏览器并不是直接加载这三个文件，而是只加载 `index.html` 一个；CSS 和 JS 是通过 `<link rel="stylesheet" href="style.css">` 和 `<script src="script.js"></script>` 标签，从 `index.html` 里"引"进来的。
 
-`nginx.conf` 在 Nginx 这边扮演的就是 `index.html` 那个角色——它是唯一的入口，其他所有配置文件都是通过 `include` 被它"引"进来的。**同一个组织模式，换了一个场景。**
+`nginx.conf` 在 Nginx 这边扮演的就是 `index.html` 那个角色——它是唯一的入口，其他所有配置文件都是通过 `include` 被它"引"进来的。
 
 我们打开它实际看一下：
 
@@ -251,7 +255,7 @@ http {
 
 也就二十多行。结构上分三层：**最外面的全局指令** + 一个 `events { ... }` 块 + 一个 `http { ... }` 块。下面一段一段看。
 
-#### 最外层：全局设置
+#### 最外层：全局设置（现在可以看不懂）
 
 ```nginx
 user www-data;
@@ -267,7 +271,7 @@ include /etc/nginx/modules-enabled/*.conf;
 - **`error_log`**：错误日志写到哪里，Nginx 出问题时第一时间去这个文件里看。
 - **`include modules-enabled/*.conf`**：把动态模块的启用配置读进来——这是文件里第一个 `include`。
 
-#### `events { ... }`：并发处理参数
+#### `events { ... }`：并发处理参数（也可以看不懂）
 
 ```nginx
 events {
@@ -277,7 +281,7 @@ events {
 
 每个 worker 进程最多同时处理多少个连接，是性能调优参数，默认值就够用很久。
 
-#### `http { ... }`：HTTP 服务的全部配置
+#### `http { ... }`：HTTP 服务的全部配置（只需要看懂最后一行）
 
 最大的一块，**所有跟 HTTP 服务相关的设置都在这里**。挑几句说：
 
@@ -368,7 +372,7 @@ ls -l /etc/nginx/sites-enabled/
 default -> /etc/nginx/sites-available/default
 ```
 
-那个 `->` 就告诉你：`sites-enabled/default` 实际指向的是 `sites-available/default`。
+那个箭头 `->` 就告诉你：`sites-enabled/default` 实际指向的是 `sites-available/default`。
 
 刚装好的 Nginx 里只挂了 `default` 这一个，对应那个"Welcome to nginx!"欢迎页。看一眼它的内容：
 
@@ -402,7 +406,7 @@ server {
 
 > 一个 server 块 = 一个网站。
 
-如果以后这台服务器上要同时跑多个网站（个人主页、文字实验室、博客），就会有多个 server 块并列存在。现在只有一个。
+如果以后这台服务器上要同时跑多个网站（个人主页、博客 等），就会有多个 server 块并列存在。现在只有一个。
 
 ### `listen 80 default_server;`：监听哪个端口
 
@@ -449,7 +453,7 @@ server {
 
 如果你已经买了域名 `example.com`，这里会写 `server_name example.com;`，意思是"只有访问 example.com 的请求才走我这个 server 块"。
 
-我们现在没有域名，只有 IP。这里就写一个 `_`，是一个占位符，表示"什么域名都接"。
+如果没有域名，只有 IP。这里就写一个 `_`，是一个占位符，表示"什么域名都接"。
 
 ### `location / { try_files $uri $uri/ =404; }`：路由规则
 
@@ -457,11 +461,10 @@ server {
 
 location 块是 Nginx 的"路由规则"，它的意思是：**对某一段 URL 路径，按某种方式处理**。
 
-`location /` 表示"对所有路径都用这条规则"（所有 URL 都以 `/` 开头）。
+`location /` 表示"对所有路径都用这条规则"
 
 `try_files $uri $uri/ =404;` 是这条规则的具体内容：
 
-- `$uri` 是一个变量，代表用户访问的那段 URL（比如 `/about.html`）
 - 这一行的意思是：**先按用户要的路径找文件，找不到就当作目录找，再找不到就返回 404**
 
 这是 Nginx 处理一个静态网站请求时最朴素的逻辑。
@@ -497,7 +500,7 @@ sudo vim /etc/nginx/sites-enabled/default
 7. 按 `Esc` 退出插入模式
 8. 输入 `:wq`，回车，保存并退出
 
-> 这套 vim 流程和你之前在模块 2.4 用过的一样：搜索定位 → `i` 插入 → 改 → `Esc` → `:wq`。
+> 这套 vim 流程和你之前在 2.4 那一节用过的一样：搜索定位 → `i` 插入 → 改 → `Esc` → `:wq`。
 
 ---
 
