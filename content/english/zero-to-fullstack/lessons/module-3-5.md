@@ -196,9 +196,33 @@ fastcgi_params  modules-available  scgi_params      uwsgi_params
 koi-utf         modules-enabled    sites-available  win-utf
 ```
 
-不用被这里面的文件数量吓到。Nginx 是一个非常成熟、功能很多的软件，这里塞了一堆各种用途的配置文件——绝大部分你现在都不用管。
+这里有几件事值得先说清楚。
 
-Ubuntu 上的 Nginx 按"一个网站一个文件"的思路组织网站配置，**而且这些文件分两个目录存放**。这一节我们就只关心这两个：
+**第一，这种目录结构是 Ubuntu / Debian 的惯例，不是 Nginx 本身的规定**。
+
+Nginx 是跨平台软件，在不同 Linux 发行版（比如 CentOS、Alpine）里，配置目录的组织方式不一样。你现在看到的这种"配置拆成一堆小文件 + 用 `sites-available` / `sites-enabled` 管理网站"的写法，是 Ubuntu 的 Nginx 安装包替你做主的整理方案，Debian 系也是同一套。以后碰到非 Ubuntu / Debian 的服务器，配置目录可能完全长得不一样，需要看那台机器的具体情况。
+
+**第二，真正的配置入口是 `nginx.conf`**。
+
+Nginx 启动的时候，**只直接读 `nginx.conf` 这一个文件**。其他你看到的所有目录（`conf.d/`、`sites-enabled/` 等等），都是 `nginx.conf` 用 `include` 指令"包含"进来的。
+
+你可以把 `nginx.conf` 想成一本书的目录页：它本身写着"再去把 `sites-enabled` 里的每个文件都读一遍"——这一句 `include`，才把那些目录串起来。
+
+**第三，剩下的这些文件 / 目录，这门课里你都不需要碰**。但是大致认一下它们是干嘛的，以后看见也不会慌：
+
+| 名称 | 做什么 |
+|------|--------|
+| `nginx.conf` | 配置总入口，Nginx 启动时唯一直接读的文件 |
+| `sites-available/` | 所有"写出来"的网站配置（Ubuntu 惯例） |
+| `sites-enabled/` | 当前"启用中"的网站配置（Ubuntu 惯例） |
+| `conf.d/` | 额外的全局配置片段，`nginx.conf` 默认会 include 这里所有 `.conf` 文件 |
+| `snippets/` | 可复用的配置片段，需要时自己 include 进来 |
+| `modules-available/` / `modules-enabled/` | 动态模块的"可用 / 启用"，模式和 `sites-` 一样 |
+| `mime.types` | 文件扩展名到 MIME 类型的映射表，告诉浏览器返回的是 html、png 还是别的 |
+| `proxy_params` / `fastcgi_params` / `fastcgi.conf` / `scgi_params` / `uwsgi_params` | 反向代理到后端应用时常用的参数片段，需要时 include 即可 |
+| `koi-utf` / `koi-win` / `win-utf` | 历史遗留的俄文 / Cyrillic 字符编码映射，几乎用不上 |
+
+回到正题。**这一节我们只关心这两个**：
 
 ```text
 /etc/nginx/sites-available/   ← 所有"写出来"的网站配置
