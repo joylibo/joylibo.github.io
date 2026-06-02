@@ -208,6 +208,117 @@ Nginx 启动的时候，**只直接读 `nginx.conf` 这一个文件**。其他�
 
 你可以把 `nginx.conf` 想成一本书的目录页：它本身写着"再去把 `sites-enabled` 里的每个文件都读一遍"——这一句 `include`，才把那些目录串起来。
 
+我们打开它实际看一下：
+
+```bash
+cat /etc/nginx/nginx.conf
+```
+
+`cat` 出来内容不算少，但仔细看会发现里面**绝大部分是注释**（`#` 开头的行）。如果只看真正生效的部分，整个文件其实非常短：
+
+```nginx
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+error_log /var/log/nginx/error.log;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+    worker_connections 768;
+}
+
+http {
+    sendfile on;
+    tcp_nopush on;
+    types_hash_max_size 2048;
+
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers on;
+
+    access_log /var/log/nginx/access.log;
+
+    gzip on;
+
+    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*;
+}
+```
+
+也就二十多行。结构上分三层：**最外面的全局指令** + 一个 `events { ... }` 块 + 一个 `http { ... }` 块。下面一段一段看。
+
+#### 最外层：全局设置
+
+```nginx
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+error_log /var/log/nginx/error.log;
+include /etc/nginx/modules-enabled/*.conf;
+```
+
+- **`user www-data`**：Nginx 进程以哪个 Linux 用户身份运行。后面如果碰到"浏览器返回 403 Forbidden、Nginx 读不了文件"这种问题，**根源就在这一行**——读文件的是 `www-data` 这个用户，目录或文件没给它读权限，就会 403。
+- **`worker_processes auto`**：开几个工作进程，`auto` 表示和 CPU 核数一致。
+- **`pid`**：进程 ID 写到哪个文件，给 `systemctl` 这类系统工具用。
+- **`error_log`**：错误日志写到哪里，Nginx 出问题时第一时间去这个文件里看。
+- **`include modules-enabled/*.conf`**：把动态模块的启用配置读进来——这是文件里第一个 `include`。
+
+#### `events { ... }`：并发处理参数
+
+```nginx
+events {
+    worker_connections 768;
+}
+```
+
+每个 worker 进程最多同时处理多少个连接，是性能调优参数，默认值就够用很久。
+
+#### `http { ... }`：HTTP 服务的全部配置
+
+最大的一块，**所有跟 HTTP 服务相关的设置都在这里**。挑几句说：
+
+```nginx
+include /etc/nginx/mime.types;
+default_type application/octet-stream;
+```
+
+把刚才在 `ls` 里看到的 `mime.types` 读进来。这下你就知道 `mime.types` 是怎么"用上"的了——它就是被 `nginx.conf` `include` 进来的。`default_type` 是兜底：扩展名在 `mime.types` 里没有对应规则时，按"二进制流"返回。
+
+```nginx
+gzip on;
+```
+
+开启 Gzip 压缩，传输文件时自动压缩，省流量。
+
+剩下的 `sendfile`、`tcp_nopush`、`ssl_protocols`、`access_log` 这些，要么是性能优化、要么是 HTTPS / 日志参数，有印象就行。
+
+然后是 `http { ... }` 块**最关键的最后两句**：
+
+```nginx
+include /etc/nginx/conf.d/*.conf;
+include /etc/nginx/sites-enabled/*;
+```
+
+**这两句，就是把整个 `/etc/nginx/` 目录串起来的关键**。一会儿我们要改的 `sites-enabled/default`，之所以能影响整个 Nginx 的行为——**根源就是 `nginx.conf` 在这里 `include` 了它**。
+
+到这里你应该能把整张图在脑子里拼起来：
+
+```text
+nginx.conf  (Nginx 启动只读这一个)
+  ├─ 顶层：user / worker / pid / error_log
+  ├─ events { ... }      并发参数
+  └─ http { ... }        HTTP 服务全配置
+      ├─ include mime.types
+      ├─ include conf.d/*.conf
+      └─ include sites-enabled/*   ←  我们要改的网站配置就是从这里被串进来的
+```
+
+#### 文件最底下那段 `mail { ... }`
+
+实际 `cat` 的时候，你还会看到文件最底下有一段以 `#` 开头的 `mail { ... }`——整段都是注释。Nginx 除了能做 HTTP 服务器，还能做 IMAP / POP3 邮件代理，那一段就是邮件代理功能的模板，默认整段注释掉了，我们也用不到，不用管它。
+
 **第三，剩下的这些文件 / 目录，这门课里你都不需要碰**。但是大致认一下它们是干嘛的，以后看见也不会慌：
 
 | 名称 | 做什么 |
