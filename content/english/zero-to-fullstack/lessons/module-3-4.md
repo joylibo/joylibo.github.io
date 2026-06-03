@@ -199,4 +199,4 @@ git push
 
 ---
 
-[← 上一节：模块 3.3 Git 入门：给代码设置存档点](/zero-to-fullstack/lessons/module-3-3/) | [下一节：模块 3.5 部署到服务器 →](/zero-to-fullstack/lessons/module-3-5/)
+[← 上一节：模块 3.3 Git 入门：给代码设置存档点](/zero-to-fullstack/lessons/module-3-3/) | [下一节：模块 3.5 把网页发布到公网 →](/zero-to-fullstack/lessons/module-3-5/)

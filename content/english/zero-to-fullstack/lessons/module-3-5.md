@@ -1,7 +1,7 @@
 ---
-title: "模块 3.5：部署到服务器"
+title: "模块 3.5：把网页发布到公网"
 meta_title: ""
-description: "把页面发布到公网：服务器 SSH 信任、git clone、读懂 Nginx 配置、修改 root、跑通一次完整的更新链路。"
+description: "把网页发布到公网：服务器 SSH 信任、git clone、读懂 Nginx 配置、修改 root、跑通一次完整的更新链路。"
 date: 2026-06-01T00:00:00+08:00
 image: "/images/module-3-5.webp"
 categories: ["零到全栈"]
