@@ -48,9 +48,22 @@ draft: false
 
 有了 3.1 和 3.2 这两节的基础，其实实现这样的功能并不难，我们都可以让 AI 帮我们把页面做出来——无非就是从一个 html 文件变成了两个 html 文件，无非也就是需要更多的 `.css` 文件和 `.js` 文件，内容变多了，但是并没有增加什么新的知识。
 
-我已经替你做好了，代码就在这里，你可以看一下。
+我已经替你做好了，代码就在这里：
 
-打开 `zero-to-tech-4-1/`，双击 `index.html`，可以看到网站真的已经是我们期待的样子了。
+{{< notice "tip" >}}
+**本节配套代码**：[github.com/joylibo/zero-to-tech-demos/tree/main/zero-to-tech-4-1](https://github.com/joylibo/zero-to-tech-demos/tree/main/zero-to-tech-4-1)
+
+**想本地跑一下**（推荐——后半段我们要改它的代码）：
+
+```bash
+git clone https://github.com/joylibo/zero-to-tech-demos.git
+cd zero-to-tech-demos/zero-to-tech-4-1
+```
+
+只想先看看长什么样？直接点上面的 GitHub 链接，在浏览器里浏览每个文件就行。
+{{< /notice >}}
+
+把代码拉到本地之后，打开 `zero-to-tech-4-1/`，双击 `index.html`，可以看到网站真的已经是我们期待的样子了。
 
 ---
 
