@@ -334,7 +334,7 @@ export function initScoreAnim() {
 
   btn.addEventListener("click", function () {
     animate(scoreEl, {
-      innerHTML: scrambleText(),
+      innerHTML: scrambleText({ chars: "0-9" }),
       duration: 1500,
     });
   });
