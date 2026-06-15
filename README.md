@@ -86,6 +86,46 @@ hugo
 
 推送到 `master` 分支后，GitHub Actions 自动构建并发布到 GitHub Pages。
 
+### 自托管服务器（Ubuntu / Nginx）
+
+如果部署到自己的 Ubuntu 服务器，建议在服务器上完成静态构建，然后让 Nginx 托管构建产物。生产环境请使用和 CI 一致的 Hugo extended 版本（当前为 `0.160.0`）。
+
+```bash
+cd ~/joylibo.github.io
+npm ci
+node scripts/themeGenerator.js
+hugo --gc --minify
+```
+
+`npm ci` 会严格按照 `package-lock.json` 安装依赖，更适合服务器和 CI 环境；本地开发时继续使用 `npm install` 也可以。
+
+构建完成后，静态文件会输出到 `public/` 目录。Nginx 的 `root` 应指向这个目录，`server_name` 应填写实际要访问的网站域名。
+
+如果使用中文域名，Nginx 配置中建议使用 Punycode，而不是直接写中文域名。例如 `李勃老师.com` 对应的 Punycode 是 `xn--ygr25xpohxwz.com`：
+
+```nginx
+server {
+    listen 80;
+    server_name xn--ygr25xpohxwz.com;
+
+    root /home/ubuntu/joylibo.github.io/public;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+
+修改 Nginx 配置后，检查并重载：
+
+```bash
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+`hugo server` 只适合本地开发或临时预览，不建议作为正式线上服务。
+
 ## 相关链接
 
 - Bilibili：[李勃老师](https://space.bilibili.com/427191943)
