@@ -250,4 +250,4 @@ GET 和 POST 是 API 最常用的两种请求方式，但其实 API 约定的标
 
 ---
 
-[← 上一节：模块 4.6 把前端项目发布到公网](/zero-to-fullstack/lessons/module-4-6/) | [下一节：模块 5.2 安装 Python →](/zero-to-fullstack/)
+[← 上一节：模块 4.6 把前端项目发布到公网](/zero-to-fullstack/lessons/module-4-6/) | [下一节：模块 5.2 Python 的安装和环境设置 →](/zero-to-fullstack/lessons/module-5-2/)
