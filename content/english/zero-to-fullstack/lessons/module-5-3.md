@@ -273,7 +273,6 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/api/profile":
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
-            self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
             body = json.dumps(profile, ensure_ascii=False)  # ensure_ascii=False：让中文原样输出
             self.wfile.write(body.encode("utf-8"))
@@ -292,7 +291,7 @@ HTTPServer(("", 8000), Handler).serve_forever()
 | `def do_GET(self):` | 请求行里的**方法**——方法是 GET 的请求，归这个函数管 |
 | `self.path` | 请求行里的**路径**——拿它判断对方要访问哪个资源 |
 | `self.send_response(200)` | 响应的**状态行**——回一个 200 |
-| `self.send_header(...)` | **响应头**——一行一条，我们写了 `Content-Type` 和 `Access-Control-Allow-Origin` 两条 |
+| `self.send_header(...)` | **响应头**——一行一条，我们写了 `Content-Type` 这一条 |
 | `self.end_headers()` | **那个空行**——“头写完了”，头和体的分界线 |
 | `self.wfile.write(...)` | **响应体**——我们的 JSON（`encode` 是因为网络上传输的是字节，文本要先编码） |
 | `else` 分支的 `404` | 状态码 404——没找到。模块 4 时是 Nginx 替我们回，现在轮到我们自己回 |
@@ -306,8 +305,6 @@ HTTPServer(("", 8000), Handler).serve_forever()
 - `self.send_header("Content-Type", ...)`——那条**按必写对待**的头，告诉调用方“这是 JSON”。
 
 **这三行不是可有可无的样板。** 前两行属于“硬要求”——删掉其中任何一行，curl 那头直接报错，因为收到的根本不是一段合法的 HTTP 响应；`Content-Type` 那行删掉倒是还能跑通，但调用方就只能猜我们回的是什么格式了——这正是“规范必须”和“实践必写”的区别，落到了代码上。（`404` 分支里同样是先 `send_response` 再 `end_headers`，硬要求一样不能省，只是没有“体”。）
-
-其中 `Access-Control-Allow-Origin: *` 这行响应头要单独交代一句：它是写给**浏览器**看的一行声明，字面意思是“**任何来源的网页，都允许调用我**”。为什么需要向浏览器声明这个？这里先照着写、留个印象——5.5 前端第一次来调用我们的后端时，我们会亲眼撞上它管的事。
 
 最后一行代码里还有个数字值得交代：
 
@@ -369,7 +366,6 @@ curl -v http://localhost:8000/api/profile
 >                                  ← 空行，头结束
 < HTTP/1.0 200 OK                  ← 状态行！
 < Content-Type: application/json   ← 我们写的那行头，躺在这
-< Access-Control-Allow-Origin: *   ← 我们写的另一行，也在
 <
 {"heroTitle": "关于我", ...}        ← 响应体
 ```
@@ -500,7 +496,6 @@ Accept-Encoding: gzip, deflate
 - **回一段响应，哪些不能省**：状态行、空行是硬要求（缺了调用方直接报错），`Content-Type` 按必写对待（省了对方只能猜）——这是 HTTP 的要求，谁写后端都绕不开，框架也只是替我们写。
 - **`Content-Type` 告诉对方内容是什么格式**——内容不变、头一变，对方的处理方式就变。
 - **服务端能看到的，不止我们显式发的内容**：User-Agent、来源 IP、语言偏好……都是自动带上的元信息——ipify 的谜底就在这。
-- `Access-Control-Allow-Origin`：“允许任何来源调用我”——5.5 会撞上它管的事。
 - **我们写出了自己的第一个 API**——零依赖，纯标准库；后端就是一个“一直跑着、守着等请求”的程序（`Ctrl + C` 停止）；`curl -v`（`>` 请求、`<` 响应、`*` 旁白）和 F12 随时能看到报文原文。
 - **任何语言写后端，都是在实现同一套 HTTP 规范**——杂活人人一样，所以有了框架。下一节 FastAPI。
 
