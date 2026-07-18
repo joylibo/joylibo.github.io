@@ -399,10 +399,12 @@ F12 的 Network 我们 4.5 用过，那时看**加载顺序**；今天点进**�
 ```python
         elif self.path == "/hello":
             self.send_response(200)
-            self.send_header("Content-Type", "text/html")   # ← 一会儿改成 text/plain 再试
+            self.send_header("Content-Type", "text/html; charset=utf-8")   # ← 一会儿改成 text/plain 再试
             self.end_headers()
             self.wfile.write("<h1>你好，HTTP</h1>".encode("utf-8"))
 ```
+
+后面那截 `charset=utf-8` 是给浏览器多交代一句：**内容按 UTF-8 解码**。我们的响应体里有中文，不交代这一句，浏览器可能猜错编码，页面上就是乱码——又一个「头是关于内容的说明」的例子。
 
 **改动二**：在 `do_GET` 的开头加两行打印（给实验二用）：
 
