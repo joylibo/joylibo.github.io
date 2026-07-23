@@ -503,4 +503,4 @@ Accept-Encoding: gzip, deflate
 
 ---
 
-[← 上一节：模块 5.2 Python 的安装和环境设置](/zero-to-fullstack/lessons/module-5-2/) | [下一节：模块 5.4 从手搓到框架，FastAPI 登场 →](/zero-to-fullstack/)
+[← 上一节：模块 5.2 Python 的安装和环境设置](/zero-to-fullstack/lessons/module-5-2/) | [下一节：模块 5.4 从手搓到框架，FastAPI 登场 →](/zero-to-fullstack/lessons/module-5-4/)
