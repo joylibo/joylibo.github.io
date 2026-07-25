@@ -34,6 +34,8 @@ Python 的后端框架不止一个：
 
 我们这门课选 **FastAPI**。主要有三个理由：代码少、类型校验的反馈直接、自动生成接口文档。对于一个以 API 为主、希望快速获得这些能力的 Python 新项目，FastAPI 是很合适的选择。
 
+另外顺带推荐一下：FastAPI [官网的 User Guide](https://fastapi.tiangolo.com/tutorial/) 写得特别好，不光讲“是什么、怎么用”，还常常讲“为什么”，几乎可以当成一份手把手教程来读，对中文的支持也不错；文档里的 [About](https://fastapi.tiangolo.com/alternatives/) 还专门对比了 Flask、Django 等框架，值得一读。想深入学 FastAPI，官网就是最好的教材。
+
 > 和 4.3 选 React 时说的一样：**框架之间的概念是相通的**。把 FastAPI 用明白了，回头看 Flask、看 Django，都是熟面孔。
 
 ---
@@ -166,6 +168,14 @@ curl http://localhost:8000/api/profile
 
 和手搓版一模一样的 JSON。
 
+接着再故意访问一个不存在的路径：
+
+```bash
+curl http://localhost:8000/nope
+```
+
+回来的是 `{"detail":"Not Found"}`——**404 我们一行都没写**，而且它连 404 都带着 JSON 格式的说明，比我们手搓的空 404 还周到。
+
 ### 目录里多了一个东西
 
 接口跑通之后，回到 `backend` 目录看一眼：
@@ -190,14 +200,6 @@ __pycache__/
 ```
 
 第一行忽略所有层级的 `__pycache__` 目录；第二行忽略项目各处的 `.pyc`、`.pyo`、`.pyd` 这几类 Python 生成文件。
-
-接着再故意访问一个不存在的路径：
-
-```bash
-curl http://localhost:8000/nope
-```
-
-回来的是 `{"detail":"Not Found"}`——**404 我们一行都没写**，而且它连 404 都带着 JSON 格式的说明，比我们手搓的空 404 还周到。
 
 ### 惊喜：我们的 API 自己长出了文档
 
