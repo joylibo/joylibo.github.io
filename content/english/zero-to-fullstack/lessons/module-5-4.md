@@ -409,4 +409,4 @@ cat requirements.txt
 
 ---
 
-[← 上一节：模块 5.3 看懂 HTTP，手搓 API](/zero-to-fullstack/lessons/module-5-3/) | [下一节：模块 5.5 前后端联调与 CORS →](/zero-to-fullstack/)
+[← 上一节：模块 5.3 看懂 HTTP，手搓 API](/zero-to-fullstack/lessons/module-5-3/) | [下一节：模块 5.5 前后端联调与 CORS →](/zero-to-fullstack/lessons/module-5-5/)
