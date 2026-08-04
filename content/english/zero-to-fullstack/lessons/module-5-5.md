@@ -421,4 +421,4 @@ npm run dev
 
 ---
 
-[← 上一节：模块 5.4 FastAPI 登场](/zero-to-fullstack/lessons/module-5-4/) | [下一模块：模块 6 生态的力量 →](/zero-to-fullstack/)
+[← 上一节：模块 5.4 FastAPI 登场](/zero-to-fullstack/lessons/module-5-4/) | [下一节：模块 6.1 第三方库和 PyPI →](/zero-to-fullstack/lessons/module-6-1/)
