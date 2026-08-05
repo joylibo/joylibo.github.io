@@ -242,4 +242,4 @@ pip install -r requirements.txt
 
 ---
 
-[← 上一节：模块 5.5 前后端联调与 CORS](/zero-to-fullstack/lessons/module-5-5/) | [下一节：模块 6.2 换芯不换壳 →](/zero-to-fullstack/lessons/module-6-2/)
+[← 上一节：模块 5.5 前后端联调与 CORS](/zero-to-fullstack/lessons/module-5-5/) | [下一节：模块 6.2 让网页真的会分析文字 →](/zero-to-fullstack/lessons/module-6-2/)
