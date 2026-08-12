@@ -211,4 +211,4 @@ fastapi dev
 
 ---
 
-[← 上一节：模块 6.1 第三方库和 PyPI](/zero-to-fullstack/lessons/module-6-1/) | [下一节：模块 6.3 把结果存下来 →](/zero-to-fullstack/lessons/module-6-3/)
+[← 上一节：模块 6.1 第三方库和 PyPI](/zero-to-fullstack/lessons/module-6-1/) | [下一节：模块 6.3 数据库前传 →](/zero-to-fullstack/lessons/module-6-3/)
