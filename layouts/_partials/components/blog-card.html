@@ -1,0 +1,21 @@
+<article class="lb-content-card">
+  <div class="lb-content-card__meta">
+    <span>{{ if eq .Section "blog" }}文章{{ else }}课程{{ end }}</span>
+    {{ with .Date }}
+      <time datetime="{{ .Format `2006-01-02` }}">{{ .Format `2006.01.02` }}</time>
+    {{ end }}
+  </div>
+  <h2 class="lb-content-card__title">
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  </h2>
+  {{ with .Description }}
+    <p class="lb-content-card__description">{{ . | plainify | truncate 120 }}</p>
+  {{ else }}
+    <p class="lb-content-card__description">
+      {{ .Summary | plainify | truncate 120 }}
+    </p>
+  {{ end }}
+  <a class="lb-content-card__more" href="{{ .RelPermalink }}">
+    阅读全文 <span aria-hidden="true">→</span>
+  </a>
+</article>

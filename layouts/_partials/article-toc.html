@@ -1,0 +1,38 @@
+{{ with .TableOfContents }}
+<button
+  class="lb-toc-trigger"
+  type="button"
+  aria-controls="lb-article-toc"
+  aria-expanded="false"
+  data-toc-open
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+  </svg>
+  目录
+</button>
+
+<button
+  class="lb-toc-backdrop"
+  type="button"
+  aria-label="关闭目录"
+  data-toc-close
+></button>
+
+<aside class="lb-article-toc-panel" id="lb-article-toc" aria-label="本页目录">
+  <div class="lb-article-toc__header">
+    <p>本页目录</p>
+    <button
+      class="lb-toc-close"
+      type="button"
+      aria-label="关闭目录"
+      data-toc-close
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+  </div>
+  <div class="lb-article-toc">{{ . }}</div>
+</aside>
+{{ end }}

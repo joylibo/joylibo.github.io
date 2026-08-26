@@ -1,0 +1,38 @@
+{{ $sections := slice "blog" "zero-to-fullstack" }}
+{{ $pages := where site.RegularPages "Section" "in" $sections }}
+{{ $latest := first 6 $pages.ByDate.Reverse }}
+
+{{ with $latest }}
+  <section class="section lb-latest-section">
+    <div class="container">
+      <div class="lb-section-heading">
+        <div>
+          <p class="lb-courses-eyebrow">NEW</p>
+          <h2 class="lb-home-features-intro-title">最近发布</h2>
+        </div>
+        <a class="lb-text-link" href="{{ `zero-to-fullstack/` | relURL }}">
+          查看全部课程
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="lb-latest-grid">
+        {{ range . }}
+          <article class="lb-latest-card">
+            <a class="lb-latest-card__link" href="{{ .RelPermalink }}">
+              <div class="lb-latest-card__meta">
+                <span>{{ if eq .Section "blog" }}文章{{ else }}课程{{ end }}</span>
+                <time datetime="{{ .Date.Format `2006-01-02` }}">{{ .Date.Format `2006.01.02` }}</time>
+              </div>
+              <h3>{{ .Title }}</h3>
+              {{ with .Description }}
+                <p>{{ . | plainify | truncate 92 }}</p>
+              {{ end }}
+              <span class="lb-latest-card__arrow" aria-hidden="true">↗</span>
+            </a>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

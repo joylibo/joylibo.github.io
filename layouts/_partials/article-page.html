@@ -1,0 +1,66 @@
+<section class="section pt-7">
+  <div class="container">
+    <div class="lb-article-layout">
+      <article class="lb-article-main">
+        <p class="lb-article-kicker">
+          {{ if eq .Section "blog" }}文章{{ else }}零到全栈 · 课程{{ end }}
+        </p>
+        <h1 class="h2 mb-4">{{ .Title }}</h1>
+
+        <ul class="lb-article-meta mb-8">
+          {{ with .Params.author }}
+            <li>
+              <i class="fa-regular fa-circle-user mr-2" aria-hidden="true"></i>
+              {{ . }}
+            </li>
+          {{ end }}
+          {{ with .Params.categories }}
+            <li>
+              <i class="fa-regular fa-folder mr-2" aria-hidden="true"></i>
+              {{ delimit . " · " }}
+            </li>
+          {{ end }}
+          <li>
+            <i class="fa-regular fa-clock mr-2" aria-hidden="true"></i>
+            <time datetime="{{ .PublishDate.Format `2006-01-02` }}">{{ .PublishDate.Format `2006 年 01 月 02 日` }}</time>
+          </li>
+        </ul>
+
+        <div class="content mb-10">
+          {{ .Content }}
+        </div>
+
+        <footer class="lb-article-footer">
+          {{ with .Params.tags }}
+            <div class="lb-article-tags" aria-label="文章标签">
+              {{ range . }}
+                <a href="{{ printf `tags/%s/` (. | urlize | lower) | relLangURL }}">{{ . | humanize }}</a>
+              {{ end }}
+            </div>
+          {{ end }}
+
+          <div class="lb-article-share" aria-label="分享文章">
+            <button type="button" data-native-share data-share-title="{{ $.Title }}">分享</button>
+            <button type="button" data-copy-share>复制链接</button>
+          </div>
+        </footer>
+      </article>
+
+      {{ partial "article-toc" . }}
+    </div>
+
+    {{ $related := .Site.RegularPages.Related . | first 3 }}
+    {{ with $related }}
+      <section class="lb-related-section">
+        <h2 class="h3 mb-8">继续阅读</h2>
+        <div class="row">
+          {{ range . }}
+            <div class="lg:col-4 md:col-6 mb-8">
+              {{ partial "components/blog-card" . }}
+            </div>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+  </div>
+</section>

@@ -1,0 +1,10 @@
+{{ with site.Params.search }}
+{{ if .enable }}
+<link
+  id="lb-search-index-source"
+  rel="alternate"
+  type="application/json"
+  href="{{ `searchindex.json` | relLangURL }}"
+/>
+{{ end }}
+{{ end }}

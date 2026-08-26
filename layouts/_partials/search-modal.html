@@ -1,0 +1,47 @@
+{{ with site.Params.search }}
+{{ if .enable }}
+<div
+  class="lb-search-modal"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label="站内搜索"
+>
+  <button
+    class="lb-search-backdrop"
+    type="button"
+    aria-label="关闭搜索"
+    data-target="close-search-modal"
+  ></button>
+  <section class="lb-search-dialog">
+    <header class="lb-search-header">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m20 20-4-4" />
+      </svg>
+      <input
+        id="lb-search-input"
+        type="search"
+        autocomplete="off"
+        placeholder="{{ .input_placeholder | default `搜索课程与文章` }}"
+        aria-label="搜索课程与文章"
+      />
+      <button
+        class="lb-search-close"
+        type="button"
+        aria-label="关闭搜索"
+        data-target="close-search-modal"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </header>
+    <p class="lb-search-status" role="status">
+      {{ .empty_results_placeholder | default `输入关键词，查找课程与文章` }}
+    </p>
+    <div class="lb-search-results" aria-live="polite"></div>
+  </section>
+</div>
+{{ end }}
+{{ end }}

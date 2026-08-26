@@ -126,6 +126,22 @@ sudo systemctl reload nginx
 
 `hugo server` 只适合本地开发或临时预览，不建议作为正式线上服务。
 
+### Bilibili Toy 静态构建
+
+Toy 与网站共用同一份 Markdown 内容和 Hugo 模板，但使用独立的构建命令：
+
+```bash
+npm run build:toy
+```
+
+构建产物位于 `dist/`。该流程会自动把站内地址改写为可在 Toy 子目录中工作的相对路径，剔除重复字体文件，并检查路径与产物体积。若官方明确了资源上限，可通过 `TOY_MAX_MB` 设置严格预算，例如：
+
+```bash
+TOY_MAX_MB=50 npm run build:toy
+```
+
+普通网站继续使用 `npm run build`，产物仍位于 `public/`，两种构建互不覆盖。
+
 ## 相关链接
 
 - Bilibili：[李勃老师](https://space.bilibili.com/427191943)

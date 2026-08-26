@@ -1,0 +1,5 @@
+baseURL = "/"
+relativeURLs = false
+
+[services.googleAnalytics]
+ID = ""

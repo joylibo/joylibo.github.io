@@ -90,7 +90,7 @@ lineNumbersInTable = false
 
 [markup.tableOfContents]
 startLevel = 2
-endLevel = 5
+endLevel = 4
 ordered = true
 
 
@@ -140,6 +140,9 @@ link = "js/search.js" # https://github.com/gethugothemes/hugo-modules/tree/maste
 lazy = false
 [[params.plugins.js]]
 link = "js/code-copy.js"
+lazy = false
+[[params.plugins.js]]
+link = "js/article-tools.js"
 lazy = false
 [[params.plugins.js]]
 link = "js/home-course-ga.js"

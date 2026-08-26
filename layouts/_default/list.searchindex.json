@@ -1,0 +1,15 @@
+{{- $sections := site.Params.search.include_sections | default site.Params.mainSections -}}
+{{- $pages := where site.RegularPages "Section" "in" $sections -}}
+{{- $items := slice -}}
+{{- range $pages.ByDate.Reverse -}}
+  {{- $item := dict
+    "section" .Section
+    "slug" .RelPermalink
+    "title" .Title
+    "description" (.Description | plainify)
+    "date" (.Date.Format "2006.01.02")
+    "content" (.Plain | plainify)
+  -}}
+  {{- $items = $items | append $item -}}
+{{- end -}}
+{{- $items | jsonify -}}

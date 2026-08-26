@@ -88,7 +88,6 @@ mkdir -p ~/Projects/zero2tech && touch ~/Projects/zero2tech/index.html
 
 <video controls playsinline preload="metadata" style="width:100%;max-width:960px;border-radius:12px;">
   <source src="/videos/module-2-2-terminal-demo.mp4" type="video/mp4">
-  <source src="/videos/module-2-2-terminal-demo.mov" type="video/quicktime">
   你的浏览器暂不支持视频播放，可直接访问 <a href="/videos/module-2-2-terminal-demo.mp4">MP4 文件</a> 查看。
 </video>
 

@@ -8,6 +8,8 @@
     "dev": "concurrently \"node scripts/themeGenerator.js --watch\" \"hugo server\"",
     "dev:local": "concurrently \"node scripts/themeGenerator.js --watch\" \"hugo server --bind 127.0.0.1 --port 1314\"",
     "build": "node scripts/themeGenerator.js && hugo --gc --minify --templateMetrics --templateMetricsHints --forceSyncStatic",
+    "build:toy": "node scripts/build-toy.mjs",
+    "check:toy": "node scripts/check-toy-output.mjs",
     "preview": "node scripts/themeGenerator.js && hugo server --disableFastRender --navigateToChanged --templateMetrics --templateMetricsHints --watch --forceSyncStatic -e production --minify",
     "dev:example": "concurrently \"node scripts/themeGenerator.js --watch\" \"hugo server -s exampleSite\"",
     "build:example": "cd exampleSite && node ../scripts/themeGenerator.js && hugo --gc --minify --templateMetrics --templateMetricsHints --forceSyncStatic",

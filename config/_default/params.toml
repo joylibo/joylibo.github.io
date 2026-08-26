@@ -39,13 +39,15 @@ link = "https://space.bilibili.com/427191943"
 # search
 # search module: https://github.com/gethugothemes/hugo-modules/tree/master/search
 [search]
-enable = false
+enable = true
 primary_color = "#121212"
-include_sections = ["blog"]
-show_image = true
+include_sections = ["blog", "zero-to-fullstack"]
+show_image = false
 show_description = true
-show_tags = true
-show_categories = true
+show_tags = false
+show_categories = false
+input_placeholder = "搜索课程与文章"
+empty_results_placeholder = "输入关键词，查找课程与文章"
 
 # announcement
 # announcement module: https://github.com/gethugothemes/hugo-modules/tree/master/components/announcement
