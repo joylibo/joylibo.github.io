@@ -25,8 +25,10 @@
       {{ partial "preloader.html" . }}
 
 
-      <!-- tailwind size indicator -->
-      {{ partial "components/tw-size-indicator.html" . }}
+      {{ if eq hugo.Environment "development" }}
+        <!-- tailwind size indicator -->
+        {{ partial "components/tw-size-indicator.html" . }}
+      {{ end }}
     {{ end }}
 
 
