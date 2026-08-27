@@ -74,6 +74,19 @@ h1, h2, h3, h4, h5, h6,
   .lb-home-feature-title {
     font-size: 1.8rem;
   }
+
+  /* 桌面导航以页面中心为基准，不受左右两侧控件宽度影响 */
+  .header .navbar {
+    position: relative;
+  }
+
+  .header #nav-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max-content;
+    transform: translate(-50%, -50%);
+  }
 }
 
 /* -------------------------------------------------------------
@@ -987,7 +1000,7 @@ h1, h2, h3, h4, h5, h6,
 
 .lb-search-header {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
   gap: 0.75rem;
   align-items: center;
   padding: 0.9rem 1rem;
@@ -1022,6 +1035,27 @@ h1, h2, h3, h4, h5, h6,
   border: 0;
   outline: 0;
   box-shadow: none;
+}
+
+.lb-search-header input::-webkit-search-cancel-button {
+  display: none;
+  appearance: none;
+}
+
+.lb-search-clear {
+  padding: 0.3rem 0.45rem;
+  border-radius: var(--lb-radius-sm);
+  color: var(--lb-accent);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.lb-search-clear:hover {
+  background: var(--lb-accent-muted);
+}
+
+.lb-search-clear[hidden] {
+  display: none;
 }
 
 .lb-search-close {

@@ -6,6 +6,7 @@
   const input = modal.querySelector("#lb-search-input");
   const results = modal.querySelector(".lb-search-results");
   const status = modal.querySelector(".lb-search-status");
+  const clearButton = modal.querySelector("[data-search-clear]");
   const openButtons = document.querySelectorAll('[data-target="search-modal"]');
   const closeButtons = modal.querySelectorAll(
     '[data-target="close-search-modal"]',
@@ -102,6 +103,10 @@
     });
   };
 
+  const syncClearButton = () => {
+    clearButton.hidden = input.value.length === 0;
+  };
+
   const open = async () => {
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
@@ -124,7 +129,16 @@
 
   openButtons.forEach((button) => button.addEventListener("click", open));
   closeButtons.forEach((button) => button.addEventListener("click", close));
-  input.addEventListener("input", () => render(input.value));
+  input.addEventListener("input", () => {
+    syncClearButton();
+    render(input.value);
+  });
+  clearButton.addEventListener("click", () => {
+    input.value = "";
+    syncClearButton();
+    render("");
+    input.focus();
+  });
   input.addEventListener("keydown", (event) => {
     if (event.key === "ArrowDown") {
       event.preventDefault();
