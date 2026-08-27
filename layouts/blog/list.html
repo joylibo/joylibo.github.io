@@ -15,8 +15,7 @@
         {{ partial "components/pagination.html" . }}
       </div>
       <aside class="lg:col-4">
-        {{ $widget := site.Params.widgets.sidebar }} {{ partialCached
-        "widgets/widget-wrapper" (dict "Widgets" $widget "Scope" .) }}
+        {{ partial "widgets/section-sidebar" . }}
       </aside>
     </div>
   </div>
