@@ -13,6 +13,7 @@ run(process.execPath, ["scripts/themeGenerator.js"]);
 run("hugo", [
   "--gc",
   "--minify",
+  "--ignoreCache",
   "--forceSyncStatic",
   "--cleanDestinationDir",
   "--environment",
