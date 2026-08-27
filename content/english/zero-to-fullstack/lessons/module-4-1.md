@@ -1,7 +1,7 @@
 ---
 title: "模块 4.1：现代前端第一步——模块化"
 meta_title: ""
-description: "项目长大后，旧的传统组织方式撑不住了。这一节我们亲手把双页面项目改造成 ES 模块化版本，看清 import / export 是怎么治掉顺序坑和全局污染的。"
+description: "把越来越难维护的网页拆成模块，看清 import 和 export 为什么重要。"
 date: 2026-06-08T00:00:00+08:00
 image: "/images/module-4-1.webp"
 categories: ["现代前端工程"]

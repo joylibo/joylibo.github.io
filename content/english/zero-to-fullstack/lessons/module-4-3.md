@@ -1,7 +1,7 @@
 ---
 title: "模块 4.3：React——前端开发新规则"
 meta_title: ""
-description: "从『构建工具是翻译官』推到现代前端框架的由来：React 是一套架在构建工具之上的新规则。讲清 React 与 Vue 的关系、组件与 JSX，并把 4.2 的 vanilla 项目一拍一拍改造成 React。"
+description: "用 React 重新组织网页，理解组件化如何改变前端开发。"
 date: 2026-06-20T00:00:00+08:00
 image: "/images/module-4-3.webp"
 categories: ["现代前端工程"]

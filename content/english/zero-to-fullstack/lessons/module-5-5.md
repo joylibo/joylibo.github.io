@@ -1,7 +1,7 @@
 ---
 title: "模块 5.5：前后端联调与 CORS"
 meta_title: ""
-description: "后端第五课：让 React 前端与 FastAPI 后端真正握手，走通「输入 → 请求 → 计算 → 响应 → 界面更新」的完整链路。先按数据流在浏览器 Network、后端终端、浏览器 Console 三处找线索，撞上第一堵墙——CORS 跨源拦截；弄清「源」由协议、域名、端口共同决定，用 CORSMiddleware 的 allow_origins 让后端发出 Access-Control-Allow-Origin 许可。再撞第二堵墙：带 JSON 的 POST 触发浏览器自动发出的 OPTIONS 预检，补上 allow_methods 放行。最后把写死的后端地址收进 .env.local 配置文件。"
+description: "让 React 与 FastAPI 真正连起来，并解决跨域带来的问题。"
 date: 2026-07-28T00:00:00+08:00
 image: "/images/module-5-5.webp"
 categories: ["API与后端"]

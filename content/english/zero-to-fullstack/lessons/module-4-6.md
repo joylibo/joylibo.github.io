@@ -1,7 +1,7 @@
 ---
 title: "模块 4.6：把前端项目发布到公网"
 meta_title: ""
-description: "现代前端最后一站：把 Next.js 项目部署上线。讲清一个 Next 项目的两条上线路——常驻服务（路 A）与静态导出（路 B），点破『动态内容≠必须走 A』，用 output:export + Nginx try_files 完成静态部署，并回望路 A 通向的 Next 全栈与它的取舍。"
+description: "比较两种前端上线方式，并把 Next.js 项目真正发布到公网。"
 date: 2026-06-29T00:00:00+08:00
 image: "/images/module-4-6.webp"
 categories: ["现代前端工程"]

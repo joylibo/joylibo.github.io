@@ -1,7 +1,7 @@
 ---
 title: "模块 5.3：看懂 HTTP，手搓 API"
 meta_title: ""
-description: "后端第三课：把 HTTP 的一去一回看明白——请求（请求行、头、体）与响应（状态行、头、体）的规范，用 curl -v 对 ipify 和 DeepSeek 亲眼验证真实报文；理清 GET/POST 的真正含义，认一认常见方法与常见头；然后用 Python 标准库 http.server 零依赖手搓出第一个 API（GET /api/profile），用两个小实验看清 Content-Type 的威力和服务端能看到的一切，最后数一数杂活，引出框架为什么存在。"
+description: "拆开一次 HTTP 通信，并用 Python 手搓出第一个 API。"
 date: 2026-07-13T00:00:00+08:00
 image: "/images/module-5-3.webp"
 categories: ["API与后端"]

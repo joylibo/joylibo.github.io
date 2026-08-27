@@ -1,7 +1,7 @@
 ---
 title: "模块 4.4：让数据驱动界面"
 meta_title: ""
-description: "React 最大的变化，是把『操作页面』变成了『改变数据/值』。这一节讲清数据驱动界面、数据与界面分离、状态（state）与用 URL 管理路由，并把 4.3 的项目升级、发布到公网。"
+description: "让数据决定页面显示什么，而不是手动修改页面上的每个元素。"
 date: 2026-06-26T00:00:00+08:00
 image: "/images/module-4-4.webp"
 categories: ["现代前端工程"]

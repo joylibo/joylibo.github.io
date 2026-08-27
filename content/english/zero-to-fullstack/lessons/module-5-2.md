@@ -1,7 +1,7 @@
 ---
 title: "模块 5.2：Python 的安装和环境设置"
 meta_title: ""
-description: "后端第二课：把 Python 装到电脑上，理清一台机器里多个 Python 的关系，用 venv 给每个项目建一套专属环境；跑起第一个 Python 程序、认一认代码结构，再用 pip 装第三方库（requests）用 Python 调一次 API——venv、pip、requirements.txt 一并落地，后端要用的环境这一节一次备齐。"
+description: "准备好 Python 后端环境，并用第一个程序调用 API。"
 date: 2026-07-07T00:00:00+08:00
 image: "/images/module-5-2.webp"
 categories: ["API与后端"]

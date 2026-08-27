@@ -1,7 +1,7 @@
 ---
 title: "模块 5.4：从手搓到框架，FastAPI 登场"
 meta_title: ""
-description: "后端第四课：认识 Flask / Django / FastAPI 三个主流后端框架，弄清 FastAPI 与 uvicorn 的分工；把 5.3 手搓的 GET /api/profile 用 FastAPI 重写成几行，先用 uvicorn 手动挡跑通再换官网同款 fastapi dev；见识 /docs 自动接口文档，用 BaseModel 声明请求体加一个 POST /api/analyze，亲眼看到自动校验（422）与读 traceback 的两步法，最后用 pip freeze 更新依赖清单。"
+description: "用 FastAPI 重写手搓的 API，体验框架替我们省掉了什么。"
 date: 2026-07-23T00:00:00+08:00
 image: "/images/module-5-4.webp"
 categories: ["API与后端"]

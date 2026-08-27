@@ -1,7 +1,7 @@
 ---
 title: "模块 4.5：Next.js——React 之上的生产级框架"
 meta_title: ""
-description: "React 用组件拼装界面、建立了数据驱动界面的规则，但项目要上路，还有路由、SEO、首屏速度这些苦力活。这一节讲清 Next.js：文件夹即路由、服务端/客户端组件、把页面预渲染成真实 HTML，并把 4.4 的项目整体搬成 Next。"
+description: "认识 Next.js 如何为 React 补上路由、预渲染与生产能力。"
 date: 2026-06-26T00:00:00+08:00
 image: "/images/module-4-5.webp"
 categories: ["现代前端工程"]

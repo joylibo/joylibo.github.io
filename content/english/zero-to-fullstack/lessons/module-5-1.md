@@ -1,7 +1,7 @@
 ---
 title: "模块 5.1：究竟什么是 API？"
 meta_title: ""
-description: "后端第一课，不解释、不打比方，直接亲手调用两个真实 API：用 curl 查公网 IP（ipify）、调用 DeepSeek 大模型。归纳出『请求 → 处理 → 响应』的通用形态与 GET/POST，讲清 API 为何与语言无关、AI 时代为何到处是 API，并落回项目：给网站补一个自己的后端。"
+description: "亲手调用真实 API，看清一次请求、处理和响应是如何发生的。"
 date: 2026-07-02T00:00:00+08:00
 image: "/images/module-5-1.webp"
 categories: ["API与后端"]
