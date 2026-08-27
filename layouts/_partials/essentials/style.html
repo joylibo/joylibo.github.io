@@ -58,9 +58,11 @@
 {{ $stylesLazy = $stylesLazy | resources.Concat "css/style-lazy.css" }}
 
 {{ if hugo.IsProduction }}
-  {{ $styles = $styles | fingerprint }}
-  {{ $stylesLazy = $stylesLazy | minify | fingerprint }}
+  {{ $stylesLazy = $stylesLazy | minify }}
 {{ end }}
+
+{{ $styles = $styles | fingerprint }}
+{{ $stylesLazy = $stylesLazy | fingerprint }}
 
 
 <!-- link main style -->

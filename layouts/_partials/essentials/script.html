@@ -24,9 +24,12 @@
 {{ $scriptsLazy = $scriptsLazy | resources.Concat "js/script-lazy.js" }}
 
 {{ if hugo.IsProduction }}
-  {{ $scripts = $scripts | minify | fingerprint }}
-  {{ $scriptsLazy = $scriptsLazy | minify | fingerprint }}
+  {{ $scripts = $scripts | minify }}
+  {{ $scriptsLazy = $scriptsLazy | minify }}
 {{ end }}
+
+{{ $scripts = $scripts | fingerprint }}
+{{ $scriptsLazy = $scriptsLazy | fingerprint }}
 
 {{/* scripts */}}
 <script
