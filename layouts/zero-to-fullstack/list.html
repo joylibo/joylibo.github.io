@@ -18,8 +18,7 @@
         </div>
         <!-- sidebar -->
         <div class="lg:col-4">
-          {{ $widget:= site.Params.widgets.sidebar }}
-          {{ partialCached "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) }}
+          {{ partial "widgets/course-tags" . }}
         </div>
       </div>
     </div>
