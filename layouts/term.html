@@ -1,6 +1,14 @@
 {{ define "main" }}
   {{ partial "page-header" . }}
 
+  {{ $sections := slice }}
+  {{ range .Data.Pages }}
+    {{ with .Section }}
+      {{ $sections = $sections | append . }}
+    {{ end }}
+  {{ end }}
+  {{ $sections = uniq $sections }}
+
   <section class="section">
     <div class="container">
       <div class="row gx-5">
@@ -15,10 +23,9 @@
           </div>
         </div>
         <!-- sidebar -->
-        <div class="lg:col-4">
-          {{ $widget := site.Params.widgets.sidebar }}
-          {{ partialCached "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . ) }}
-        </div>
+        <aside class="lg:col-4">
+          {{ partial "widgets/section-sidebar" (dict "Sections" $sections) }}
+        </aside>
       </div>
     </div>
   </section>

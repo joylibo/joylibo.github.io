@@ -1,4 +1,12 @@
-{{ $section := .Section }}
+{{ $sections := slice }}
+{{ with .Sections }}
+  {{ $sections = . }}
+{{ else }}
+  {{ with .Section }}
+    {{ $sections = $sections | append . }}
+  {{ end }}
+{{ end }}
+
 {{ $sectionCategories := slice }}
 {{ $sectionTags := slice }}
 {{ $courseCategoryOrder := dict
@@ -12,7 +20,7 @@
 }}
 
 {{ range site.Taxonomies.categories }}
-  {{ $sectionPages := where .Pages "Section" $section }}
+  {{ $sectionPages := where .Pages "Section" "in" $sections }}
   {{ if gt (len $sectionPages) 0 }}
     {{ $order := 999 }}
     {{ with index $courseCategoryOrder .Page.Title }}
@@ -27,7 +35,7 @@
 {{ end }}
 
 {{ range site.Taxonomies.tags }}
-  {{ $sectionPages := where .Pages "Section" $section }}
+  {{ $sectionPages := where .Pages "Section" "in" $sections }}
   {{ if gt (len $sectionPages) 0 }}
     {{ $sectionTags = $sectionTags | append (dict
       "Count" (len $sectionPages)
@@ -36,7 +44,7 @@
   {{ end }}
 {{ end }}
 
-{{ if eq $section "zero-to-fullstack" }}
+{{ if and (eq (len $sections) 1) (eq (index $sections 0) "zero-to-fullstack") }}
   {{ $sectionCategories = sort $sectionCategories "Order" "asc" }}
 {{ else }}
   {{ $sectionCategories = sort $sectionCategories "Count" "desc" }}
