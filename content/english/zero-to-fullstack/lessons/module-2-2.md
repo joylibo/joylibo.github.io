@@ -4,7 +4,7 @@ meta_title: ""
 description: "终端本质上只是另一种和电脑交互的方式。"
 date: 2026-04-11T00:00:00+08:00
 image: "/images/module-2-2.webp"
-categories: ["零到全栈"]
+categories: ["系统与网络"]
 tags: ["终端", "命令行", "Vim", "Linux"]
 weight: 5
 draft: false

@@ -4,7 +4,7 @@ meta_title: ""
 description: "先回答一个问题：今天 AI 已经越来越会写代码了，人为什么还要学习全栈开发？"
 date: 2026-04-03T00:00:00+08:00
 image: "/images/module-1-1.webp"
-categories: ["零到全栈"]
+categories: ["开发者起点"]
 tags: ["AI时代", "产品思维", "学习方法"]
 weight: 1
 draft: false

@@ -4,7 +4,7 @@ meta_title: ""
 description: "让你能够顺利开始，而不是在真正开始之前就被各种问题打断。"
 date: 2026-04-01T00:00:00+08:00
 image: "/images/module-1-3.webp"
-categories: ["零到全栈"]
+categories: ["开发者起点"]
 tags: ["macOS", "VS Code", "开发环境"]
 weight: 3
 draft: false

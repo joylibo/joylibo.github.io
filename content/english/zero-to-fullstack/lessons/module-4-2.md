@@ -4,7 +4,7 @@ meta_title: ""
 description: "从模块化之后的开发痛点出发，认识 Node.js、npm、Vite 与前端构建，理解 dev、build、preview、package.json、node_modules 与依赖管理。"
 date: 2026-06-15T00:00:00+08:00
 image: "/images/module-4-2.webp"
-categories: ["零到全栈"]
+categories: ["现代前端工程"]
 tags: ["Vite", "npm", "Node.js", "前端构建", "package.json", "依赖管理"]
 weight: 14
 draft: false

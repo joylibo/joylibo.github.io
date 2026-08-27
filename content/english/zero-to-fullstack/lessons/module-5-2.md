@@ -4,7 +4,7 @@ meta_title: ""
 description: "后端第二课：把 Python 装到电脑上，理清一台机器里多个 Python 的关系，用 venv 给每个项目建一套专属环境；跑起第一个 Python 程序、认一认代码结构，再用 pip 装第三方库（requests）用 Python 调一次 API——venv、pip、requirements.txt 一并落地，后端要用的环境这一节一次备齐。"
 date: 2026-07-07T00:00:00+08:00
 image: "/images/module-5-2.webp"
-categories: ["零到全栈"]
+categories: ["API与后端"]
 tags: ["Python", "后端", "venv", "虚拟环境", "pip", "requirements", "全栈"]
 weight: 20
 draft: false

@@ -4,7 +4,7 @@ meta_title: ""
 description: "把上一节装好的 pypinyin、snownlp 真正接进 /api/analyze——只动 analyze 函数的内部，不碰接口的约定：路径、方法、请求体、返回字段一个不改，前端因此一行都不用动。用 SnowNLP(text).sentiments 拿到 0~1 的情感分，用 lazy_pinyin 配 Style.TONE 生成带声调的拼音，再把「数字→结论」的翻译单独抽成 score_label 小函数（0.6 / 0.4 两个阈值不是标准答案，而是拍板的产品决定）。启动前后端见证效果，顺带理解「只要守住约定，内部随便换」这条工程原则。最后诚实面对模型的边界——中性陈述、反讽阴阳怪气都会翻车，因为模型没有常识、只有训练时见过的世界；并把视野拉到从 snownlp 小模型，到本地部署的开源大模型（DeepSeek，1.5B/7B/70B/671B 各种尺寸），再到云端顶配 API 这条连续的谱系，理解「没有绝对的好，只有合不合适」。"
 date: 2026-08-05T00:00:00+08:00
 image: "/images/module-6-2.webp"
-categories: ["零到全栈"]
+categories: ["依赖于数据持久化"]
 tags: ["snownlp", "pypinyin", "情感分析", "第三方库", "API", "接口约定", "score_label", "大模型", "本地部署", "后端", "全栈"]
 weight: 25
 draft: false

@@ -4,7 +4,7 @@ meta_title: ""
 description: "React 用组件拼装界面、建立了数据驱动界面的规则，但项目要上路，还有路由、SEO、首屏速度这些苦力活。这一节讲清 Next.js：文件夹即路由、服务端/客户端组件、把页面预渲染成真实 HTML，并把 4.4 的项目整体搬成 Next。"
 date: 2026-06-26T00:00:00+08:00
 image: "/images/module-4-5.webp"
-categories: ["零到全栈"]
+categories: ["现代前端工程"]
 tags: ["Next.js", "React", "路由", "SEO", "服务端组件", "预渲染", "前端框架"]
 weight: 17
 draft: false

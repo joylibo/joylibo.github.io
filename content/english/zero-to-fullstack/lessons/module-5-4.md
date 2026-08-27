@@ -4,7 +4,7 @@ meta_title: ""
 description: "后端第四课：认识 Flask / Django / FastAPI 三个主流后端框架，弄清 FastAPI 与 uvicorn 的分工；把 5.3 手搓的 GET /api/profile 用 FastAPI 重写成几行，先用 uvicorn 手动挡跑通再换官网同款 fastapi dev；见识 /docs 自动接口文档，用 BaseModel 声明请求体加一个 POST /api/analyze，亲眼看到自动校验（422）与读 traceback 的两步法，最后用 pip freeze 更新依赖清单。"
 date: 2026-07-23T00:00:00+08:00
 image: "/images/module-5-4.webp"
-categories: ["零到全栈"]
+categories: ["API与后端"]
 tags: ["FastAPI", "uvicorn", "API", "后端", "Python", "pydantic", "框架", "全栈"]
 weight: 22
 draft: false

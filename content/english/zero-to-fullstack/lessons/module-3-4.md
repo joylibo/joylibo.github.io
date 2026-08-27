@@ -4,7 +4,7 @@ meta_title: ""
 description: "把本地仓库连接到 GitHub：SSH、remote、push、后续日常同步。"
 date: 2026-05-31T00:00:00+08:00
 image: "/images/module-3-4.webp"
-categories: ["零到全栈"]
+categories: ["网页与版本控制"]
 tags: ["GitHub", "远程仓库", "SSH", "push", "pull"]
 weight: 11
 draft: false

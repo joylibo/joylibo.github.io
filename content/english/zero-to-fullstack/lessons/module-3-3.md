@@ -4,7 +4,7 @@ meta_title: ""
 description: "先把本地版本管理跑通：仓库、暂存区、提交记录与 .gitignore。"
 date: 2026-05-31T00:00:00+08:00
 image: "/images/module-3-3-git.webp"
-categories: ["零到全栈"]
+categories: ["网页与版本控制"]
 tags: ["Git", "版本管理", "commit", "gitignore", "仓库"]
 weight: 10
 draft: false

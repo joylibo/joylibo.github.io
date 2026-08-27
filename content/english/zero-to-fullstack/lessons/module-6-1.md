@@ -4,7 +4,7 @@ meta_title: ""
 description: "生态第一课：还模块 5 留下的第一笔账——让分析变成真的。面对给中文标拼音（还要认多音字）、给文本打情感分这类「自己写会很花时间」的需求，正确的第一反应不是重新造轮子，而是先去社区找现成的库。认识 Python 的公共仓库 PyPI（≈ 前端的 npm registry），学会三种查法（pypi.org 搜、搜索引擎、问 AI）并牢记「候选必须自己验」：看 GitHub 星数与维护情况判断靠不靠谱，再读文档对照需求判断合不合用。装上 pypinyin、snownlp，用 Python 的 REPL 交互式验证——多音字 chóng/zhòng 看词定音、lazy_pinyin 配 Style.TONE 带声调、SnowNLP.sentiments 给出 0~1 的情感分。顺带认识 jieba 与整片 Python 生态，最后用 pip freeze 更新 requirements.txt。"
 date: 2026-08-04T00:00:00+08:00
 image: "/images/module-6-1.webp"
-categories: ["零到全栈"]
+categories: ["依赖于数据持久化"]
 tags: ["第三方库", "PyPI", "pip", "pypinyin", "snownlp", "REPL", "requirements.txt", "生态", "后端", "全栈"]
 weight: 24
 draft: false

@@ -4,7 +4,7 @@ meta_title: ""
 description: "上一节讲的那些概念——服务器、IP、端口——这一节全部亲手体验一遍。"
 date: 2026-04-18T00:00:00+08:00
 image: "/images/module-2-4.webp"
-categories: ["零到全栈"]
+categories: ["系统与网络"]
 tags: ["云服务器", "公网IP", "SSH", "Nginx", "Linux", "Ubuntu"]
 weight: 7
 draft: false

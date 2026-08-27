@@ -4,7 +4,7 @@ meta_title: ""
 description: "从『构建工具是翻译官』推到现代前端框架的由来：React 是一套架在构建工具之上的新规则。讲清 React 与 Vue 的关系、组件与 JSX，并把 4.2 的 vanilla 项目一拍一拍改造成 React。"
 date: 2026-06-20T00:00:00+08:00
 image: "/images/module-4-3.webp"
-categories: ["零到全栈"]
+categories: ["现代前端工程"]
 tags: ["React", "组件", "JSX", "前端框架", "Vue", "Vite"]
 weight: 15
 draft: false

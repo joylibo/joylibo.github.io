@@ -4,7 +4,7 @@ meta_title: ""
 description: "上一节手搓的文件存储埋下四处痛，这一节请出专治它们的软件——数据库。先用两个维度给市面上的数据库归位（数据模型：关系型 / 非关系型；服务方式：嵌入式 / 服务式），从「结构化数据 + 小项目零维护」这两条需求交叉，落到 SQLite。然后进 Python REPL 亲手把 SQL 走一遍：CREATE TABLE（顺带认识三大数据库的字段类型差异、id 自增主键）、INSERT（datetime('now') 由数据库生成时间、commit 才算提交事务）、SELECT / WHERE、DELETE、UPDATE 与 DROP。接着是必修课 SQL 注入：一个片名叫 ' OR '1'='1 的怪片，如何把「搜一部」变成「吐全库」，解药是把值交给占位符 ?。再用 seed 脚本灌 24 部电影，练 ORDER BY / DESC / LIMIT，看「一句 SQL 顶三行 Python」。最后掀开盖子讲底层：LIMIT 是事先递进去的限额令（只攥住 10 条）、不写 LIMIT 就靠外部归并排序（分批排好写成有序段，再只拿各段的头一条归并）、以及索引——把「查询时临时排序」挪到「平时存的时候顺手维护」，代价是占空间与写变慢。"
 date: 2026-08-20T00:00:00+08:00
 image: "/images/module-6-4.webp"
-categories: ["零到全栈"]
+categories: ["依赖于数据持久化"]
 tags: ["数据库", "SQLite", "SQL", "关系型", "嵌入式", "建表", "增删改查", "SQL注入", "占位符", "索引", "归并排序", "事务", "后端", "全栈"]
 weight: 27
 draft: false

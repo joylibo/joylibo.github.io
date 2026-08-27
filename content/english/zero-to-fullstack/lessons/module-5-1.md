@@ -4,7 +4,7 @@ meta_title: ""
 description: "后端第一课，不解释、不打比方，直接亲手调用两个真实 API：用 curl 查公网 IP（ipify）、调用 DeepSeek 大模型。归纳出『请求 → 处理 → 响应』的通用形态与 GET/POST，讲清 API 为何与语言无关、AI 时代为何到处是 API，并落回项目：给网站补一个自己的后端。"
 date: 2026-07-02T00:00:00+08:00
 image: "/images/module-5-1.webp"
-categories: ["零到全栈"]
+categories: ["API与后端"]
 tags: ["API", "后端", "HTTP", "curl", "DeepSeek", "JSON", "全栈"]
 weight: 19
 draft: false

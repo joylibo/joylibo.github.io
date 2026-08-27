@@ -4,7 +4,7 @@ meta_title: ""
 description: '你当然会用电脑，但“会用软件”和“会在电脑里工作”，不是一回事。'
 date: 2026-04-11T00:00:00+08:00
 image: "/images/module-2-1.webp"
-categories: ["零到全栈"]
+categories: ["系统与网络"]
 tags: ["文件系统", "路径", "VS Code", "编辑器"]
 weight: 4
 draft: false

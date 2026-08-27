@@ -4,7 +4,7 @@ meta_title: ""
 description: "网页不是凭空出现的。浏览器里看到的东西，总得先来自某个地方。"
 date: 2026-04-12T00:00:00+08:00
 image: "/images/module-2-3.webp"
-categories: ["零到全栈"]
+categories: ["系统与网络"]
 tags: ["浏览器", "域名", "DNS", "端口", "服务器", "互联网"]
 weight: 6
 draft: false

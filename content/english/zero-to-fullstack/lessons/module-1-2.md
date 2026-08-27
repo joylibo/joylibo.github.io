@@ -4,7 +4,7 @@ meta_title: ""
 description: "你可能会有一个“我接下来会怎么学，最后能做出来什么？”的问题，而这节课就是先把整条路线图交到你手里。"
 date: 2026-04-03T00:00:00+08:00
 image: "/images/module-1-2.webp"
-categories: ["零到全栈"]
+categories: ["开发者起点"]
 tags: ["学习路线", "课程结构"]
 weight: 2
 draft: false

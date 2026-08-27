@@ -1,12 +1,26 @@
 {{ $section := .Section }}
 {{ $sectionCategories := slice }}
 {{ $sectionTags := slice }}
+{{ $courseCategoryOrder := dict
+  "开发者起点" 1
+  "系统与网络" 2
+  "网页与版本控制" 3
+  "现代前端工程" 4
+  "API与后端" 5
+  "依赖于数据持久化" 6
+  "部署与运维上线" 7
+}}
 
 {{ range site.Taxonomies.categories }}
   {{ $sectionPages := where .Pages "Section" $section }}
   {{ if gt (len $sectionPages) 0 }}
+    {{ $order := 999 }}
+    {{ with index $courseCategoryOrder .Page.Title }}
+      {{ $order = . }}
+    {{ end }}
     {{ $sectionCategories = $sectionCategories | append (dict
       "Count" (len $sectionPages)
+      "Order" $order
       "Page" .Page
     ) }}
   {{ end }}
@@ -22,7 +36,11 @@
   {{ end }}
 {{ end }}
 
-{{ $sectionCategories = sort $sectionCategories "Count" "desc" }}
+{{ if eq $section "zero-to-fullstack" }}
+  {{ $sectionCategories = sort $sectionCategories "Order" "asc" }}
+{{ else }}
+  {{ $sectionCategories = sort $sectionCategories "Count" "desc" }}
+{{ end }}
 {{ $sectionTags = sort $sectionTags "Count" "desc" }}
 
 {{ if gt (len $sectionCategories) 0 }}
