@@ -598,4 +598,4 @@ SELECT * FROM history ORDER BY created_at DESC LIMIT 10
 
 ---
 
-[← 上一节：模块 6.3 数据库前传](/zero-to-fullstack/lessons/module-6-3/) | [下一节：模块 6.5 历史搬进数据库 →](/zero-to-fullstack/lessons/module-6-5/)
+[← 上一节：模块 6.3 数据库前传](/zero-to-fullstack/lessons/module-6-3/) | [下一节：模块 6.5 重构，在项目中使用 SQLite →](/zero-to-fullstack/lessons/module-6-5/)
