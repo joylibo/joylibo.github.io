@@ -90,12 +90,24 @@ hugo
 
 如果部署到自己的 Ubuntu 服务器，建议在服务器上完成静态构建，然后让 Nginx 托管构建产物。生产环境请使用和 CI 一致的 Hugo extended 版本（当前为 `0.160.0`）。
 
+推荐直接使用项目中统一维护的生产构建命令：
+
 ```bash
 cd ~/joylibo.github.io
+git pull --ff-only
+npm ci
+npm run build
+```
+
+如需逐步执行，也可以继续使用原来的方式：
+
+```bash
 npm ci
 node scripts/themeGenerator.js
 hugo --gc --minify
 ```
+
+`npm run build` 已经包含主题 CSS 生成和 Hugo 构建，并在原有步骤的基础上统一使用项目约定的缓存清理、输出目录清理等参数。以上两种构建方式选择一种即可，不需要重复执行。
 
 `npm ci` 会严格按照 `package-lock.json` 安装依赖，更适合服务器和 CI 环境；本地开发时继续使用 `npm install` 也可以。
 
