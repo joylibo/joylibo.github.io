@@ -624,4 +624,4 @@ def init_db():
 
 ---
 
-[← 上一节：模块 6.4 数据库正传](/zero-to-fullstack/lessons/module-6-4/) | [下一节：模块 6.6 会话 →](/zero-to-fullstack/lessons/module-6-6/)
+[← 上一节：模块 6.4 数据库正传](/zero-to-fullstack/lessons/module-6-4/) | [下一节：模块 6.6 状态与会话 →](/zero-to-fullstack/lessons/module-6-6/)
