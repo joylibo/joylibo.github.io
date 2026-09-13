@@ -783,4 +783,4 @@ Cookie: session_id=3f8a1c9e42d7460b8e5f1a2c7d9b0e64
 
 ---
 
-[← 上一节：模块 6.5 重构，在项目中使用 SQLite](/zero-to-fullstack/lessons/module-6-5/) | [下一节：模块 7.1 把后端搬上服务器 →](/zero-to-fullstack/lessons/module-7-1/)
+[← 上一节：模块 6.5 重构，在项目中使用 SQLite](/zero-to-fullstack/lessons/module-6-5/) | [下一节：模块 7.1 先上线——最朴素的部署方案 →](/zero-to-fullstack/lessons/module-7-1/)
