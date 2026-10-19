@@ -516,7 +516,7 @@ ssl_certificate_key /某个路径/私钥.pem;     # 只留在服务器上的那�
 
 | 类别     | 代表                                              | 特点                                |
 | ------ | ----------------------------------------------- | --------------------------------- |
-| 商业 CA  | DigiCert、Sectigo（原 Comodo）、GlobalSign           | 收费；除了验证域名，还能核实**公司身份**，银行、大企业多用它们 |
+| 商业 CA  | DigiCert、CFCA（中国金融认证中心）、GlobalSign        | 收费；除了验证域名，还能核实**公司身份**，银行、大企业多用它们 |
 | 免费、自动化 | **Let's Encrypt**、ZeroSSL、Google Trust Services | 免费；只验证域名，申请、续期全靠程序自动完成            |
 
 在阿里云、腾讯云控制台里看到的"SSL 证书"服务，多半是代售上面这些 CA 的证书；里面也有免费的，如今有效期同样只有几个月。
@@ -713,7 +713,13 @@ F12 看一眼 Network：fetch 发往的还是那个相对路径 `/api/analyze`�
         )
 ```
 
-推代码、服务器 `git pull`、`sudo systemctl restart zero-backend`。再 F12 → **Application → Cookies**，`session_id` 那一行的 **Secure 一栏，打上了勾**。
+推代码、服务器 `git pull`、`sudo systemctl restart zero-backend`。
+
+这时候刷新页面，Secure 一栏并不会自己打上勾。原因在 6.6 写的 `get_session_id`：后端只在请求里**没带** `session_id` 的时候才发新纸条；而 cookie 的属性，是发纸条那一刻由 `Set-Cookie` 一次写定的。浏览器手里那张旧纸条还在，后端一看"有了"，就不会重发，它的属性也就一直是旧的。
+
+所以要先把旧纸条删掉：F12 → **Application → Cookies**，选中 `session_id` 那一行删除，再刷新页面、做一次分析。后端发现没有纸条，就发一张新的——这回 `session_id` 那一行的 **Secure 一栏，打上了勾**。（换了纸条，后端就把我们当成了新访客，之前的历史记录看不到了，这是正常的。）
+
+> 改代码只影响以后新发的纸条。真实的网站上，老访客手里的旧纸条要么等它过期，要么由后端重新发一次，才会换成新的属性。
 
 至此，cookie的这三样**约束**算是齐了（`Max-Age` 管的是有效期，不在这一组）——它们各守一道门：
 
