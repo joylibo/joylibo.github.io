@@ -283,19 +283,21 @@ sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/example.co
 sudo vim /etc/nginx/sites-available/example.com
 ```
 
-要改的是开头这三行：
+要改的是这几行（`access_log` 那一行是新加的，放在 server 块里就行）：
 
 ```nginx
 listen 80;                                    # ← 去掉了 default_server;
 listen [::]:80;                               # ← 去掉了 default_server;
 ...
 server_name example.com www.example.com;      # ← 原来是 server_name _;
+access_log /var/log/nginx/example.com.access.log;   # ← 新加：这个网站单独记一份访客日志
 ```
 
-改了两件事：
+改了三件事：
 
 - **认领域名**：占位符 `_` 换成真域名，**两个域名都写上**，空格隔开；
 - **交出兜底职责**：去掉两行 `listen` 后面的 `default_server`。兜底的活儿归 `default`，`example.com` 文件只管自己的两个名字（**同一个端口只能有一个兜底的块**）
+- **单独记一份访客日志**：7.2 说过，Nginx 一直在记一份访客日志，默认所有请求都记在同一个 `/var/log/nginx/access.log` 里。一个网站一个配置文件，日志也一个网站一份——加了这一行，通过域名进网站的请求就记在 `example.com.access.log` 里，`access.log` 里只剩落进兜底块的那些。下一节读访客日志，就从这份开始。
 
 其余一字不动。
 
@@ -629,6 +631,7 @@ server {
 - 多了两行文件路径，正好是握手要用的那两份：`fullchain.pem` 是**证书**（full chain 是"整条链"的意思——我们自己的证书，连同链上往上的几张，握手时一起发给访客，好让浏览器顺着链往上找）；`privkey.pem` 是**私钥**；
 - 紧跟着的 `include` 和 `ssl_dhparam` 两行，是 certbot 附带的一套推荐加密设置（用哪些协议版本、哪些算法），认脸即可；
 - 下面新出现一个小 server 块守着 80——谁再用 http 来访问，就回一个 `301`，让浏览器转去 https（**两个名字各一条**，刚才选了几个域名，这儿就有几条）；
+- 这个小块里如果没有 `access_log` 那一行，被 `301` 送走的请求就会记进默认的 `access.log`；想让它们也记进网站自己的日志，在这个小块里也加上同样一行就行；
 - 这个小块最后那行 `return 404`，是 certbot 顺手加的一道保险：两个名字在上面都已经被 `301` 送走了，正常情况下走不到这一行。
 
 顺便把状态码的最后一个家族补齐：此前我们学习 http 状态码的时候认识了 2xx 成功、4xx 客户端错、5xx 服务端错，这一节我们终于见到了 3 开头的，**3xx 是"重定向"，意思是内容搬家了，去新地址**。
@@ -755,7 +758,7 @@ F12 看一眼 Network：fetch 发往的还是那个相对路径 `/api/analyze`�
    sudo nginx -t && sudo systemctl reload nginx
    ```
 
-   - `example.com`：两行 `listen` 去掉 `default_server`，`server_name _;` 改成 `server_name example.com www.example.com;`
+   - `example.com`：两行 `listen` 去掉 `default_server`，`server_name _;` 改成 `server_name example.com www.example.com;`，再加一行 `access_log /var/log/nginx/example.com.access.log;`
    - `default`：整个换成兜底块——`listen 80 default_server;`、`listen [::]:80 default_server;`、`server_name _;`、`return 404;`
 
 3. 安装 certbot，签发证书（两个域名都要选上，直接回车即全选）：
@@ -813,8 +816,8 @@ git push
 
 网站体面地立在公网上了。于是一个新问题自然冒出来：**有人来过吗？** 谁访问了这个网站、看了哪个页面、遇到过报错吗？
 
-下一节我们就一起来看一看，Nginx 访客日志与网站统计。
+下一节，我们就来读一读这份访客日志，看懂流量。
 
 ---
 
-[← 上一节：模块 7.2 常驻与同源——systemd 与 Nginx 反向代理](/zero-to-fullstack/lessons/module-7-2/) | [下一节：模块 7.4 看见你的访客——Nginx 日志与网站统计 →](/zero-to-fullstack/lessons/module-7-4/)
+[← 上一节：模块 7.2 常驻与同源——systemd 与 Nginx 反向代理](/zero-to-fullstack/lessons/module-7-2/) | [下一节：模块 7.4 看懂流量——访客日志、防护、优化与统计 →](/zero-to-fullstack/lessons/module-7-4/)
