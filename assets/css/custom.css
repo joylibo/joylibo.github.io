@@ -795,6 +795,11 @@ h1, h2, h3, h4, h5, h6,
   margin-top: 0.25rem;
 }
 
+/* 点目录跳转后，标题停在吸顶导航栏下方，而不是被它盖住 */
+.content :is(h1, h2, h3, h4, h5, h6)[id] {
+  scroll-margin-top: calc(84px + 1.25rem);
+}
+
 .lb-article-toc a {
   display: block;
   padding: 0.3rem 0.45rem;
