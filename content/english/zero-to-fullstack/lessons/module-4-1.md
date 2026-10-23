@@ -112,12 +112,12 @@ zero-to-tech-4-1/
 但是在现在的 `index.html` 代码中，我们却看到了这样一行引入：
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/animejs@4/lib/anime.iife.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@4.1.4/lib/anime.iife.min.js"></script>
 ```
 
 这其实是一个新的知识点——HTML 的 `<script>` 标签不仅仅可以引用本地路径的 `.js` 文件，还可以使用别人发布在互联网上的其他 `.js` 文件。
 
-这个 `anime.iife.min.js` 就是一个别人做好的、发布到互联网上的 js 脚本，它的地址是 `https://cdn.jsdelivr.net/npm/animejs@4/lib/anime.iife.min.js`。
+这个 `anime.iife.min.js` 就是一个别人做好的、发布到互联网上的 js 脚本，它的地址是 `https://cdn.jsdelivr.net/npm/animejs@4.1.4/lib/anime.iife.min.js`。
 
 这个 js 脚本是专门提供动画方案的，这种第三方的现成的动画脚本，我们把它叫做**第三方库**。
 
@@ -126,7 +126,7 @@ zero-to-tech-4-1/
 对于这种第三方库，我们可以直接在 html 文件中用 URL 地址来引入，所以这一行：
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/animejs@4/lib/anime.iife.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@4.1.4/lib/anime.iife.min.js"></script>
 ```
 
 这一行和：
@@ -189,7 +189,7 @@ anime.animate(".card", {
 2. 现在打开编辑器，把 `<script>` 的前两行**调换**一下：
    ```html
    <script src="js/cards.js"></script>   <!-- cards 跑的时候 anime 还没加载 -->
-   <script src="https://cdn.jsdelivr.net/npm/animejs@4/lib/anime.iife.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/animejs@4.1.4/lib/anime.iife.min.js"></script>
    <script src="js/score.js"></script>
    <script src="js/nav.js"></script>
    ```
@@ -388,7 +388,7 @@ initScoreAnim();
 最后，我们分别编辑 `index.html` 和 `text-lab.html`，把这两个文件底部的多个 `<script>` 标签：
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/animejs@4/lib/anime.iife.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@4.1.4/lib/anime.iife.min.js"></script>
 <script src="js/cards.js"></script>
 <script src="js/score.js"></script>
 <script src="js/nav.js"></script>
