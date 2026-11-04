@@ -1133,3 +1133,32 @@ h1, h2, h3, h4, h5, h6,
     max-height: calc(100vh - 7rem);
   }
 }
+
+/* 连续的纯图片段落：收紧图与图之间的空隙 */
+.content p:has(> img:only-child):has(+ p > img:only-child) {
+  margin-bottom: 0;
+}
+
+.content p:has(> img:only-child):has(+ p > img:only-child) > img {
+  margin-bottom: 0;
+}
+
+.content p:has(> img:only-child) + p:has(> img:only-child) {
+  margin-top: 6px;
+}
+
+.content p:has(> img:only-child) + p:has(> img:only-child) > img {
+  margin-top: 0;
+}
+
+/* prompt 代码块：自动换行，避免长句被截断；其他代码块（日志、命令）保持横向滚动 */
+.content .prompt pre,
+.content .prompt code,
+.content .prompt code span {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.content .prompt code > span {
+  display: block !important;
+}

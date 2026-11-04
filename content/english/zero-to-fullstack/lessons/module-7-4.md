@@ -65,7 +65,7 @@ draft: false
 | `14.117.xx.xx`                       | 访客的 **IP**                                            | 访客 IP 地址，我们在 5.3 手搓 API 时看到过 `client_address` |
 | `- -`                                | 两个身份字段：第一个是早年的遗留，Nginx 直接写死成 `-`；第二个是 HTTP 认证的用户名，很少用 | 没见过，认脸即可，跳过                                   |
 | `[24/Oct/2026:11:45:33 +0800]`       | 请求发生的时间，`+0800` 是东八区，也就是北京时间                          | ——                                            |
-| `"POST /api/analyze HTTP/1.1"`       | **请求行**：方法＋路径＋协议版本                                    | 5.3 讲的 HTTP 请求的第一行                         |
+| `"POST /api/analyze HTTP/1.1"`       | **请求行**：方法＋路径＋协议版本                                    | 5.3 讲的 HTTP 请求的第一行                            |
 | `200`                                | 状态码：成功                                                | 2xx / 3xx / 4xx / 5xx 状态码家族                   |
 | `156`                                | 响应正文的字节数，这里表示有 156 个字节                                | HTTP 响应头里那个 `Content-Length` 的近亲              |
 | `"https://www.example.com/text-lab"` | **Referer**：这个请求是从哪个页面发出来的。如果是 `-` 就表示没有来源            | 一个浏览器自动带上的请求头                                 |
@@ -81,7 +81,7 @@ IP 是**直接连上来的那台机器（或者说网络设备）的地址**。I
 
 但它也只说明这么多：
 
-- **它说的是机器，不是人。** 一家人共用一个 Wi-Fi，出口是同一个 IP；同一个人出门换了 4G，IP 就变了。所以不能单纯地用 IP 来标记一个用户。
+- **它说的是机器，不是人。** 一家人共用一个 Wi-Fi，出口是同一个 IP；同一个人出门换了 5G，IP 就变了。所以不能单纯地用 IP 来标记一个用户。
 - **它说的是"直接来敲门的那一台"。** 中间要是隔着代理、VPN，日志里记下的就是代理的地址。
 - **它能查出个大概的地方。** IP 是按地区分配的，查一下就知道大致来自哪个国家、哪个城市。也正因为这样，**IP 算个人信息**——这份课件里的 IP 都打了码。
 
@@ -166,7 +166,7 @@ sudo zcat -f /var/log/nginx/example.com.access.log*      # * 匹配所有翻过�
 
 此外，如果是有报错，会记录在 error.log
 
-我们可以通过 cat 来查看 example.com.access.log 日志，不过一般我们只看最近几条就够了，如果想要看日志的最后几行，可以用 tail 命令：
+如果只是看当天的，我们可以通过 cat 来查看 example.com.access.log 日志，不过一般我们只看最近几条就够了，如果想要看日志的最后几行，可以用 tail 命令：
 
 ```bash
 sudo tail /var/log/nginx/example.com.access.log      # tail：看文件的最后几行，默认 10 行
@@ -204,19 +204,19 @@ sudo tail -f /var/log/nginx/example.com.access.log      # Ctrl+C 退出
 
 问 AI 之前，先把背景交代清楚。下面这段话可以当作 prompt 固定的开头，每次都带上（注意把其中 example.com 换成你自己的真实域名）：
 
-```text
+```text {.prompt}
 我有一台 Ubuntu 服务器，Nginx 的访客日志在`/var/log/nginx/example.com.access.log`，日志每天会翻页，旧的在 .1 和 .gz 里，统计时请把它们一起算上。请给我一条能直接在终端运行的命令（读日志需要 sudo）
 ```
 
 然后接上这一次真正想问的那一句。
 
->此前的课件中，每次 Linux 命令我都会写出来让你复制，并且希望你能理解那条命令。但是当前这一节我会优先给你 prompt，你理解 prompt 即可。同时我也会提供 Linux 命令，当 AI 给你的命令跑不通或者结果看着不对劲，再复制我提供的这条 Linux 命令。
+>此前的课件中，每次 Linux 命令我都会写出来让你复制，并且希望你能理解那条命令。但是当前这一节我会优先给你 prompt，你理解 prompt 即可。同时我也会提供 Linux 命令，当 AI 给你的命令跑不通或者结果看着不对劲，再复制我提供的 Linux 命令。
 
 ### 哪些路径被请求得最多
 
 先看看最近这段时间，每个路径被请求了多少次，prompt 如下：
 
-```text
+```text {.prompt}
 统计每个路径被请求了多少次，从多到少列出前 20 个。
 ```
 
@@ -264,7 +264,7 @@ sudo sh -c 'zcat -f /var/log/nginx/example.com.access.log* | awk "{print \$7}" |
 
 日志里能直接数的，只有 IP，那就先数一数，有多少个不同的 IP，prompt 如下：
 
-```text
+```text {.prompt}
 数一数一共有多少个不同的访客 IP。
 ```
 
@@ -274,16 +274,16 @@ sudo sh -c 'zcat -f /var/log/nginx/example.com.access.log* | awk "{print \$7}" |
 sudo zcat -f /var/log/nginx/example.com.access.log* | awk '{print $1}' | sort -u | wc -l
 ```
 
-演示站：502 个。
+演示站查出来的是 502 个。
 
 但 **IP 不等于人**：
 
 - 一家人连着同一个 Wi-Fi，出口是同一个 IP，算出来只有"一个人"；
-- 同一个人，在家用 Wi-Fi、出门换 4G，IP 变了，算出来成了"两个人"。
+- 同一个人，在家用 Wi-Fi、出门换 5G，IP 变了，算出来成了"两个人"。
 
 稍微聪明一点的办法是把 **IP 和 UA 拼在一起**再去重（同一个 Wi-Fi 下，爸爸的 iPhone 和妈妈的安卓机，UA 不一样，就能分开算了），prompt 如下：
 
-```text
+```text {.prompt}
 把"IP 加上 User-Agent"当成一个访客，数一数一共有多少个不同的访客。
 ```
 
@@ -293,7 +293,7 @@ sudo zcat -f /var/log/nginx/example.com.access.log* | awk '{print $1}' | sort -u
 sudo zcat -f /var/log/nginx/example.com.access.log* | awk -F'"' '{split($1, a, " "); print a[1], $6}' | sort -u | wc -l
 ```
 
-演示站：723 个——**更"聪明"的算法，算出来的人反而更多了。**
+演示站统计出来的数字是 723 个——**更"聪明"的算法，算出来的人反而更多了。**
 
 想想开头那段日志里一秒换三副面孔的那个 `91.107.xx.xx`：在这个算法眼里，它就是三个人。对真人，"IP ＋ UA"确实更准一些；可机器越会伪装，这个数就越虚。
 
@@ -303,7 +303,7 @@ sudo zcat -f /var/log/nginx/example.com.access.log* | awk -F'"' '{split($1, a, "
 
 目前看下来，似乎对我们干扰最大的就是这些机器人访客了，那么我们可以单独统计一下这些请求，prompt 如下：
 
-```text
+```text {.prompt}
 找出 User-Agent 里带 bot、spider 或 crawl 的请求，按 User-Agent 统计次数，从多到少列出前 10 个。
 ```
 
@@ -358,11 +358,9 @@ Googlebot、bingbot、Baiduspider 都很容易认出来是**搜索引擎的爬�
 在项目根目录下新建一个 `public` 文件夹，里面放一个 `robots.txt`。这是 Next 的约定：**`public/` 里的文件，build 时原样拷进 `out/`**，访问路径就是文件名——`https://example.com/robots.txt`。
 
 ```text
-# 所有爬虫：页面随便看，接口别碰
 User-agent: *
 Disallow: /api/
 
-# 拿去训练大模型的：谢绝
 User-agent: GPTBot
 Disallow: /
 
@@ -393,7 +391,7 @@ cd ~/zero-to-tech && git pull && npm run build
 
 我们可以从那些 404 请求里面找到一些蛛丝马迹，prompt 如下：
 
-```text
+```text {.prompt}
 把 /var/log/nginx/ 底下所有名字里带 access.log 的访客日志（包括翻页的旧日志）放在一起，找出状态码是 404 的请求，按路径统计次数，从多到少列出前 10 个。
 ```
 
@@ -497,7 +495,7 @@ sudo vim /etc/nginx/sites-available/example.com
 
 在 **443 的那个 server 块**里加上一些防护配置，你可以让 AI 帮你写，prompt 如下：
 
-```text
+```text {.prompt}
 我的网站跑在 Ubuntu 上的 Nginx 里：前端是静态文件，接口通过 location /api/ 反向代理给本机 8000 端口的后端。网站上没有任何 PHP 之类的后端脚本，也没有以点开头的隐藏文件。
 
 访客日志里每天都有扫描器在试探，我想让 Nginx 对下面三类请求直接返回 444（什么都不回，直接断开）：
@@ -748,6 +746,10 @@ GA 是 Google 的服务，注册账号、打开后台，都需要我们（作为
 
 ![](/images/module-7-4-ga-admin-create.webp)
 
+![](/images/module-7-4-ga-wizard-steps.webp)
+
+![](/images/module-7-4-ga-stream-code.webp)
+
 
 **第二步，先看清它给了什么**。GA 给的跟踪代码长这样：
 
@@ -775,7 +777,7 @@ GA 是 Google 的服务，注册账号、打开后台，都需要我们（作为
 Google 给的脚本是原生 JavaScript 脚本，可以直接插入到 html 中，但是我们现在的前端已经是一个 React + Next.js 工程了，所以要换一种植入方式。
 
 你可以让 AI 帮你做，如果你使用的是本地的 AI Agent 宿主工具，prompt 如下（需要先把当前项目路径授权给 AI 工具）：
-```
+```text {.prompt}
 在当前项目中植入GA脚本，当前项目的前端是一个 React + Next.js 工程，需要确保全站所有页面都可以加载到这份脚本，脚本如下：
 
 <!-- Google tag (gtag.js) --> 
@@ -792,7 +794,7 @@ Google 给的脚本是原生 JavaScript 脚本，可以直接插入到 html 中�
 ```
 
 如果你使用的是会话式聊天 AI，无法直接操作你的计算机，prompt 如下：
-```
+```text {.prompt}
 我当前有一个基于 React + Next.js 工程的项目，其 app 目录结构如下：
 app
 ├── layout.jsx
