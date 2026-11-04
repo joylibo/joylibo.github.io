@@ -1241,3 +1241,8 @@ h1, h2, h3, h4, h5, h6,
   outline: 2px solid #ffffff;
   outline-offset: 2px;
 }
+
+/* 行内代码：放不下时允许断行，避免长路径、长网址把表格和段落撑出屏幕 */
+.content :not(pre) > code {
+  overflow-wrap: anywhere;
+}
