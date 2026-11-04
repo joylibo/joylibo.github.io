@@ -142,6 +142,9 @@ lazy = false
 link = "js/code-copy.js"
 lazy = false
 [[params.plugins.js]]
+link = "js/image-zoom.js"
+lazy = false
+[[params.plugins.js]]
 link = "js/article-tools.js"
 lazy = false
 [[params.plugins.js]]

@@ -1162,3 +1162,82 @@ h1, h2, h3, h4, h5, h6,
 .content .prompt code > span {
   display: block !important;
 }
+
+/* -------------------------------------------------------------
+   图片点击放大
+   ------------------------------------------------------------- */
+.content img.lb-zoomable {
+  cursor: zoom-in;
+}
+
+.lb-zoom-open {
+  overflow: hidden;
+}
+
+.lb-zoom {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 24px;
+  border: 0;
+  background: transparent;
+  overflow: auto;
+  overscroll-behavior: contain;
+  cursor: zoom-out;
+}
+
+.lb-zoom[open] {
+  display: flex;
+}
+
+.lb-zoom::backdrop {
+  background: rgba(0, 0, 0, 0.88);
+}
+
+.lb-zoom__img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  cursor: default;
+}
+
+.lb-zoom.can-zoom .lb-zoom__img {
+  cursor: zoom-in;
+}
+
+.lb-zoom.is-actual .lb-zoom__img {
+  max-width: none;
+  max-height: none;
+  cursor: zoom-out;
+}
+
+.lb-zoom__close {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(24, 24, 27, 0.8);
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lb-zoom__close:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.lb-zoom__close:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
