@@ -75,7 +75,13 @@
       if (pre.closest(".highlight")) {
         return;
       }
-      attachToBlock(pre, pre);
+      // 没写语言的代码块没有外层容器。按钮不能放进 pre：它会跟着横向滚动，
+      // 文字也会混进复制内容，所以补一层和其他代码块相同的容器
+      const wrapper = document.createElement("div");
+      wrapper.className = "highlight";
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+      attachToBlock(wrapper, pre);
     });
   };
 
