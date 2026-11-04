@@ -6,25 +6,9 @@
 
 /* -------------------------------------------------------------
    0. 本地字体（LXGW WenKai v1.522）
-   现代浏览器统一使用 WOFF2，避免同时下发重复的 TTF 文件。
-   字体路径相对于生成后的 /css/ 文件，兼容 Toy 子目录。
+   @font-face 由 scripts/fontSplit.py 生成到 fonts-generated.css，
+   拆成高频包和按需下载的长尾包。
    ------------------------------------------------------------- */
-@font-face {
-  font-family: 'LXGW WenKai';
-  src: url('../fonts/LXGWWenKai-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'LXGW WenKai';
-  src: url('../fonts/LXGWWenKai-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
 body {
   font-family: 'LXGW WenKai', 'Noto Serif SC', 'Source Han Serif SC', serif;
 }

@@ -31,6 +31,9 @@ This is a **Hugo static site** using the `hugoplate` theme, deployed to GitHub P
 
 The site uses **LXGW WenKai** as its primary font and a teal/green accent color system (`#2E7A6E` light / `#4DB8A8` dark).
 
+### Fonts
+LXGW WenKai is split by `scripts/fontSplit.py` (source files in `scripts/fonts-src/`) into a core file per weight (characters the site uses today, preloaded via `data/fonts.json`) and tail slices loaded on demand through `unicode-range`. Output goes to `static/fonts/wenkai/` and `assets/css/fonts-generated.css`, both committed, so deployment needs no Python. New characters work without re-running; re-run locally only to fold them into the core files (needs `fonttools` and `brotli`).
+
 ### Content structure
 All content lives under `content/english/` (single language, English):
 - `zero-to-fullstack/lessons/` — active course series with individual lesson articles

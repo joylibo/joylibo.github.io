@@ -117,6 +117,8 @@ notAlternative = true
 
 # CSS Plugins
 [[params.plugins.css]]
+link = "css/fonts-generated.css" # scripts/fontSplit.py
+[[params.plugins.css]]
 link = "plugins/swiper/swiper-bundle.css" # https://github.com/gethugothemes/hugo-modules/tree/master/gallery-slider
 lazy = true
 [[params.plugins.css]]

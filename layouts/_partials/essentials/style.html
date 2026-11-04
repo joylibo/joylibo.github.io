@@ -13,19 +13,10 @@
 <link rel="dns-prefetch" href="//platform.linkedin.com" />
 <link rel="dns-prefetch" href="//platform.twitter.com" />
 
-<!-- local font preload -->
-<link
-  rel="preload"
-  href="{{ "fonts/LXGWWenKai-Regular.woff2" | relURL }}"
-  as="font"
-  type="font/woff2"
-  crossorigin />
-<link
-  rel="preload"
-  href="{{ "fonts/LXGWWenKai-Medium.woff2" | relURL }}"
-  as="font"
-  type="font/woff2"
-  crossorigin />
+<!-- local font preload：只预加载高频包，长尾包由 unicode-range 按需下载 -->
+{{ range site.Data.fonts.preload }}
+  <link rel="preload" href="{{ . | relURL }}" as="font" type="font/woff2" crossorigin />
+{{ end }}
 
 <!-- main styles -->
 {{ $styles := slice }}
