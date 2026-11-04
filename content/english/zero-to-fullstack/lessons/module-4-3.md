@@ -175,6 +175,14 @@ export default defineConfig({
 
 这几行的意思是：把 React 插件挂到 Vite 上。
 
+这份配置用的是 `import` / `export`，也就是 4.1 学过的 ES 模块写法，所以我们还要在 `package.json` 里声明一下。打开 `package.json`，在 `version` 下面加上一行：
+
+```json
+"type": "module",
+```
+
+如果 `package.json` 里已经有 `"type": "commonjs"`，把它改成 `"module"` 就行。不声明的话，Vite 运行时会给出一条警告。
+
 到这里，Vite 就能看懂 React 代码了。
 
 再换一个角度看，“框架是一套规则”其实有两层含义：
