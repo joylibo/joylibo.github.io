@@ -747,4 +747,4 @@ git pull
 
 ---
 
-[← 上一节：模块 3.4 GitHub 与远程同步](/zero-to-fullstack/lessons/module-3-4/) | [下一节：进入下一模块 →](/zero-to-fullstack/)
+[← 上一节：模块 3.4 GitHub 与远程同步](/zero-to-fullstack/lessons/module-3-4/) | [下一节：模块 4.1 现代前端第一步——模块化 →](/zero-to-fullstack/lessons/module-4-1/)

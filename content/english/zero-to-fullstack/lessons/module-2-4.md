@@ -404,4 +404,4 @@ sudo vim /var/www/html/index.nginx-debian.html
 
 ---
 
-[← 上一节：模块 2.3 互联网是怎么工作的](/zero-to-fullstack/lessons/module-2-3/) | [下一节：模块 3 前端基础 →](/zero-to-fullstack/)
+[← 上一节：模块 2.3 互联网是怎么工作的](/zero-to-fullstack/lessons/module-2-3/) | [下一节：模块 3.1 前端基础——HTML →](/zero-to-fullstack/lessons/module-3-1/)

@@ -920,4 +920,4 @@ cd ~/zero-to-tech && git pull && npm run build
 
 ---
 
-[← 上一节：模块 7.3 域名与 HTTPS](/zero-to-fullstack/lessons/module-7-3/) | [下一节：模块 7.5 把存储换成 PostgreSQL →](/zero-to-fullstack/lessons/module-7-5/)
+[← 上一节：模块 7.3 域名与 HTTPS](/zero-to-fullstack/lessons/module-7-3/) | 下一节：模块 7.5 把存储换成 PostgreSQL（尚未发布）

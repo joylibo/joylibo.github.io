@@ -466,4 +466,4 @@ VS Code 是一个免费的代码编辑器软件，你可以在 VS Code 的官网
 
 ---
 
-[← 返回模块 2](/zero-to-fullstack/) | [下一节：模块 2.2 认识终端 →](/zero-to-fullstack/lessons/module-2-2/)
+[← 上一节：模块 1.3 课前准备](/zero-to-fullstack/lessons/module-1-3/) | [下一节：模块 2.2 终端与Linux直觉 →](/zero-to-fullstack/lessons/module-2-2/)

@@ -225,4 +225,4 @@ A 的核心，是服务器上**有一台跑着的 Next 服务**。这意味着 N
 
 ---
 
-[← 上一节：模块 4.5 Next.js](/zero-to-fullstack/lessons/module-4-5/) | [下一节：进入下一模块 →](/zero-to-fullstack/)
+[← 上一节：模块 4.5 Next.js](/zero-to-fullstack/lessons/module-4-5/) | [下一节：模块 5.1 究竟什么是 API？ →](/zero-to-fullstack/lessons/module-5-1/)
